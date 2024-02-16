@@ -1,25 +1,37 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import Sidebar from './views/Sidebar';
+import Navbar from './views/Navbar';
+import Dashboard from './views/Dashboard';
+import AccountManagment from './views/AccountManagment';
+import NebVerificationModule from './views/NebVerificationModule';
+import EbtGenerationModule from './views/EbtGenerationModule';
+import Announcement from './views/Announcement';
+import SystemReport from './views/SystemReport';
+import TrainingModule from './views/TrainingModule';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <BrowserRouter>
+    <div className='d-flex'>
+      <div className='w-auto'>
+        <Sidebar />
+      </div>
+      <div className='col overflow-auto'>
+          <Routes>
+              <Route path='/' element={<Dashboard />}></Route>
+              <Route path='/accountManagment' element={<AccountManagment />}></Route>
+              <Route path='/nebVerificationModule' element={<NebVerificationModule />}></Route>
+              <Route path='/ebtGenerationModule' element={<EbtGenerationModule />}></Route>
+              <Route path='/announcement' element={<Announcement />}></Route>
+              <Route path='/systemReport' element={<SystemReport />}></Route>
+              <Route path='/trainingModule' element={<TrainingModule />}></Route>
+          </Routes>
+      </div>
     </div>
-  );
+    </BrowserRouter>
+  )
 }
 
-export default App;
+export default App
