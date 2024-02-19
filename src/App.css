@@ -1,3 +1,5 @@
+@import "~admin-lte/dist/css/adminlte.css";
+
 .App {
   text-align: center;
 }
@@ -73,3 +75,4 @@
     transform: rotate(360deg);
   }
 }
+

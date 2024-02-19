@@ -1,27 +1,26 @@
-import logo from './logo.svg';
+import React from 'react';
+import { Route, BrowserRouter, Routes } from 'react-router-dom';
+import './meih.scss';
 import './App.css';
+import Dashboard from './views/Dashboard';
+import ContentWrapper from './layout/ContentWrapper';
+import Sidebar from './layout/Sidebar';
+import Page404 from './views/Page404';
+
+const getBasename = () => `/${process.env.PUBLIC_URL.split('/').pop()}`;
 
 function App() {
   return (
-    <BrowserRouter>
-    <div className='d-flex'>
-      <div className='w-auto'>
-        <Sidebar />
-      </div>
-      <div className='col overflow-auto'>
-          <Routes>
-              <Route path='/' element={<Dashboard />}></Route>
-              <Route path='/accountManagment' element={<AccountManagment />}></Route>
-              <Route path='/nebVerificationModule' element={<NebVerificationModule />}></Route>
-              <Route path='/ebtGenerationModule' element={<EbtGenerationModule />}></Route>
-              <Route path='/announcement' element={<Announcement />}></Route>
-              <Route path='/systemReport' element={<SystemReport />}></Route>
-              <Route path='/trainingModule' element={<TrainingModule />}></Route>
-          </Routes>
-      </div>
-    </div>
+    <BrowserRouter basename={getBasename()}>
+      <Sidebar />
+      <ContentWrapper>
+        <Routes>
+          <Route exact path='/' component={Dashboard} />
+          <Route component={Page404} />
+        </Routes>
+      </ContentWrapper>
     </BrowserRouter>
-  )
+  );
 }
 
 export default App
