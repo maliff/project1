@@ -1,8 +1,14 @@
 import React from 'react';
 import DataTable from 'react-data-table-component';
-import '../App.css';
+import '../../App.css';
+import { Navigate } from "react-router-dom";
 
 function NebVerificationModule() {
+    const [ goToFuelBalanceReport, setGoToFuelBalanceReport] = React.useState(false);
+    
+    if (goToFuelBalanceReport) {
+        return <Navigate to="/fuelBalanceReport" />;
+    }
     const columns = [
         {
             name: 'No.',
@@ -39,7 +45,12 @@ function NebVerificationModule() {
         },
         {
             name: 'Action',
-            selector: row => row.action
+            cell: row => (
+                <div>
+                    <button onClick={() => setGoToFuelBalanceReport(true)}>View Form</button>
+                    <button onClick={() => setGoToFuelBalanceReport(true)}>Download</button>
+                </div>
+            )
         }
     ];
 

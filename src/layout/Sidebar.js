@@ -9,7 +9,7 @@ import {
     faTh,
     faTree,
 } from '@fortawesome/free-solid-svg-icons';
-import { faCircle as farCircle } from '@fortawesome/free-regular-svg-icons';
+import { faListAlt, faCircle as farCircle } from '@fortawesome/free-regular-svg-icons';
 import { Badge, NavItem, NavLink } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -24,6 +24,10 @@ export default function Sidebar() {
                     <NavLink tag={Link} to='/'>
                         <FontAwesomeIcon icon={faTachometerAlt} className='nav-icon' />
                         <p>Dashboard</p>
+                    </NavLink>
+                    <NavLink tag={Link} to='/nebVerificationModule'>
+                        <FontAwesomeIcon icon={faListAlt} className='nav-icon' />
+                        <p>NEB Verification Module</p>
                     </NavLink>
                 </NavItem>
             </NavSidebar>
