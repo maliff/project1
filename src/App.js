@@ -6,17 +6,19 @@ import Dashboard from './views/Dashboard';
 import ContentWrapper from './layout/ContentWrapper';
 import Sidebar from './layout/Sidebar';
 import Page404 from './views/Page404';
+import Header from './layout/Header';
 
 const getBasename = () => `/${process.env.PUBLIC_URL.split('/').pop()}`;
 
 function App() {
   return (
     <BrowserRouter basename={getBasename()}>
+      <Header />
       <Sidebar />
       <ContentWrapper>
         <Routes>
-          <Route exact path='/' component={Dashboard} />
-          <Route component={Page404} />
+          <Route exact path='/' element={<Dashboard/>} />
+          <Route element={<Page404 />} />
         </Routes>
       </ContentWrapper>
     </BrowserRouter>

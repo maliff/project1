@@ -1,10 +1,6 @@
 import React from 'react';
 import { Container } from 'reactstrap';
 
-const defaultProps = {
-  children: null,
-};
-
 const LteContent = ({ children }) => {
   return (
     <section className='content'>
@@ -13,6 +9,5 @@ const LteContent = ({ children }) => {
   );
 };
 
-LteContent.defaultProps = defaultProps;
 
 export default LteContent;
