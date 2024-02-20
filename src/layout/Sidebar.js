@@ -1,6 +1,7 @@
 import React from "react";
 import {
     faAngleLeft,
+    faBullhorn,
     faChartPie,
     faCopy,
     faEdit,
@@ -28,6 +29,10 @@ export default function Sidebar() {
                     <NavLink tag={Link} to='/nebVerificationModule'>
                         <FontAwesomeIcon icon={faListAlt} className='nav-icon' />
                         <p>NEB Verification Module</p>
+                    </NavLink>
+                    <NavLink tag={Link} to='/announcement'>
+                        <FontAwesomeIcon icon={faBullhorn} className='nav-icon' />
+                        <p>Announcement</p>
                     </NavLink>
                 </NavItem>
             </NavSidebar>
