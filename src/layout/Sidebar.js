@@ -25,6 +25,10 @@ export default function Sidebar() {
                         <FontAwesomeIcon icon={faTachometerAlt} className='nav-icon' />
                         <p>Dashboard</p>
                     </NavLink>
+                    <NavLink tag={Link} to='/nebAccountManagement'>
+                        <FontAwesomeIcon icon={faListAlt} className='nav-icon' />
+                        <p>Account Management</p>
+                    </NavLink>
                     <NavLink tag={Link} to='/nebVerificationModule'>
                         <FontAwesomeIcon icon={faListAlt} className='nav-icon' />
                         <p>NEB Verification Module</p>

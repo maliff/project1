@@ -9,6 +9,7 @@ import ContentWrapper from './layout/ContentWrapper';
 import Sidebar from './layout/Sidebar';
 import Page404 from './views/Page404';
 import Header from './layout/Header';
+import NEBAccountManagement from './views/NEBAccountManagement/NEBAccountManagement';
 
 const getBasename = () => `/${process.env.PUBLIC_URL.split('/').pop()}`;
 
@@ -20,6 +21,7 @@ function App() {
       <ContentWrapper>
         <Routes>
           <Route exact path='/' element={<Dashboard/>} />
+          <Route exact path='/nebAccountManagement' element={<NEBAccountManagement/>} />
           <Route exact path='/nebVerificationModule' element={<NEBVerificationModuel/>} />
           <Route exact path='/fuelBalanceReport' element={<FuelBalanceReport/>} />
           <Route element={<Page404 />} />
