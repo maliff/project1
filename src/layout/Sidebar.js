@@ -26,10 +26,14 @@ export default function Sidebar() {
                         <FontAwesomeIcon icon={faTachometerAlt} className='nav-icon' />
                         <p>Dashboard</p>
                     </NavLink>
+                </NavItem>
+                <NavItem>
                     <NavLink tag={Link} to='/nebVerificationModule'>
                         <FontAwesomeIcon icon={faListAlt} className='nav-icon' />
                         <p>NEB Verification Module</p>
                     </NavLink>
+                </NavItem>
+                <NavItem>
                     <NavLink tag={Link} to='/announcement'>
                         <FontAwesomeIcon icon={faBullhorn} className='nav-icon' />
                         <p>Announcement</p>
