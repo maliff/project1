@@ -2,8 +2,7 @@ import React from 'react';
 import DataTable from 'react-data-table-component';
 import '../../App.css';
 import { Button } from 'reactstrap';
-// import { Row } from 'reactstrap';
-// import { Navigate } from "react-router-dom";
+import { Link } from 'react-router-dom';
 
 const NEBAccountManagement = () => {
     const data = [
@@ -68,39 +67,47 @@ const NEBAccountManagement = () => {
 
   return (
     <div>
-      {/* Latest data provider */}
+    {/* Account Management Section */}
+    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
       <h2>Account Management</h2>
-
+      <Link to="/createNewDataProvider">
       <Button color="primary" onClick={() => console.log('Button clicked')}>
-        Your Button
+        + Add New Data Provider
       </Button>
-
-      <div style={{ marginTop: '20px' }}>
-        <DataTable
-          title="Latest Data Provider"
-          columns={columns}
-          data={data}
-          pagination={true}
-          highlightOnHover={true}
-        />
-      </div>
-
-      {/* Latest product */}
-
-      <Button color="primary" onClick={() => console.log('Button clicked')}>
-        Your Button
-      </Button>
-
-      <div style={{ marginTop: '20px' }}>
-        <DataTable
-          title="Latest Product"
-          columns={columns}
-          data={data}
-          pagination={true}
-          highlightOnHover={true}
-        />
-      </div>
+      </Link>
     </div>
+
+    {/* Account Management DataTable */}
+    <div style={{ marginTop: '20px' }}>
+      <DataTable
+        title="Latest Data Provider"
+        columns={columns}
+        data={data}
+        pagination={true}
+        highlightOnHover={true}
+      />
+    </div>
+
+    {/* Latest Product Section */}
+    <div style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center', marginTop: '20px' }}>
+    <Link to="/createNewProduct">
+      <Button color="primary" onClick={() => console.log('Button clicked')}>
+      + Add New Product
+      </Button>
+    </Link>
+    </div>
+
+    {/* Latest Product DataTable */}
+    <div style={{ marginTop: '20px' }}>
+      <DataTable
+        title="Latest Product"
+        columns={columns}
+        data={data}
+        pagination={true}
+        highlightOnHover={true}
+      />
+    </div>
+  </div>
   );
 };
 

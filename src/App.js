@@ -15,6 +15,8 @@ import ContentWrapper from './layout/ContentWrapper';
 import Sidebar from './layout/Sidebar';
 import Page404 from './views/Page404';
 import Header from './layout/Header';
+import CreateNewDataProvider from './views/NEBAccountManagement/CreateNewDataProvider';
+import CreateNewProduct from './views/NEBAccountManagement/CreateNewProduct';
 
 const getBasename = () => `/${process.env.PUBLIC_URL.split('/').pop()}`;
 
@@ -27,6 +29,8 @@ function App() {
         <Routes>
           <Route exact path='/' element={<Dashboard/>} />
           <Route exact path='/nebAccountManagement' element={<NEBAccountManagement/>} />
+          <Route exact path='/createNewDataProvider' element={<CreateNewDataProvider/>} />
+          <Route exact path='/createNewProduct' element={<CreateNewProduct/>} />
           <Route exact path='/nebVerificationModule' element={<NEBVerificationModule/>} />
           <Route exact path='/fuelBalanceReport' element={<FuelBalanceReport/>} />
           <Route exact path='/ebtGenerationModule' element={<EbtGenerationModule/>} />
