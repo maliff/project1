@@ -9,6 +9,9 @@ import {
     faTachometerAlt,
     faTh,
     faTree,
+    faUserPlus,
+    faFolderPlus,
+    faComment
 } from '@fortawesome/free-solid-svg-icons';
 import { faListAlt, faCircle as farCircle } from '@fortawesome/free-regular-svg-icons';
 import { Badge, NavItem, NavLink } from 'reactstrap';
@@ -27,16 +30,28 @@ export default function Sidebar() {
                         <p>Dashboard</p>
                     </NavLink>
                     <NavLink tag={Link} to='/nebAccountManagement'>
-                        <FontAwesomeIcon icon={faListAlt} className='nav-icon' />
+                        <FontAwesomeIcon icon={faUserPlus} className='nav-icon' />
                         <p>Account Management</p>
                     </NavLink>
                     <NavLink tag={Link} to='/nebVerificationModule'>
                         <FontAwesomeIcon icon={faListAlt} className='nav-icon' />
                         <p>NEB Verification Module</p>
                     </NavLink>
+                    <NavLink tag={Link} to='/ebtGenerationModule'>
+                        <FontAwesomeIcon icon={faFolderPlus} className='nav-icon' />
+                        <p>EBT Generation Module</p>
+                    </NavLink>
                     <NavLink tag={Link} to='/announcement'>
                         <FontAwesomeIcon icon={faBullhorn} className='nav-icon' />
                         <p>Announcement</p>
+                    </NavLink>
+                    <NavLink tag={Link} to='/systemReport'>
+                        <FontAwesomeIcon icon={faComment} className='nav-icon' />
+                        <p>System Report</p>
+                    </NavLink>
+                    <NavLink tag={Link} to='/trainingModule'>
+                        <FontAwesomeIcon icon={faFolderPlus} className='nav-icon' />
+                        <p>Training Module</p>
                     </NavLink>
                 </NavItem>
             </NavSidebar>
