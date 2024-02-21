@@ -1,6 +1,7 @@
 import React from 'react';
 import DataTable from 'react-data-table-component';
 import '../../App.css';
+import { Button } from 'reactstrap';
 // import { Row } from 'reactstrap';
 // import { Navigate } from "react-router-dom";
 
@@ -67,15 +68,38 @@ const NEBAccountManagement = () => {
 
   return (
     <div>
+      {/* Latest data provider */}
       <h2>Account Management</h2>
-      
-      <DataTable
-        title="Latest Data Provider"
-        columns={columns}
-        data={data}
-        pagination={true}
-        highlightOnHover={true}
-      />
+
+      <Button color="primary" onClick={() => console.log('Button clicked')}>
+        Your Button
+      </Button>
+
+      <div style={{ marginTop: '20px' }}>
+        <DataTable
+          title="Latest Data Provider"
+          columns={columns}
+          data={data}
+          pagination={true}
+          highlightOnHover={true}
+        />
+      </div>
+
+      {/* Latest product */}
+
+      <Button color="primary" onClick={() => console.log('Button clicked')}>
+        Your Button
+      </Button>
+
+      <div style={{ marginTop: '20px' }}>
+        <DataTable
+          title="Latest Product"
+          columns={columns}
+          data={data}
+          pagination={true}
+          highlightOnHover={true}
+        />
+      </div>
     </div>
   );
 };
