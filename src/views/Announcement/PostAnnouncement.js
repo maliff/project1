@@ -9,16 +9,7 @@ import {
   faRecordVinyl,
 } from "@fortawesome/free-solid-svg-icons";
 
-function PostAnnouncement() {
-  const [showDialog, setShowDialog] = useState(false);
-
-  const handleBadgeClick = () => {
-    setShowDialog(true);
-  };
-
-  const handleCloseDialog = () => {
-    setShowDialog(false);
-  };
+function PostAnnouncement({ onBadgeClick }) {
   return (
     <Card className="mb-5">
       <Card.Body className="bg-light">
@@ -33,10 +24,7 @@ function PostAnnouncement() {
               />
               <div>
                 <h5 className="fw-bold mb-0 p-1">M Amirul Ezekiel</h5>
-                <small
-                  className="p-1 badge bg-primary"
-                  onClick={handleBadgeClick}
-                >
+                <small className="p-1 badge bg-primary" onClick={onBadgeClick}>
                   <FontAwesomeIcon icon={faUsers} />
                   <span> All</span>
                 </small>
