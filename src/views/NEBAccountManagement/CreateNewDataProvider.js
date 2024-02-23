@@ -37,6 +37,7 @@ import {
 } from "reactstrap";
 import LteContent from "../../components/LteContent";
 import LteContentHeader from "../../components/LteContentHeader";
+import { Link } from 'react-router-dom';
 
 const CreateNewDataProvider = () => {
   return (
@@ -264,7 +265,9 @@ const CreateNewDataProvider = () => {
               <Button color="secondary" className="mr-2">
                 Cancel
               </Button>
-              <Button color="primary">Save</Button>
+              <Link to="/CreateNewDataProvider2">
+                <Button color="primary">Save</Button>
+              </Link>
             </div>
           </div>
           {/* /.container-fluid */}
