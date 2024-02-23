@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Row, Col } from "react-bootstrap";
 import LteContent from "../../components/LteContent";
 import LteContentHeader from "../../components/LteContentHeader";
@@ -7,8 +7,28 @@ import Tabs from "react-bootstrap/Tabs";
 import DataTrendAnalysis from "./DataTrendAnalysis";
 import PlantEfficiency from "./PlantEfficiency";
 import Card from "react-bootstrap/Card";
+import Modal from "react-bootstrap/Modal";
+import Button from "react-bootstrap";
 
 function FuelBalanceReport() {
+  const [showAmendmentDialog, setShowAmendmentDialog] = useState(false);
+  const [showApproveDialog, setShowApproveDialog] = useState(false);
+
+  const requestForAmendmentClick = () => {
+    setShowAmendmentDialog(true);
+  };
+
+  const handleCloseAmendmentDialog = () => {
+    setShowAmendmentDialog(false);
+  };
+
+  const ApproveClick = () => {
+    setShowApproveDialog(true);
+  };
+
+  const handleCloseApproveDialog = () => {
+    setShowApproveDialog(false);
+  };
   return (
     <>
       <LteContentHeader title="Fuel Balance Report" />
@@ -102,16 +122,19 @@ function FuelBalanceReport() {
                 </div>
               </Tab>
               <Tab eventKey="plantEfficiency" title="Plant Efficiency">
-              <PlantEfficiency />
+                <PlantEfficiency />
               </Tab>
             </Tabs>
             <div class="text-center mt-5 mb-3 d-flex justify-content-end">
-              <a href="#" class="btn btn-outline-primary mr-1">
+              <button
+                onClick={requestForAmendmentClick}
+                class="btn btn-outline-primary mr-1"
+              >
                 Request for Amendment
-              </a>
-              <a href="#" class="btn btn-primary">
+              </button>
+              <button onClick={ApproveClick} class="btn btn-primary">
                 Approve
-              </a>
+              </button>
             </div>
           </div>
         </div>
@@ -183,13 +206,60 @@ function FuelBalanceReport() {
               </Card.Body>
             </Card>
             <form className="form-horizontal mt-3">
-                <div className="input-group input-group-lg mb-2">
-                    <input className="form-control form-control-lg" placeholder="Type here..." />
-                    <button type="submit" className="btn btn-primary ml-2">Send</button>
-                </div>
+              <div className="input-group input-group-lg mb-2">
+                <input
+                  className="form-control form-control-lg"
+                  placeholder="Type here..."
+                />
+                <button type="submit" className="btn btn-primary ml-2">
+                  Send
+                </button>
+              </div>
             </form>
           </div>
         </div>
+        <Modal show={showAmendmentDialog} onHide={handleCloseAmendmentDialog}>
+          <Modal.Header closeButton>
+            <Modal.Title>Request for Amendment</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            Remarks *
+            <form className="form-horizontal">
+              <div className="input-group input-group-lg mb-2">
+                <input
+                  className="form-control form-control-lg"
+                  placeholder="Type here..."
+                />
+              </div>
+            </form>
+          </Modal.Body>
+          <Modal.Footer>
+            <button
+              className="btn btn-secondary"
+              onClick={handleCloseAmendmentDialog}
+            >
+              Cancel
+            </button>
+            <button className="btn btn-primary">Request for Amendment</button>
+          </Modal.Footer>
+        </Modal>
+        <Modal show={showApproveDialog} onHide={handleCloseApproveDialog}>
+          <Modal.Header closeButton>
+            <Modal.Title>Confirm Approval</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <p>You are approving Tenaga Nasional Fuel Balance Report Q1 2023</p>
+          </Modal.Body>
+          <Modal.Footer>
+            <button
+              className="btn btn-secondary"
+              onClick={handleCloseApproveDialog}
+            >
+              Cancel
+            </button>
+            <button className="btn btn-primary">Approve</button>
+          </Modal.Footer>
+        </Modal>
       </LteContent>
     </>
   );
