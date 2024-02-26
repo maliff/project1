@@ -60,37 +60,42 @@ const CreateNewDataProvider3 = () => {
               </div>
               {/* /.card-header */}
 
-              {/* Agency Detail's */}
+              {/* Form*/}
               <div className="card-body">
                 <div className="row">
                   {/* 1 column */}
                   <div className="col-lg-6">
-                    {/* <h6>Fill up all details*</h6> */}
-                    <div className="form-group">
-                      <label htmlFor="energySectorInput">
+                    <div
+                      className="form-group "
+                      style={{ marginBottom: "6rem" }}
+                    >
+                      <label
+                        htmlFor="energySectorInput"
+                        style={{ color: "blue" }}
+                      >
                         Energy,Supply,Production and Generation
                       </label>
                       <br />
                       <br />
                       {/* Checkbox 1 */}
-                      <div className="custom-control custom-checkbox">
-                        <input
-                          className="custom-control-input custom-control-input-danger"
+                      <div className="custom-control custom-checkbox mb-3">
+                        <Input
+                          className="custom-control-input custom-control-input-success"
                           type="checkbox"
                           id="customCheckbox1"
-                          defaultChecked
                         />
                         <label
                           htmlFor="customCheckbox1"
                           className="custom-control-label"
                         >
-                          F1: Stock of Energy Products (Opening Stock & Closing Stock)
+                          F1: Stock of Energy Products (Opening Stock & Closing
+                          Stock)
                         </label>
                       </div>
                       {/* Checkbox 2 */}
-                      <div className="custom-control custom-checkbox">
-                        <input
-                          className="custom-control-input custom-control-input-danger"
+                      <div className="custom-control custom-checkbox mb-3">
+                        <Input
+                          className="custom-control-input custom-control-input-success"
                           type="checkbox"
                           id="customCheckbox2"
                           defaultChecked
@@ -103,9 +108,9 @@ const CreateNewDataProvider3 = () => {
                         </label>
                       </div>
                       {/* Checkbox 3 */}
-                      <div className="custom-control custom-checkbox">
-                        <input
-                          className="custom-control-input custom-control-input-danger"
+                      <div className="custom-control custom-checkbox mb-3">
+                        <Input
+                          className="custom-control-input custom-control-input-success"
                           type="checkbox"
                           id="customCheckbox3"
                           defaultChecked
@@ -118,9 +123,9 @@ const CreateNewDataProvider3 = () => {
                         </label>
                       </div>
                       {/* Checkbox 4 */}
-                      <div className="custom-control custom-checkbox">
-                        <input
-                          className="custom-control-input custom-control-input-danger"
+                      <div className="custom-control custom-checkbox mb-3">
+                        <Input
+                          className="custom-control-input custom-control-input-success"
                           type="checkbox"
                           id="customCheckbox4"
                           defaultChecked
@@ -133,9 +138,9 @@ const CreateNewDataProvider3 = () => {
                         </label>
                       </div>
                       {/* Checkbox 5 */}
-                      <div className="custom-control custom-checkbox">
-                        <input
-                          className="custom-control-input custom-control-input-danger"
+                      <div className="custom-control custom-checkbox mb-3">
+                        <Input
+                          className="custom-control-input custom-control-input-success"
                           type="checkbox"
                           id="customCheckbox5"
                           defaultChecked
@@ -145,6 +150,93 @@ const CreateNewDataProvider3 = () => {
                           className="custom-control-label"
                         >
                           F5: Losses of Energy Products
+                        </label>
+                      </div>
+                    </div>
+                    <div
+                      className="form-group mb-4"
+                      style={{ marginBottom: "6rem" }}
+                    >
+                      <label
+                        htmlFor="energySectorInput"
+                        style={{ color: "blue" }}
+                      >
+                        Energy Consumption Sectors
+                      </label>
+                      <br />
+                      <br />
+                      {/* Checkbox 1 */}
+                      <div className="custom-control custom-checkbox mb-3">
+                        <Input
+                          className="custom-control-input custom-control-input-success"
+                          type="checkbox"
+                          id="customCheckbox6"
+                          defaultChecked
+                        />
+                        <label
+                          htmlFor="customCheckbox6"
+                          className="custom-control-label"
+                        >
+                          F1: Stock of Energy Products (Opening Stock & Closing
+                          Stock)
+                        </label>
+                      </div>
+                    </div>
+                    <div
+                      className="form-group mb-4"
+                      style={{ marginTop: "6rem" }}
+                    >
+                      <label
+                        htmlFor="energySectorInput"
+                        style={{ color: "blue" }}
+                      >
+                        Additional Forms
+                      </label>
+                      <br />
+                      <br />
+                      {/* Checkbox 1 */}
+                      <div className="custom-control custom-checkbox mb-3">
+                        <Input
+                          className="custom-control-input custom-control-input-success"
+                          type="checkbox"
+                          id="customCheckbox7"
+                          defaultChecked
+                        />
+                        <label
+                          htmlFor="customCheckbox7"
+                          className="custom-control-label"
+                        >
+                          Installed Capacity
+                        </label>
+                      </div>
+                      {/* Checkbox 2 */}
+                      <div className="custom-control custom-checkbox mb-3">
+                        <Input
+                          className="custom-control-input custom-control-input-success"
+                          type="checkbox"
+                          id="customCheckbox8"
+                          defaultChecked
+                        />
+                        <label
+                          htmlFor="customCheckbox8"
+                          className="custom-control-label"
+                        >
+                          Power PLant Performance
+                        </label>
+                      </div>
+                      {/* Checkbox 3 */}
+                      <div className="custom-control custom-checkbox mb-3">
+                        <Input
+                          className="custom-control-input custom-control-input-success"
+                          type="checkbox"
+                          id="customCheckbox9"
+                          defaultChecked
+                        />
+                        <label
+                          htmlFor="customCheckbox9"
+                          className="custom-control-label"
+                        >
+                          Net Caloriffic value
                         </label>
                       </div>
                     </div>
@@ -162,7 +254,7 @@ const CreateNewDataProvider3 = () => {
               <Button color="secondary" className="mr-2">
                 Cancel
               </Button>
-              <Link to="/createNewDataProvider3">
+              <Link to="/createNewDataProviderSummary">
                 <Button color="primary">Save</Button>
               </Link>
             </div>
