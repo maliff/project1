@@ -36,7 +36,7 @@ function App() {
           <Route exact path='/createNewDataProvider3' element={<CreateNewDataProvider3/>} />
           <Route exact path='/createNewProduct' element={<CreateNewProduct/>} />
           <Route exact path='/nebVerificationModule' element={<NEBVerificationModule/>} />
-          <Route exact path='/fuelBalanceReport' element={<FuelBalanceReport/>} />
+          <Route exact path='/fuelBalanceReport/:id' element={<FuelBalanceReport/>} />
           <Route exact path='/ebtGenerationModule' element={<EbtGenerationModule/>} />
           <Route exact path='/announcement' element={<Announcement/>} />
           <Route exact path='/systemReport' element={<SystemReport/>} />

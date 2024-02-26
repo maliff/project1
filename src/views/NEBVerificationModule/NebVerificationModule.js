@@ -1,9 +1,18 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import LteContent from "../../components/LteContent";
 import LteContentHeader from "../../components/LteContentHeader";
 import { Navigate } from "react-router-dom";
+import axios from "axios";
+import { Link } from "react-router-dom";
 
 function NebVerificationModule() {
+  const [data, setData] = useState([]);
+  useEffect(() => {
+    axios
+      .get("http://localhost:3030/users")
+      .then((res) => setData(res.data))
+      .catch((err) => console.log(err));
+  }, []);
   const [goToFuelBalanceReport, setGoToFuelBalanceReport] =
     React.useState(false);
 
@@ -58,167 +67,49 @@ function NebVerificationModule() {
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td>1</td>
-                  <td>Tenaga Nasional</td>
-                  <td>
-                    <span className="badge bg-secondary">Not Submitted</span>
-                  </td>
-                  <td>N/A</td>
-                  <td>
-                    <div>
-                      <div className="btn-group mr-2">
-                        <button
-                          onClick={() => setGoToFuelBalanceReport(true)}
-                          type="button"
-                          className="btn bg-gradient-primary"
-                          style={{ width: "80px" }}
-                        >
-                          View
-                        </button>
+                {data.map((d, i) => (
+                  <tr key={i}>
+                    <td>{d.id}</td>
+                    <td>{d.Agency}</td>
+                    <td>
+                      <span
+                        className={`badge ${
+                          d.Status === "Approved"
+                            ? "bg-success"
+                            : d.Status === "Pending for Approval"
+                            ? "bg-primary"
+                            : d.Status === "Pending for Amendment"
+                            ? "bg-danger"
+                            : "bg-secondary"
+                        }`}
+                      >
+                        {d.Status}
+                      </span>
+                    </td>
+                    <td>{d.Approver}</td>
+                    <td>
+                      <div>
+                        <div className="btn-group mr-2">
+                          <Link to={`/fuelBalanceReport/${d.id}`}
+                            className="btn bg-gradient-primary"
+                            style={{ width: "80px" }}
+                          >
+                            View
+                          </Link>
+                        </div>
+                        <div className="btn-group">
+                          <button
+                            type="button"
+                            className="btn bg-gradient-primary"
+                            style={{ width: "100px" }}
+                          >
+                            Download
+                          </button>
+                        </div>
                       </div>
-                      <div className="btn-group">
-                        <button
-                          type="button"
-                          className="btn bg-gradient-primary"
-                          style={{ width: "100px" }}
-                        >
-                          Download
-                        </button>
-                      </div>
-                    </div>
-                  </td>
-                </tr>
-                <tr>
-                  <td>2</td>
-                  <td>Sabah Energy</td>
-                  <td>
-                    <span className="badge bg-danger">
-                      Pending for Amendment
-                    </span>
-                  </td>
-                  <td>N/A</td>
-                  <td>
-                    <div>
-                      <div className="btn-group mr-2">
-                        <button
-                          onClick={() => setGoToFuelBalanceReport(true)}
-                          type="button"
-                          className="btn bg-gradient-primary"
-                          style={{ width: "80px" }}
-                        >
-                          View
-                        </button>
-                      </div>
-                      <div className="btn-group">
-                        <button
-                          type="button"
-                          className="btn bg-gradient-primary"
-                          style={{ width: "100px" }}
-                        >
-                          Download
-                        </button>
-                      </div>
-                    </div>
-                  </td>
-                </tr>
-                <tr>
-                  <td>3</td>
-                  <td>Sarawak Energy</td>
-                  <td>
-                    <span className="badge bg-warning">
-                      Pending for Approval
-                    </span>
-                  </td>
-                  <td>N/A</td>
-                  <td>
-                    <div>
-                      <div className="btn-group mr-2">
-                        <button
-                          onClick={() => setGoToFuelBalanceReport(true)}
-                          type="button"
-                          className="btn bg-gradient-primary"
-                          style={{ width: "80px" }}
-                        >
-                          View
-                        </button>
-                      </div>
-                      <div className="btn-group">
-                        <button
-                          type="button"
-                          className="btn bg-gradient-primary"
-                          style={{ width: "100px" }}
-                        >
-                          Download
-                        </button>
-                      </div>
-                    </div>
-                  </td>
-                </tr>
-                <tr>
-                  <td>4</td>
-                  <td>Tenaga Nasional</td>
-                  <td>
-                    <span className="badge bg-warning">
-                      Pending for Approval
-                    </span>
-                  </td>
-                  <td>N/A</td>
-                  <td>
-                    <div>
-                      <div className="btn-group mr-2">
-                        <button
-                          onClick={() => setGoToFuelBalanceReport(true)}
-                          type="button"
-                          className="btn bg-gradient-primary"
-                          style={{ width: "80px" }}
-                        >
-                          View
-                        </button>
-                      </div>
-                      <div className="btn-group">
-                        <button
-                          type="button"
-                          className="btn bg-gradient-primary"
-                          style={{ width: "100px" }}
-                        >
-                          Download
-                        </button>
-                      </div>
-                    </div>
-                  </td>
-                </tr>
-                <tr>
-                  <td>5</td>
-                  <td>Sabah Energy</td>
-                  <td>
-                    <span className="badge bg-success">Approved</span>
-                  </td>
-                  <td>N/A</td>
-                  <td>
-                    <div>
-                      <div className="btn-group mr-2">
-                        <button
-                          onClick={() => setGoToFuelBalanceReport(true)}
-                          type="button"
-                          className="btn bg-gradient-primary"
-                          style={{ width: "80px" }}
-                        >
-                          View
-                        </button>
-                      </div>
-                      <div className="btn-group">
-                        <button
-                          type="button"
-                          className="btn bg-gradient-primary"
-                          style={{ width: "100px" }}
-                        >
-                          Download
-                        </button>
-                      </div>
-                    </div>
-                  </td>
-                </tr>
+                    </td>
+                  </tr>
+                ))}
               </tbody>
             </table>
           </div>

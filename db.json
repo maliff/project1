@@ -1,0 +1,38 @@
+{
+    "users": [
+        {
+            "id":1,
+            "Agency":"Tenaga Nasional",
+            "Status":"Not Submitted",
+            "Approver":"N/A"
+            
+        },
+        {
+            "id":2,
+            "Agency":"Sabah Energy",
+            "Status":"Pending for Amendment",
+            "Approver":"N/A"
+        },
+        
+        {
+            "id":3,
+            "Agency":"Sarawak Energy",
+            "Status":"Pending for Approval",
+            "Approver":"N/A"
+        },
+        
+        {
+            "id":4,
+            "Agency":"Tenaga Nasional",
+            "Status":"Pending for Approval",
+            "Approver":"N/A"
+        },
+        
+        {
+            "id":5,
+            "Agency":"Sabah Energy",
+            "Status":"Approved",
+            "Approver":"N/A"
+        }
+    ]
+}

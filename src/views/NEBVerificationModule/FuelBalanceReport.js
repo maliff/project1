@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Row, Col } from "react-bootstrap";
 import LteContent from "../../components/LteContent";
 import LteContentHeader from "../../components/LteContentHeader";
@@ -8,12 +8,21 @@ import DataTrendAnalysis from "./DataTrendAnalysis";
 import PlantEfficiency from "./PlantEfficiency";
 import Card from "react-bootstrap/Card";
 import Modal from "react-bootstrap/Modal";
-import Button from "react-bootstrap";
+import { useParams } from "react-router-dom";
+import axios from "axios";
 
 function FuelBalanceReport() {
+  const [data, setData] = useState([]);
+  const {id} = useParams();
+  useEffect(() => {
+    axios
+      .get("http://localhost:3030/users/"+id)
+      .then((res) => setData(res.data))
+      .catch((err) => console.log(err));
+  }, []);
   const [showAmendmentDialog, setShowAmendmentDialog] = useState(false);
   const [showApproveDialog, setShowApproveDialog] = useState(false);
-
+  
   const requestForAmendmentClick = () => {
     setShowAmendmentDialog(true);
   };
@@ -51,7 +60,7 @@ function FuelBalanceReport() {
               <Col className="fw-bold text-secondary">YEAR</Col>
             </Row>
             <Row className="mb-5">
-              <Col>Tenaga Nasional</Col>
+              <Col>{data.Agency}</Col>
               <Col>Julian Cassablancas</Col>
               <Col>30/4/2023</Col>
               <Col>Quarter 1</Col>
