@@ -30,6 +30,8 @@ import SubmittedFormByQuarter from "./SubmittedFormByQuarter";
 import PostAnnouncement from "../Announcement/PostAnnouncement";
 import PastAnnouncement from "../Announcement/PastAnnouncement";
 import DataTrendAnalysis from "../NEBVerificationModule/DataTrendAnalysis";
+/*import "../../style.css";*/
+import "../../App.css";
 
 export default function Dashboard() {
   return (

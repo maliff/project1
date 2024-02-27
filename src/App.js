@@ -18,6 +18,7 @@ import Header from './layout/Header';
 import CreateNewDataProvider from './views/NEBAccountManagement/CreateNewDataProvider';
 import CreateNewProduct from './views/NEBAccountManagement/CreateNewProduct';
 
+
 const getBasename = () => `/${process.env.PUBLIC_URL.split('/').pop()}`;
 
 function App() {
