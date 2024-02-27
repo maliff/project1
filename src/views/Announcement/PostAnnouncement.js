@@ -8,6 +8,7 @@ import {
   faImage,
   faRecordVinyl,
 } from "@fortawesome/free-solid-svg-icons";
+import "../../App.css";
 
 function PostAnnouncement() {
   const [showDialog, setShowDialog] = useState(false);
@@ -32,7 +33,7 @@ function PostAnnouncement() {
                 style={{ width: "50px", height: "50px" }}
               />
               <div>
-                <h5 className="fw-bold mb-0 p-1">M Amirul Ezekiel</h5>
+                <h6 className="fw-bold mb-0 p-1">M Amirul Ezekiel</h6>
                 <small
                   className="p-1 badge bg-primary"
                   onClick={handleBadgeClick}

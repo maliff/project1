@@ -51,7 +51,7 @@ export default function Dashboard() {
                   <label htmlFor="year" className="mr-2">
                     Year{" "}
                   </label>
-                  <select id="year">
+                  <select className="dropdown-box" id="year">
                     <option value="2022">2022</option>
                     <option value="2023">2023</option>
                     <option value="2024">2024</option>
@@ -61,7 +61,7 @@ export default function Dashboard() {
                   <label htmlFor="quarter" className="mr-2">
                     Region{" "}
                   </label>
-                  <select id="quarter">
+                  <select className="dropdown-box" id="quarter">
                     <option value="pm">Peninsular Malaysia</option>
                     <option value="sbh">Sabah</option>
                     <option value="srwk">Sarawak</option>
@@ -79,6 +79,7 @@ export default function Dashboard() {
                 <h3>50</h3>
                 <p>Pending for Approval</p>
               </div>
+         
               <div className="icon">
                 <i className="ion ion-android-person-add" />
               </div>

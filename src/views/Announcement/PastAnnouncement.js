@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Card from "react-bootstrap/Card";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUsers } from "@fortawesome/free-solid-svg-icons";
+import "../../App.css";
 
 function PastAnnouncement() {
   return (
@@ -17,7 +18,7 @@ function PastAnnouncement() {
                 style={{ width: "50px", height: "50px" }}
               />
               <div>
-                <h5 className="fw-bold mb-0 p-1">M Amirul Ezekiel</h5>
+                <h6 className="fw-bold mb-0 p-1">M Amirul Ezekiel</h6>
                 <small className="p-1 badge bg-primary">
                   <FontAwesomeIcon icon={faUsers} />
                   <span> All</span>
@@ -26,10 +27,10 @@ function PastAnnouncement() {
             </div>
           </Card.Title>
           <Card.Text>
-            <p className="mt-4 fw-bold text-secondary mb-2">
+            <p className="mt-4 fw-bold text-secondary mb-2 p-date">
               1 February 2023 10:45am
             </p>
-            <p>
+            <p className="p-text">
               Data Provider Convention 2023, seats are limited! Register now at{" "}
               <a href="#">www.dpc2023.com/register</a>
             </p>
