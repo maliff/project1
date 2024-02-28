@@ -47,12 +47,13 @@ export default function Dashboard() {
               <div className="main-search mb-3">
                 <div>
                   <label htmlFor="year" className="mr-2">
-                    Years{" "}
+                    Year{" "}
                   </label>
                   <select id="year">
                     <option value="2022">2022</option>
                     <option value="2023">2023</option>
                     <option value="2024">2024</option>
+                    <option value="2024">2025</option>
                   </select>
                 </div>
                 <div>
