@@ -8,8 +8,47 @@ import {
   faImage,
   faRecordVinyl,
 } from "@fortawesome/free-solid-svg-icons";
+import axios from "axios";
+import { useNavigate } from "react-router";
 
 function PostAnnouncement({ onBadgeClick }) {
+  const [values, setValues] = useState({
+    commentText: ""
+  });
+
+  const navigate = useNavigate();
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const currentDate = getCurrentDate();
+    const currentTime = getCurrentTime();
+    const commentData = {
+      commentText: values.commentText,
+      commentDate: currentDate,
+      commentTime: currentTime
+    };
+    axios
+      .post("http://localhost:3030/comment", commentData)
+      .then((res) => {
+        console.log(res);
+        navigate("/announcement");
+        window.location.reload();
+      })
+      .catch((err) => console.log(err));
+  };
+
+  // Function to get current date in the format "1 December 2024"
+  const getCurrentDate = () => {
+    const options = { day: "numeric", month: "long", year: "numeric" };
+    return new Date().toLocaleDateString("en-US", options);
+  };
+
+  // Function to get current time in the format "10:55am"
+  const getCurrentTime = () => {
+    const options = { hour: "numeric", minute: "numeric", hour12: true };
+    return new Date().toLocaleTimeString("en-US", options);
+  };
+
   return (
     <Card className="mb-5">
       <Card.Body className="bg-light">
@@ -32,13 +71,15 @@ function PostAnnouncement({ onBadgeClick }) {
             </div>
           </Card.Title>
           <Card.Text>
-            <div className="mb-3">
+            <form onSubmit={handleSubmit}>
               <br />
               <textarea
                 className="form-control mb-2"
                 id="postAnnouncement"
                 rows="3"
                 placeholder="Type here..."
+                value={values.commentText}
+                onChange={(e) => setValues({ ...values, commentText: e.target.value })}
               ></textarea>
               <div className="d-flex justify-content-between align-items-center">
                 <div>
@@ -47,11 +88,11 @@ function PostAnnouncement({ onBadgeClick }) {
                   <FontAwesomeIcon icon={faImage} className="mr-4" />
                   <FontAwesomeIcon icon={faRecordVinyl} className="mr-4" />
                 </div>
-                <a href="#" className="btn btn-primary btn-lg">
+                <button type="submit" className="btn btn-primary btn-lg">
                   Post
-                </a>
+                </button>
               </div>
-            </div>
+            </form>
           </Card.Text>
         </div>
       </Card.Body>
