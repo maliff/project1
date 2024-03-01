@@ -13,16 +13,16 @@ import axios from "axios";
 
 function FuelBalanceReport() {
   const [data, setData] = useState([]);
-  const {id} = useParams();
+  const { id } = useParams();
   useEffect(() => {
     axios
-      .get("http://localhost:3030/users/"+id)
+      .get("http://localhost:3030/users/" + id)
       .then((res) => setData(res.data))
       .catch((err) => console.log(err));
   }, []);
   const [showAmendmentDialog, setShowAmendmentDialog] = useState(false);
   const [showApproveDialog, setShowApproveDialog] = useState(false);
-  
+
   const requestForAmendmentClick = () => {
     setShowAmendmentDialog(true);
   };
@@ -46,8 +46,18 @@ function FuelBalanceReport() {
           <div class="card-body">
             <h5 class="card-title mb-4">
               Fuel Balance Report - Q1 2023{" "}
-              <span className="badge bg-warning">
-                <small>Pending for Approval</small>
+              <span
+                className={`badge ${
+                  data.Status === "Approved"
+                    ? "bg-success"
+                    : data.Status === "Pending for Approval"
+                    ? "bg-primary"
+                    : data.Status === "Pending for Amendment"
+                    ? "bg-danger"
+                    : "bg-secondary"
+                }`}
+              >
+                <small>{data.Status}</small>
               </span>
             </h5>
             <br />
@@ -158,7 +168,7 @@ function FuelBalanceReport() {
                   <Card.Title>
                     <div className="d-flex align-items-center">
                       <img
-                        src="./images/profile-image-1.jpg"
+                        src="../images/profile-image-1.jpg"
                         alt="Profile"
                         className="rounded-circle mr-3"
                         style={{ width: "50px", height: "50px" }}
@@ -188,7 +198,7 @@ function FuelBalanceReport() {
                   <Card.Title>
                     <div className="d-flex align-items-center">
                       <img
-                        src="./images/profile-image-2.jpg"
+                        src="../images/profile-image-2.jpg"
                         alt="Profile"
                         className="rounded-circle mr-3"
                         style={{ width: "50px", height: "50px" }}
