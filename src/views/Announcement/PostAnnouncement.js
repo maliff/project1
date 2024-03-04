@@ -10,11 +10,13 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
 import { useNavigate } from "react-router";
+import CreateEvent from "./CreateEvent";
 
 function PostAnnouncement({ onBadgeClick }) {
   const [values, setValues] = useState({
-    commentText: ""
+    eventText: ""
   });
+  const [showCalendarModal, setShowCalendarModal] = useState(false); 
 
   const navigate = useNavigate();
 
@@ -22,13 +24,13 @@ function PostAnnouncement({ onBadgeClick }) {
     event.preventDefault();
     const currentDate = getCurrentDate();
     const currentTime = getCurrentTime();
-    const commentData = {
-      commentText: values.commentText,
-      commentDate: currentDate,
-      commentTime: currentTime
+    const eventData = {
+      eventText: values.eventText,
+      eventDate: currentDate,
+      eventTime: currentTime
     };
     axios
-      .post("http://localhost:3030/comment", commentData)
+      .post("http://localhost:3030/event", eventData)
       .then((res) => {
         console.log(res);
         navigate("/announcement");
@@ -37,13 +39,11 @@ function PostAnnouncement({ onBadgeClick }) {
       .catch((err) => console.log(err));
   };
 
-  // Function to get current date in the format "1 December 2024"
   const getCurrentDate = () => {
     const options = { day: "numeric", month: "long", year: "numeric" };
     return new Date().toLocaleDateString("en-US", options);
   };
 
-  // Function to get current time in the format "10:55am"
   const getCurrentTime = () => {
     const options = { hour: "numeric", minute: "numeric", hour12: true };
     return new Date().toLocaleTimeString("en-US", options);
@@ -78,12 +78,16 @@ function PostAnnouncement({ onBadgeClick }) {
                 id="postAnnouncement"
                 rows="3"
                 placeholder="Type here..."
-                value={values.commentText}
-                onChange={(e) => setValues({ ...values, commentText: e.target.value })}
+                value={values.eventText}
+                onChange={(e) => setValues({ ...values, eventText: e.target.value })}
               ></textarea>
               <div className="d-flex justify-content-between align-items-center">
                 <div>
-                  <FontAwesomeIcon icon={faCalendar} className="mr-4" />
+                  <FontAwesomeIcon
+                    icon={faCalendar}
+                    className="mr-4"
+                    onClick={() => setShowCalendarModal(true)}
+                  />
                   <FontAwesomeIcon icon={faPaperclip} className="mr-4" />
                   <FontAwesomeIcon icon={faImage} className="mr-4" />
                   <FontAwesomeIcon icon={faRecordVinyl} className="mr-4" />
@@ -96,6 +100,9 @@ function PostAnnouncement({ onBadgeClick }) {
           </Card.Text>
         </div>
       </Card.Body>
+
+      {/* Calendar Modal */}
+      <CreateEvent show={showCalendarModal} onHide={() => setShowCalendarModal(false)} />
     </Card>
   );
 }

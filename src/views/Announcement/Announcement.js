@@ -4,6 +4,7 @@ import LteContentHeader from "../../components/LteContentHeader";
 import Modal from "react-bootstrap/Modal";
 import PostAnnouncement from "./PostAnnouncement";
 import PastAnnouncement from "./PastAnnouncement";
+import UpcomingEvent from "./UpcomingEvent";
 
 function Announcement() {
   const [showDialog, setShowDialog] = useState(false);
@@ -46,9 +47,7 @@ function Announcement() {
                 </h3>
                 <br />
                 <br />
-                <p className="font-weight-bold text-secondary">
-                  No upcoming event
-                </p>
+                <UpcomingEvent />
               </div>
             </div>
           </div>

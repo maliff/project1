@@ -31,13 +31,13 @@
       "Approver": "N/A"
     }
   ],
-  "comment": [
+  "event": [
     {
       "id": 1,
-      "commentText": "Data Provider Convention 2023, seats are limited! Register now at www.dpc2023.com/register",
-      "commentDate": "February 29, 2024",
-      "commentTime": "11:37 AM",
-      "commentImg": "./images/data-provider-image.png"
+      "eventText": "Data Provider Convention 2023, seats are limited! Register now at www.dpc2023.com/register",
+      "eventDate": "February 29, 2024",
+      "eventTime": "11:37 AM",
+      "eventImg": "./images/data-provider-image.png"
     }
   ]
 }
