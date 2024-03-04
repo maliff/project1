@@ -2,6 +2,8 @@ import React, { useState, useRef } from "react";
 import LteContent from "../../components/LteContent";
 import LteContentHeader from "../../components/LteContentHeader";
 import { Button } from "reactstrap";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faFile, faFileExcel } from "@fortawesome/free-solid-svg-icons";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import "../../App.css";
 
@@ -16,28 +18,68 @@ const EbtUploadFile = () => {
 
   function onFileSelect(event) {
     const files = event.target.files;
-  
+
     if (files.length === 0) return;
-  
+
     for (let i = 0; i < files.length; i++) {
-      if (files[i].type.split('/')[0] !== 'image') continue;
-  
-      if (!images.some((e) => e.name === files[i].name)) {
-        setImages((prevImages) => [
-          ...prevImages,
-          {
-            name: files[i].name,
-            url: URL.createObjectURL(files[i]),
-          },
-        ]);
-      }
+      // Check if the file type is not an image
+      if (files[i].type.split("/")[0] === "image") continue;
+
+      // Add the file to the images state
+      setImages((prevImages) => [
+        ...prevImages,
+        {
+          name: files[i].name,
+          url: URL.createObjectURL(files[i]),
+        },
+      ]);
     }
   }
 
-  function deleteImage(index){
-    setImages((prevImages) => {
-      prevImages.filter((_,i) =>i !== index)
-    });
+  function deleteImage(index) {
+    setImages((prevImages) => prevImages.filter((_, i) => i !== index));
+  }
+
+  function getFileIcon(file) {
+    const fileExtension = file.name.split(".").pop().toLowerCase();
+    if (fileExtension === "xlsx" || fileExtension === "xls") {
+      return faFileExcel;
+    }
+    return faFile;
+  }
+
+  function handleDragEnter(event) {
+    event.preventDefault();
+    setIsDragging(true);
+  }
+
+  function handleDragOver(event) {
+    event.preventDefault();
+  }
+
+  function handleDragLeave() {
+    setIsDragging(false);
+  }
+
+  function handleDrop(event) {
+    event.preventDefault();
+    setIsDragging(false);
+
+    const files = event.dataTransfer.files;
+
+    if (files.length === 0) return;
+
+    for (let i = 0; i < files.length; i++) {
+      if (files[i].type.split("/")[0] === "image") continue;
+
+      setImages((prevImages) => [
+        ...prevImages,
+        {
+          name: files[i].name,
+          url: URL.createObjectURL(files[i]),
+        },
+      ]);
+    }
   }
 
   return (
@@ -92,19 +134,23 @@ const EbtUploadFile = () => {
               {/* Upload File*/}
 
               <div className="card card-zone">
-                <div className="top">
-                  <p>Drag & Drop image uploading</p>
-                </div>
-                <div className="drag-area">
+                <div
+                  className="drag-area"
+                  onDragEnter={handleDragEnter}
+                  onDragOver={handleDragOver}
+                  onDragLeave={handleDragLeave}
+                  onDrop={handleDrop}
+                >
                   {isDragging ? (
                     <span className="select"> Drop File Here</span>
                   ) : (
                     <>
                       Drag & Drop File here or {""}
                       <span
-                        className="select"
-                        role="Button"
+                        className="btn btn-primary"
+                        role="button"
                         onClick={selectFiles}
+                        style={{ height: "40px", marginLeft: "10px" }}
                       >
                         Browse
                       </span>
@@ -121,14 +167,33 @@ const EbtUploadFile = () => {
                   ></input>
                 </div>
                 <div className="container">
-                  {images.map((images,index) => (
-                  <div className="image" key={index}>
-                  <span className="delete" onClick={() => deleteImage(index)}>&times;</span>
-                  <img src="images.url" alt={images.name} />
+                  <div className="dragged-files">
+                    {images.map((image, index) => (
+                      <div
+                        className="image"
+                        key={index}
+                        style={{
+                          width: "100%",
+                          marginBottom: "10px",
+                          display: "flex",
+                          alignItems: "center",
+                        }}
+                      >
+                        <span
+                          className="delete"
+                          onClick={() => deleteImage(index)}
+                        >
+                          &times;
+                        </span>
+                        <FontAwesomeIcon
+                          icon={getFileIcon(image)}
+                          className="file-icon"
+                        />
+                        <p style={{ marginLeft: "5px" }}>{image.name}</p>
+                      </div>
+                    ))}
+                  </div>
                 </div>
-                  ))}
-                </div>
-                <button type="button">Upload</button>
               </div>
             </div>
             <div className="d-flex justify-content-end mt-3 mb-3">

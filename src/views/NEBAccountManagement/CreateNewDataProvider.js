@@ -37,6 +37,7 @@ import {
 } from "reactstrap";
 import LteContent from "../../components/LteContent";
 import LteContentHeader from "../../components/LteContentHeader";
+import FormStepper from "../../components/FormStepper";
 import { Link } from 'react-router-dom';
 
 const CreateNewDataProvider = () => {
@@ -44,6 +45,8 @@ const CreateNewDataProvider = () => {
     <>
       <LteContentHeader title="Create New Data Provider" />
       <LteContent>
+        {/* Form Stepper */}
+        <FormStepper/>
         {/* Main content */}
         <section className="content">
           <div className="container-fluid">

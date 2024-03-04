@@ -21,6 +21,7 @@ import CreateNewDataProvider2 from './views/NEBAccountManagement/CreateNewDataPr
 import CreateNewDataProvider3 from './views/NEBAccountManagement/CreateNewDataProvider3';
 import CreateNewDataProviderSummary from './views/NEBAccountManagement/CreateNewDataProviderSummary';
 import CreateNewProduct from './views/NEBAccountManagement/CreateNewProduct';
+import CreateNewProductSummary from './views/NEBAccountManagement/CreateNewProductSummary';
 
 const getBasename = () => `/${process.env.PUBLIC_URL.split('/').pop()}`;
 
@@ -38,6 +39,7 @@ function App() {
           <Route exact path='/createNewDataProvider3' element={<CreateNewDataProvider3/>} />
           <Route exact path='/createNewDataProviderSummary' element={<CreateNewDataProviderSummary/>} />
           <Route exact path='/createNewProduct' element={<CreateNewProduct/>} />
+          <Route exact path='/CreateNewProductSummary' element={<CreateNewProductSummary/>} />
           <Route exact path='/nebVerificationModule' element={<NEBVerificationModule/>} />
           <Route exact path='/fuelBalanceReport/:id' element={<FuelBalanceReport/>} />
           <Route exact path='/ebtGenerationModule' element={<EbtGenerationModule/>} />
