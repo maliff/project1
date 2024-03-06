@@ -82,5 +82,27 @@
       "status": "Resolved",
       "dateCreated": "13 Oct 2023"
     }
+  ],
+  "listOfSubmission": [
+    {
+      "id": 1,
+      "status": "Approved",
+      "approver": "M Amirul Ezakiel"
+    },
+    {
+      "id": 2,
+      "status": "Pending for Amendment",
+      "approver": "M Amirul Ezakiel"
+    },
+    {
+      "id": 3,
+      "status": "Pending for Approval",
+      "approver": "N/A"
+    },
+    {
+      "id": 4,
+      "status": "Not Submitted",
+      "approver": "N/A"
+    }
   ]
 }

@@ -1,8 +1,14 @@
 import React from 'react'
+import LteContent from '../../components/LteContent'
+import LteContentHeader from '../../components/LteContentHeader'
 
 function FAQ() {
   return (
-    <div>FAQ</div>
+    <>
+      <LteContentHeader title="FAQ" />
+      <LteContent>
+      </LteContent>
+    </>
   )
 }
 

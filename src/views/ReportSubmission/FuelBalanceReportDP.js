@@ -1,0 +1,273 @@
+import React, { useEffect, useState } from "react";
+import { Row, Col } from "react-bootstrap";
+import LteContent from "../../components/LteContent";
+import LteContentHeader from "../../components/LteContentHeader";
+import Tab from "react-bootstrap/Tab";
+import Tabs from "react-bootstrap/Tabs";
+import DataTrendAnalysis from "../NEBVerificationModule/DataTrendAnalysis";
+import PlantEfficiency from "../NEBVerificationModule/PlantEfficiency";
+import Card from "react-bootstrap/Card";
+import Modal from "react-bootstrap/Modal";
+import { useParams } from "react-router-dom";
+import axios from "axios";
+
+function FuelBalanceReportDP() {
+  const [data, setData] = useState([]);
+  const { id } = useParams();
+  useEffect(() => {
+    axios
+      .get("http://localhost:3030/listOfSubmission/" + id)
+      .then((res) => setData(res.data))
+      .catch((err) => console.log(err));
+  }, []);
+  const [showAmendmentDialog, setShowAmendmentDialog] = useState(false);
+  const [showApproveDialog, setShowApproveDialog] = useState(false);
+
+  const requestForAmendmentClick = () => {
+    setShowAmendmentDialog(true);
+  };
+
+  const handleCloseAmendmentDialog = () => {
+    setShowAmendmentDialog(false);
+  };
+
+  const ApproveClick = () => {
+    setShowApproveDialog(true);
+  };
+
+  const handleCloseApproveDialog = () => {
+    setShowApproveDialog(false);
+  };
+  return (
+    <>
+      <LteContentHeader title="Fuel Balance Report" />
+      <LteContent>
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title mb-4">
+              Fuel Balance Report - Q{data.id} 2023{" "}
+              <span
+                className={`badge ${
+                  data.status === "Approved"
+                    ? "bg-success"
+                    : data.status === "Pending for Approval"
+                    ? "bg-primary"
+                    : data.status === "Pending for Amendment"
+                    ? "bg-danger"
+                    : "bg-secondary"
+                }`}
+              >
+                <small>{data.status}</small>
+              </span>
+            </h5>
+            <br />
+            <br />
+            <div className="card" style={{ borderRadius: "20px" }}>
+              {/* /.card-header */}
+              <div className="card-body p-0">
+                <table className="table table-sm">
+                  <thead className="bg-secondary">
+                    <tr>
+                      <th>No.</th>
+                      <th>Product</th>
+                      <th>F1 (Opening Stock)</th>
+                      <th>F2 (Local Purchase)</th>
+                      <th>F2 (Foreign Import)</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>1</td>
+                      <td>Aviatiaon Gasoline (AV GAS)</td>
+                      <td>40,675.637</td>
+                      <td>1,675.637</td>
+                      <td>2,340.890</td>
+                    </tr>
+                    <tr>
+                      <td>2</td>
+                      <td>Bitumen/Asphalt/Mexphaite</td>
+                      <td>2,340.890</td>
+                      <td>2,340.890</td>
+                      <td>11,233.234</td>
+                    </tr>
+                    <tr>
+                      <td>3</td>
+                      <td>Butane</td>
+                      <td>1,675.637</td>
+                      <td>11,233.234</td>
+                      <td>1,675.637</td>
+                    </tr>
+                    <tr>
+                      <td>4</td>
+                      <td>Diesel</td>
+                      <td>11,233.234</td>
+                      <td>1,675.637</td>
+                      <td>2,340.890</td>
+                    </tr>
+                    <tr>
+                      <td>5</td>
+                      <td>Aviation Gasoline (AV GAS)</td>
+                      <td>23,890.798</td>
+                      <td>2,340.890</td>
+                      <td>11,233.234</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            {/* /.card-body */}
+            <Tabs
+              defaultActiveKey="profile"
+              id="uncontrolled-tab-example"
+              className="mb-3 mt-4"
+            >
+              <Tab eventKey="dataTrendAnalysis" title="Data Trend Analysis">
+                <div className="bg-white">
+                  <DataTrendAnalysis />
+                </div>
+              </Tab>
+              <Tab eventKey="plantEfficiency" title="Plant Efficiency">
+                <PlantEfficiency />
+              </Tab>
+            </Tabs>
+            <div class="text-center mt-5 mb-3 d-flex justify-content-end">
+              <button
+                onClick={requestForAmendmentClick}
+                class="btn btn-outline-primary mr-1"
+              >
+                Request for Amendment
+              </button>
+              <button onClick={ApproveClick} class="btn btn-primary">
+                Approve
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title mb-4">Remarks</h5>
+            <br />
+            <br />
+            <Card className="mb-2">
+              <Card.Body className="bg-light">
+                <div>
+                  <Card.Title>
+                    <div className="d-flex align-items-center">
+                      <img
+                        src="../images/profile-image-1.jpg"
+                        alt="Profile"
+                        className="rounded-circle mr-3"
+                        style={{ width: "50px", height: "50px" }}
+                      />
+                      <div>
+                        <h5 className="fw-bold mb-0 p-1">M Amirul Ezekiel</h5>
+                        <small className="text-secondary p-1">Admin</small>
+                      </div>
+                    </div>
+                  </Card.Title>
+                  <Card.Text>
+                    <p className="mt-3 fw-bold text-secondary mb-2">
+                      1 May 2023 09:30am
+                    </p>
+                    Lorem Ipsum is simply dummy text of the printing and
+                    typesetting industry. Lorem Ipsum has been the industry's
+                    standard dummy text ever since the 1500s, when an unknown
+                    printer took a galley of type and scrambled it to make a
+                    type specimen book.
+                  </Card.Text>
+                </div>
+              </Card.Body>
+            </Card>
+            <Card className="mb-2">
+              <Card.Body className="bg-light">
+                <div>
+                  <Card.Title>
+                    <div className="d-flex align-items-center">
+                      <img
+                        src="../images/profile-image-2.jpg"
+                        alt="Profile"
+                        className="rounded-circle mr-3"
+                        style={{ width: "50px", height: "50px" }}
+                      />
+                      <div>
+                        <h5 className="fw-bold mb-0 p-1">
+                          Julian Cassablancas
+                        </h5>
+                        <small className="text-secondary p-1">
+                          Data Provider
+                        </small>
+                      </div>
+                    </div>
+                  </Card.Title>
+                  <Card.Text>
+                    <p className="mt-3 fw-bold text-secondary mb-2">
+                      1 May 2023 10:30am
+                    </p>
+                    Lorem Ipsum is simply dummy text of the printing and
+                    typesetting industry. Lorem Ipsum has been the industry's
+                    standard dummy text ever since the 1500s.
+                  </Card.Text>
+                </div>
+              </Card.Body>
+            </Card>
+            <form className="form-horizontal mt-3">
+              <div className="input-group input-group-lg mb-2">
+                <input
+                  className="form-control form-control-lg"
+                  placeholder="Type here..."
+                />
+                <button type="submit" className="btn btn-primary ml-2">
+                  Send
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+        <Modal show={showAmendmentDialog} onHide={handleCloseAmendmentDialog}>
+          <Modal.Header closeButton>
+            <Modal.Title>Request for Amendment</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            Remarks *
+            <form className="form-horizontal">
+              <div className="input-group input-group-lg mb-2">
+                <input
+                  className="form-control form-control-lg"
+                  placeholder="Type here..."
+                />
+              </div>
+            </form>
+          </Modal.Body>
+          <Modal.Footer>
+            <button
+              className="btn btn-secondary"
+              onClick={handleCloseAmendmentDialog}
+            >
+              Cancel
+            </button>
+            <button className="btn btn-primary">Request for Amendment</button>
+          </Modal.Footer>
+        </Modal>
+        <Modal show={showApproveDialog} onHide={handleCloseApproveDialog}>
+          <Modal.Header closeButton>
+            <Modal.Title>Confirm Approval</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <p>You are approving Tenaga Nasional Fuel Balance Report Q1 2023</p>
+          </Modal.Body>
+          <Modal.Footer>
+            <button
+              className="btn btn-secondary"
+              onClick={handleCloseApproveDialog}
+            >
+              Cancel
+            </button>
+            <button className="btn btn-primary">Approve</button>
+          </Modal.Footer>
+        </Modal>
+      </LteContent>
+    </>
+  );
+}
+
+export default FuelBalanceReportDP;

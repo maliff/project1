@@ -25,6 +25,8 @@ import CreateNewProductSummary from './views/NEBAccountManagement/CreateNewProdu
 import ManualSubmission from './views/ManualSubmission/ManualSubmission';
 import FAQ from './views/FAQ/FAQ';
 import ReportSubmission from './views/ReportSubmission/ReportSubmission';
+import FuelBalanceReportDP from './views/ReportSubmission/FuelBalanceReportDP';
+import SubmitNewReport from './views/ReportSubmission/SubmitNewReport';
 
 const getBasename = () => `/${process.env.PUBLIC_URL.split('/').pop()}`;
 
@@ -48,6 +50,8 @@ function App() {
           <Route exact path='/ebtGenerationModule' element={<EbtGenerationModule/>} />
           <Route exact path='/ebtUploadFile' element={<EbtUploadFile/>} />
           <Route exact path='/reportSubmission' element={<ReportSubmission/>} />
+          <Route exact path='/submitNewReport/:id' element={<SubmitNewReport/>} />
+          <Route exact path='/fuelBalanceReportDP/:id' element={<FuelBalanceReportDP/>} />
           <Route exact path='/manualSubmission' element={<ManualSubmission/>} />
           <Route exact path='/announcement' element={<Announcement/>} />
           <Route exact path='/systemReport' element={<SystemReport/>} />
