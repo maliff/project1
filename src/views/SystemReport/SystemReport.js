@@ -1,10 +1,23 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import LteContent from "../../components/LteContent";
 import LteContentHeader from "../../components/LteContentHeader";
-import { Navigate } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
+import axios from "axios";
 
 function SystemReport() {
+  const [data, setData] = useState([]);
+  useEffect(() => {
+    axios
+      .get("http://localhost:3030/tickets")
+      .then((res) => setData(res.data))
+      .catch((err) => console.log(err));
+  }, []);
   const [goToProductListing, setGoToProductListing] = React.useState(false);
+
+   // Filter the data array to count tickets
+   const openTicketsCount = data.filter((ticket) => ticket.status === "Open").length;
+   const closeTicketsCount = data.filter((ticket) => ticket.status === "Close").length;
+   const resolvedTicketsCount = data.filter((ticket) => ticket.status === "Resolved").length;
 
   if (goToProductListing) {
     return <Navigate to="/productListing" />;
@@ -18,7 +31,7 @@ function SystemReport() {
             {/* small box */}
             <div className="small-box bg-info" style={{ borderRadius: "20px" }}>
               <div className="inner">
-                <h3>2</h3>
+                <h3>{openTicketsCount}</h3>
                 <p>Open Ticket</p>
               </div>
               <div className="icon">
@@ -34,7 +47,7 @@ function SystemReport() {
               style={{ borderRadius: "20px" }}
             >
               <div className="inner">
-                <h3>1</h3>
+                <h3>{closeTicketsCount}</h3>
                 <p>Close Ticket</p>
               </div>
               <div className="icon">
@@ -50,7 +63,7 @@ function SystemReport() {
               style={{ borderRadius: "20px" }}
             >
               <div className="inner">
-                <h3>2</h3>
+                <h3>{resolvedTicketsCount}</h3>
                 <p>Resolved Ticket</p>
               </div>
               <div className="icon">
@@ -78,96 +91,38 @@ function SystemReport() {
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td>#00123</td>
-                  <td>Product Listing</td>
-                  <td>
-                    <span className="badge bg-info">Open</span>
-                  </td>
-                  <td>12 Dec 2023</td>
-                  <td>
-                    <button
-                      onClick={() => setGoToProductListing(true)}
-                      type="button"
-                      class="btn btn-block bg-gradient-primary btn-sm"
-                      style={{ width: "80px" }}
-                    >
-                      View
-                    </button>
-                  </td>
-                </tr>
-                <tr>
-                  <td>#00124</td>
-                  <td>Others</td>
-                  <td>
-                    <span className="badge bg-info">Open</span>
-                  </td>
-                  <td>10 Dec 2023</td>
-                  <td>
-                    <button
-                      onClick={() => setGoToProductListing(true)}
-                      type="button"
-                      class="btn btn-block bg-gradient-primary btn-sm"
-                      style={{ width: "80px" }}
-                    >
-                      View
-                    </button>
-                  </td>
-                </tr>
-                <tr>
-                  <td>#00125</td>
-                  <td>Others</td>
-                  <td>
-                    <span className="badge bg-secondary">Close</span>
-                  </td>
-                  <td>11 Nov 2023</td>
-                  <td>
-                    <button
-                      onClick={() => setGoToProductListing(true)}
-                      type="button"
-                      class="btn btn-block bg-gradient-primary btn-sm"
-                      style={{ width: "80px" }}
-                    >
-                      View
-                    </button>
-                  </td>
-                </tr>
-                <tr>
-                  <td>#00126</td>
-                  <td>Inquiry</td>
-                  <td>
-                    <span className="badge bg-success">Resolved</span>
-                  </td>
-                  <td>9 Nov 2023</td>
-                  <td>
-                    <button
-                      onClick={() => setGoToProductListing(true)}
-                      type="button"
-                      class="btn btn-block bg-gradient-primary btn-sm"
-                      style={{ width: "80px" }}
-                    >
-                      View
-                    </button>
-                  </td>
-                </tr>
-                <tr>
-                  <td>#00127</td>
-                  <td>Product Listing</td>
-                  <td>
-                    <span className="badge bg-success">Resolved</span>
-                  </td>
-                  <td>13 Oct 2023</td>
-                  <td>
-                    <button
-                      onClick={() => setGoToProductListing(true)}
-                      type="button"
-                      class="btn btn-block bg-gradient-primary btn-sm"
-                      style={{ width: "80px" }}
-                    >
-                      View
-                    </button>
-                  </td>
-                </tr>
+                {data.map((d, i) => (
+                  <tr key={i}>
+                    <td>{d.ticketId}</td>
+                    <td>{d.category}</td>
+                    <td>
+                      <span
+                        className={`badge ${
+                          d.status === "Resolved"
+                            ? "bg-success"
+                            : d.status === "Open"
+                            ? "bg-info"
+                            : "bg-secondary"
+                        }`}
+                      >
+                        {d.status}
+                      </span>
+                    </td>
+                    <td>{d.dateCreated}</td>
+                    <td>
+                      <div>
+                        <div className="btn-group mr-2">
+                          <Link to={`/productListing/${d.id}`}
+                            className="btn bg-gradient-primary"
+                            style={{ width: "80px" }}
+                          >
+                            View
+                          </Link>
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                ))}
               </tbody>
             </table>
           </div>

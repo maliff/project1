@@ -38,6 +38,49 @@
       "eventDate": "February 29, 2024",
       "eventTime": "11:37 AM",
       "eventImg": "./images/data-provider-image.png"
+    },
+    {
+      "id": "c5fd",
+      "eventText": "hiiii",
+      "eventDate": "March 5, 2024",
+      "eventTime": "3:17 PM"
+    }
+  ],
+  "tickets": [
+    {
+      "id": 1,
+      "ticketId": "#00123",
+      "category": "Product Listing",
+      "status": "Open",
+      "dateCreated": "12 Dec 2023"
+    },
+    {
+      "id": 2,
+      "ticketId": "#00124",
+      "category": "Others",
+      "status": "Close",
+      "dateCreated": "10 Dec 2023"
+    },
+    {
+      "id": 3,
+      "ticketId": "#00125",
+      "category": "Others",
+      "status": "Resolved",
+      "dateCreated": "11 Nov 2023"
+    },
+    {
+      "id": 4,
+      "ticketId": "#00126",
+      "category": "Inquiry",
+      "status": "Resolved",
+      "dateCreated": "9 Nov 2023"
+    },
+    {
+      "id": 5,
+      "ticketId": "#00127",
+      "category": "Product Listing",
+      "status": "Resolved",
+      "dateCreated": "13 Oct 2023"
     }
   ]
 }

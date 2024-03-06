@@ -122,7 +122,7 @@ export default function Dashboard() {
                 <SubmittedFormByQuarter />
               </div>
               <div className="col-lg-6">
-                <div className="card">
+                <div className="card" style={{ overflow: "auto", height: "500px" }}>
                   <div className="card-body">
                     <h5 className="card-title">
                       <b>Post Announcement</b>

@@ -22,6 +22,9 @@ import CreateNewDataProvider3 from './views/NEBAccountManagement/CreateNewDataPr
 import CreateNewDataProviderSummary from './views/NEBAccountManagement/CreateNewDataProviderSummary';
 import CreateNewProduct from './views/NEBAccountManagement/CreateNewProduct';
 import CreateNewProductSummary from './views/NEBAccountManagement/CreateNewProductSummary';
+import ManualSubmission from './views/ManualSubmission/ManualSubmission';
+import FAQ from './views/FAQ/FAQ';
+import ReportSubmission from './views/ReportSubmission/ReportSubmission';
 
 const getBasename = () => `/${process.env.PUBLIC_URL.split('/').pop()}`;
 
@@ -44,10 +47,13 @@ function App() {
           <Route exact path='/fuelBalanceReport/:id' element={<FuelBalanceReport/>} />
           <Route exact path='/ebtGenerationModule' element={<EbtGenerationModule/>} />
           <Route exact path='/ebtUploadFile' element={<EbtUploadFile/>} />
+          <Route exact path='/reportSubmission' element={<ReportSubmission/>} />
+          <Route exact path='/manualSubmission' element={<ManualSubmission/>} />
           <Route exact path='/announcement' element={<Announcement/>} />
           <Route exact path='/systemReport' element={<SystemReport/>} />
-          <Route exact path='/productListing' element={<ProductListing/>} />
+          <Route exact path='/productListing/:id' element={<ProductListing/>} />
           <Route exact path='/trainingModule' element={<TrainingModule/>} />
+          <Route exact path='/faq' element={<FAQ/>} />
           <Route element={<Page404 />} />
         </Routes>
       </ContentWrapper>

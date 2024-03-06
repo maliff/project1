@@ -1,16 +1,11 @@
 import React from "react";
 import {
-    faAngleLeft,
     faBullhorn,
-    faChartPie,
-    faCopy,
-    faEdit,
-    faTable,
     faTachometerAlt,
-    faTh,
-    faTree,
     faUserPlus,
     faFolderPlus,
+    faPlus,
+    faQuestionCircle,
     faComment
 } from '@fortawesome/free-solid-svg-icons';
 import { faListAlt, faCircle as farCircle } from '@fortawesome/free-regular-svg-icons';
@@ -41,6 +36,14 @@ export default function Sidebar() {
                         <FontAwesomeIcon icon={faFolderPlus} className='nav-icon' />
                         <p>EBT Generation Module</p>
                     </NavLink>
+                    <NavLink tag={Link} to='/reportSubmission'>
+                        <FontAwesomeIcon icon={faPlus} className='nav-icon' />
+                        <p>Report Submission</p>
+                    </NavLink>
+                    <NavLink tag={Link} to='/manualSubmission'>
+                        <FontAwesomeIcon icon={faFolderPlus} className='nav-icon' />
+                        <p>Manual Submission</p>
+                    </NavLink>
                     <NavLink tag={Link} to='/announcement'>
                         <FontAwesomeIcon icon={faBullhorn} className='nav-icon' />
                         <p>Announcement</p>
@@ -52,6 +55,10 @@ export default function Sidebar() {
                     <NavLink tag={Link} to='/trainingModule'>
                         <FontAwesomeIcon icon={faFolderPlus} className='nav-icon' />
                         <p>Training Module</p>
+                    </NavLink>
+                    <NavLink tag={Link} to='/faq'>
+                        <FontAwesomeIcon icon={faQuestionCircle} className='nav-icon' />
+                        <p>FAQ</p>
                     </NavLink>
                 </NavItem>
             </NavSidebar>
