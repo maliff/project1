@@ -3,7 +3,15 @@ import { Route, BrowserRouter, Routes } from 'react-router-dom';
 import './meih.scss';
 import './App.css';
 import Dashboard from './views/Dashboard/Dashboard';
-import NEBAccountManagement from './views/NEBAccountManagement/NEBAccountManagement'
+import NEBAccountManagement from './views/NEBAccountManagement/NEBAccountManagement';
+import DataProviderList from './views/NEBAccountManagement/DataProviderList';
+import ProductList from './views/NEBAccountManagement/ProductList';
+import CreateNewDataProvider from './views/NEBAccountManagement/CreateNewDataProvider';
+import CreateNewDataProvider2 from './views/NEBAccountManagement/CreateNewDataProvider2';
+import CreateNewDataProvider3 from './views/NEBAccountManagement/CreateNewDataProvider3';
+import CreateNewDataProviderSummary from './views/NEBAccountManagement/CreateNewDataProviderSummary';
+import CreateNewProduct from './views/NEBAccountManagement/CreateNewProduct';
+import CreateNewProductSummary from './views/NEBAccountManagement/CreateNewProductSummary';
 import NEBVerificationModule from './views/NEBVerificationModule/NebVerificationModule';
 import FuelBalanceReport from './views/NEBVerificationModule/FuelBalanceReport';
 import EbtUploadFile from './views/EbtGenerationModule/EbtUploadFile';
@@ -28,6 +36,7 @@ import ReportSubmission from './views/ReportSubmission/ReportSubmission';
 import FuelBalanceReportDP from './views/ReportSubmission/FuelBalanceReportDP';
 import SubmitNewReport from './views/ReportSubmission/SubmitNewReport';
 
+
 const getBasename = () => `/${process.env.PUBLIC_URL.split('/').pop()}`;
 
 function App() {
@@ -39,6 +48,8 @@ function App() {
         <Routes>
           <Route exact path='/' element={<Dashboard/>} />
           <Route exact path='/nebAccountManagement' element={<NEBAccountManagement/>} />
+          <Route exact path='/dataProviderList' element={<DataProviderList/>} />
+          <Route exact path='/productList' element={<ProductList/>} />
           <Route exact path='/createNewDataProvider' element={<CreateNewDataProvider/>} />
           <Route exact path='/createNewDataProvider2' element={<CreateNewDataProvider2/>} />
           <Route exact path='/createNewDataProvider3' element={<CreateNewDataProvider3/>} />
