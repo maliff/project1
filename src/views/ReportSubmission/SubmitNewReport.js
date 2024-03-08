@@ -3,33 +3,34 @@ import LteContent from "../../components/LteContent";
 import LteContentHeader from "../../components/LteContentHeader";
 import { useParams } from "react-router";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 function SubmitNewReport() {
-    const [data, setData] = useState([]);
-    const { id } = useParams();
-    useEffect(() => {
-      axios
-        .get("http://localhost:3030/listOfSubmission/" + id)
-        .then((res) => setData(res.data))
-        .catch((err) => console.log(err));
-    }, []);
-    const [showAmendmentDialog, setShowAmendmentDialog] = useState(false);
-    const [showApproveDialog, setShowApproveDialog] = useState(false);
-    const requestForAmendmentClick = () => {
-        setShowAmendmentDialog(true);
-      };
-    
-      const handleCloseAmendmentDialog = () => {
-        setShowAmendmentDialog(false);
-      };
-    
-      const ApproveClick = () => {
-        setShowApproveDialog(true);
-      };
-    
-      const handleCloseApproveDialog = () => {
-        setShowApproveDialog(false);
-      };
+  const [data, setData] = useState([]);
+  const { id } = useParams();
+  useEffect(() => {
+    axios
+      .get("http://localhost:3030/listOfSubmission/" + id)
+      .then((res) => setData(res.data))
+      .catch((err) => console.log(err));
+  }, []);
+  const [showAmendmentDialog, setShowAmendmentDialog] = useState(false);
+  const [showApproveDialog, setShowApproveDialog] = useState(false);
+  const requestForAmendmentClick = () => {
+    setShowAmendmentDialog(true);
+  };
+
+  const handleCloseAmendmentDialog = () => {
+    setShowAmendmentDialog(false);
+  };
+
+  const ApproveClick = () => {
+    setShowApproveDialog(true);
+  };
+
+  const handleCloseApproveDialog = () => {
+    setShowApproveDialog(false);
+  };
   return (
     <>
       <LteContentHeader title="Submit New Report" />
@@ -43,7 +44,7 @@ function SubmitNewReport() {
                   data.status === "Approved"
                     ? "bg-success"
                     : data.status === "Pending for Approval"
-                    ? "bg-primary"
+                    ? "bg-warning"
                     : data.status === "Pending for Amendment"
                     ? "bg-danger"
                     : "bg-secondary"
@@ -56,7 +57,7 @@ function SubmitNewReport() {
             <br />
             <div className="card" style={{ borderRadius: "20px" }}>
               {/* /.card-header */}
-              <div className="card-body p-0">
+              <div className="card-body p-0" style={{ overflowX: "auto" }}>
                 <table className="table table-sm">
                   <thead className="bg-secondary">
                     <tr>
@@ -71,37 +72,337 @@ function SubmitNewReport() {
                     <tr>
                       <td>1</td>
                       <td>Aviatiaon Gasoline (AV GAS)</td>
-                      <td>40,675.637</td>
-                      <td>1,675.637</td>
-                      <td>2,340.890</td>
+                      <td>
+                        <input
+                          type="number"
+                          style={{
+                            width: "70%",
+                            height: "30px",
+                            marginRight: "5px",
+                            borderRadius: "5px",
+                          }}
+                        />
+                        <select
+                          style={{
+                            width: "25%",
+                            height: "30px",
+                            borderRadius: "5px",
+                          }}
+                        >
+                          <option value="MT">MT</option>
+                          <option value="Kj">Kj</option>
+                        </select>
+                      </td>
+                      <td>
+                        <input
+                          type="number"
+                          style={{
+                            width: "70%",
+                            height: "30px",
+                            marginRight: "5px",
+                            borderRadius: "5px",
+                          }}
+                        />
+                        <select
+                          style={{
+                            width: "25%",
+                            height: "30px",
+                            borderRadius: "5px",
+                          }}
+                        >
+                          <option value="MT">MT</option>
+                          <option value="Kj">Kj</option>
+                        </select>
+                      </td>
+                      <td>
+                        <input
+                          type="number"
+                          style={{
+                            width: "70%",
+                            height: "30px",
+                            marginRight: "5px",
+                            borderRadius: "5px",
+                          }}
+                        />
+                        <select
+                          style={{
+                            width: "25%",
+                            height: "30px",
+                            borderRadius: "5px",
+                          }}
+                        >
+                          <option value="MT">MT</option>
+                          <option value="Kj">Kj</option>
+                        </select>
+                      </td>
                     </tr>
                     <tr>
                       <td>2</td>
                       <td>Bitumen/Asphalt/Mexphaite</td>
-                      <td>2,340.890</td>
-                      <td>2,340.890</td>
-                      <td>11,233.234</td>
+                      <td>
+                        <input
+                          type="number"
+                          style={{
+                            width: "70%",
+                            height: "30px",
+                            marginRight: "5px",
+                            borderRadius: "5px",
+                          }}
+                        />
+                        <select
+                          style={{
+                            width: "25%",
+                            height: "30px",
+                            borderRadius: "5px",
+                          }}
+                        >
+                          <option value="MT">MT</option>
+                          <option value="Kj">Kj</option>
+                        </select>
+                      </td>
+                      <td>
+                        <input
+                          type="number"
+                          style={{
+                            width: "70%",
+                            height: "30px",
+                            marginRight: "5px",
+                            borderRadius: "5px",
+                          }}
+                        />
+                        <select
+                          style={{
+                            width: "25%",
+                            height: "30px",
+                            borderRadius: "5px",
+                          }}
+                        >
+                          <option value="MT">MT</option>
+                          <option value="Kj">Kj</option>
+                        </select>
+                      </td>
+                      <td>
+                        <input
+                          type="number"
+                          style={{
+                            width: "70%",
+                            height: "30px",
+                            marginRight: "5px",
+                            borderRadius: "5px",
+                          }}
+                        />
+                        <select
+                          style={{
+                            width: "25%",
+                            height: "30px",
+                            borderRadius: "5px",
+                          }}
+                        >
+                          <option value="MT">MT</option>
+                          <option value="Kj">Kj</option>
+                        </select>
+                      </td>
                     </tr>
                     <tr>
                       <td>3</td>
                       <td>Butane</td>
-                      <td>1,675.637</td>
-                      <td>11,233.234</td>
-                      <td>1,675.637</td>
+                      <td>
+                        <input
+                          type="number"
+                          style={{
+                            width: "70%",
+                            height: "30px",
+                            marginRight: "5px",
+                            borderRadius: "5px",
+                          }}
+                        />
+                        <select
+                          style={{
+                            width: "25%",
+                            height: "30px",
+                            borderRadius: "5px",
+                          }}
+                        >
+                          <option value="MT">MT</option>
+                          <option value="Kj">Kj</option>
+                        </select>
+                      </td>
+                      <td>
+                        <input
+                          type="number"
+                          style={{
+                            width: "70%",
+                            height: "30px",
+                            marginRight: "5px",
+                            borderRadius: "5px",
+                          }}
+                        />
+                        <select
+                          style={{
+                            width: "25%",
+                            height: "30px",
+                            borderRadius: "5px",
+                          }}
+                        >
+                          <option value="MT">MT</option>
+                          <option value="Kj">Kj</option>
+                        </select>
+                      </td>
+                      <td>
+                        <input
+                          type="number"
+                          style={{
+                            width: "70%",
+                            height: "30px",
+                            marginRight: "5px",
+                            borderRadius: "5px",
+                          }}
+                        />
+                        <select
+                          style={{
+                            width: "25%",
+                            height: "30px",
+                            borderRadius: "5px",
+                          }}
+                        >
+                          <option value="MT">MT</option>
+                          <option value="Kj">Kj</option>
+                        </select>
+                      </td>
                     </tr>
                     <tr>
                       <td>4</td>
                       <td>Diesel</td>
-                      <td>11,233.234</td>
-                      <td>1,675.637</td>
-                      <td>2,340.890</td>
+                      <td>
+                        <input
+                          type="number"
+                          style={{
+                            width: "70%",
+                            height: "30px",
+                            marginRight: "5px",
+                            borderRadius: "5px",
+                          }}
+                        />
+                        <select
+                          style={{
+                            width: "25%",
+                            height: "30px",
+                            borderRadius: "5px",
+                          }}
+                        >
+                          <option value="MT">MT</option>
+                          <option value="Kj">Kj</option>
+                        </select>
+                      </td>
+                      <td>
+                        <input
+                          type="number"
+                          style={{
+                            width: "70%",
+                            height: "30px",
+                            marginRight: "5px",
+                            borderRadius: "5px",
+                          }}
+                        />
+                        <select
+                          style={{
+                            width: "25%",
+                            height: "30px",
+                            borderRadius: "5px",
+                          }}
+                        >
+                          <option value="MT">MT</option>
+                          <option value="Kj">Kj</option>
+                        </select>
+                      </td>
+                      <td>
+                        <input
+                          type="number"
+                          style={{
+                            width: "70%",
+                            height: "30px",
+                            marginRight: "5px",
+                            borderRadius: "5px",
+                          }}
+                        />
+                        <select
+                          style={{
+                            width: "25%",
+                            height: "30px",
+                            borderRadius: "5px",
+                          }}
+                        >
+                          <option value="MT">MT</option>
+                          <option value="Kj">Kj</option>
+                        </select>
+                      </td>
                     </tr>
                     <tr>
                       <td>5</td>
                       <td>Aviation Gasoline (AV GAS)</td>
-                      <td>23,890.798</td>
-                      <td>2,340.890</td>
-                      <td>11,233.234</td>
+                      <td>
+                        <input
+                          type="number"
+                          style={{
+                            width: "70%",
+                            height: "30px",
+                            marginRight: "5px",
+                            borderRadius: "5px",
+                          }}
+                        />
+                        <select
+                          style={{
+                            width: "25%",
+                            height: "30px",
+                            borderRadius: "5px",
+                          }}
+                        >
+                          <option value="MT">MT</option>
+                          <option value="Kj">Kj</option>
+                        </select>
+                      </td>
+                      <td>
+                        <input
+                          type="number"
+                          style={{
+                            width: "70%",
+                            height: "30px",
+                            marginRight: "5px",
+                            borderRadius: "5px",
+                          }}
+                        />
+                        <select
+                          style={{
+                            width: "25%",
+                            height: "30px",
+                            borderRadius: "5px",
+                          }}
+                        >
+                          <option value="MT">MT</option>
+                          <option value="Kj">Kj</option>
+                        </select>
+                      </td>
+                      <td>
+                        <input
+                          type="number"
+                          style={{
+                            width: "70%",
+                            height: "30px",
+                            marginRight: "5px",
+                            borderRadius: "5px",
+                          }}
+                        />
+                        <select
+                          style={{
+                            width: "25%",
+                            height: "30px",
+                            borderRadius: "5px",
+                          }}
+                        >
+                          <option value="MT">MT</option>
+                          <option value="Kj">Kj</option>
+                        </select>
+                      </td>
                     </tr>
                   </tbody>
                 </table>
@@ -109,13 +410,18 @@ function SubmitNewReport() {
             </div>
             {/* /.card-body */}
             <div class="text-center mt-5 mb-3 d-flex justify-content-end">
+              <div className="btn-group mr-2">
+                <Link
+                  to={`/reportSubmission`}
+                  className="btn btn-outline-secondary mr-1"
+                >
+                  Cancel
+                </Link>
+              </div>
               <button
-                onClick={requestForAmendmentClick}
-                class="btn btn-outline-secondary mr-1"
+                onClick={ApproveClick}
+                class="btn btn-outline-primary mr-1"
               >
-                Cancel
-              </button>
-              <button onClick={ApproveClick} class="btn btn-outline-primary mr-1">
                 Save As Draft
               </button>
               <button onClick={ApproveClick} class="btn btn-primary mr-1">

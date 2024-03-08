@@ -61,7 +61,7 @@ function ReportSubmission() {
             </h2>
           </div>
           {/* /.card-header */}
-          <div className="card-body p-0">
+          <div className="card-body p-0" style={{ overflowX: "auto" }}>
             <table className="table table-sm">
               <thead className="bg-secondary">
                 <tr>
@@ -81,7 +81,7 @@ function ReportSubmission() {
                           d.status === "Approved"
                             ? "bg-success"
                             : d.status === "Pending for Approval"
-                            ? "bg-primary"
+                            ? "bg-warning"
                             : d.status === "Pending for Amendment"
                             ? "bg-danger"
                             : "bg-secondary"
@@ -94,28 +94,26 @@ function ReportSubmission() {
                     <td>
                       <div>
                         <div className="btn-group mr-2">
-                          {d.status !== "Not Submitted" &&
-                            d.status !== "Draft" && (
-                              <Link
-                                to={`/fuelBalanceReportDP/${d.id}`}
-                                className="btn bg-gradient-primary"
-                                style={{ width: "80px" }}
-                              >
-                                View
-                              </Link>
-                            )}
+                          {d.status !== "Not Submitted" && (
+                            <Link
+                              to={`/fuelBalanceReportDP/${d.id}`}
+                              className="btn bg-gradient-primary"
+                              style={{ width: "80px" }}
+                            >
+                              View
+                            </Link>
+                          )}
                         </div>
                         <div className="btn-group">
-                          {d.status !== "Not Submitted" &&
-                            d.status !== "Draft" && (
-                              <button
-                                type="button"
-                                className="btn bg-gradient-primary"
-                                style={{ width: "100px" }}
-                              >
-                                Download
-                              </button>
-                            )}
+                          {d.status !== "Not Submitted" && (
+                            <button
+                              type="button"
+                              className="btn bg-gradient-primary"
+                              style={{ width: "100px" }}
+                            >
+                              Download
+                            </button>
+                          )}
                         </div>
                       </div>
                     </td>

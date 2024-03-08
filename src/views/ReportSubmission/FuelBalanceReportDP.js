@@ -51,7 +51,7 @@ function FuelBalanceReportDP() {
                   data.status === "Approved"
                     ? "bg-success"
                     : data.status === "Pending for Approval"
-                    ? "bg-primary"
+                    ? "bg-warning"
                     : data.status === "Pending for Amendment"
                     ? "bg-danger"
                     : "bg-secondary"
@@ -64,7 +64,7 @@ function FuelBalanceReportDP() {
             <br />
             <div className="card" style={{ borderRadius: "20px" }}>
               {/* /.card-header */}
-              <div className="card-body p-0">
+              <div className="card-body p-0" style={{ overflowX: "auto" }}>
                 <table className="table table-sm">
                   <thead className="bg-secondary">
                     <tr>

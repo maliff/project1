@@ -79,7 +79,7 @@ function SystemReport() {
             </h2>
           </div>
           {/* /.card-header */}
-          <div className="card-body p-0">
+          <div className="card-body p-0" style={{ overflowX: "auto" }}>
             <table className="table table-sm">
               <thead className="bg-secondary">
                 <tr>

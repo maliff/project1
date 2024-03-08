@@ -55,7 +55,7 @@ function NebVerificationModule() {
             </h2>
           </div>
           {/* /.card-header */}
-          <div className="card-body p-0">
+          <div className="card-body p-0" style={{ overflowX: "auto" }}>
             <table className="table table-sm">
               <thead className="bg-secondary">
                 <tr>
@@ -77,7 +77,7 @@ function NebVerificationModule() {
                           d.Status === "Approved"
                             ? "bg-success"
                             : d.Status === "Pending for Approval"
-                            ? "bg-primary"
+                            ? "bg-warning"
                             : d.Status === "Pending for Amendment"
                             ? "bg-danger"
                             : "bg-secondary"
