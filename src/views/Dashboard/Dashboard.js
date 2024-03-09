@@ -42,7 +42,7 @@ export default function Dashboard() {
           <Row className="mb-2">
             <Col sm="6">
               <h5>
-                <b>Form Status</b>
+                <b>Product Data</b>
               </h5>
             </Col>
             <Col sm="6">
@@ -80,7 +80,7 @@ export default function Dashboard() {
                 <p>Pending for Approval</p>
               </div>
          
-              <div className="icon">
+              <div className="icon" style={{ color: "#F7E190" }}>
                 <i className="ion ion-android-person-add" />
               </div>
             </div>
@@ -96,7 +96,7 @@ export default function Dashboard() {
                 <h3>5</h3>
                 <p>Pending for Amendment</p>
               </div>
-              <div className="icon">
+              <div className="icon" style={{ color: "#FECACC" }}>
                 <i className="ion ion-android-alert" />
               </div>
             </div>
@@ -112,7 +112,7 @@ export default function Dashboard() {
                 <h3>15</h3>
                 <p>Approved </p>
               </div>
-              <div className="icon">
+              <div className="icon" style={{ color: "#C0F2D4" }}>
                 <i className="ion ion-android-checkmark-circle" />
               </div>
             </div>
@@ -128,7 +128,7 @@ export default function Dashboard() {
                 <div className="card">
                   <div className="card-body">
                     <h5 className="card-title">
-                      <b>Post Announcement</b>
+                      <b>Latest Announcement</b>
                     </h5>
                     <br />
                     <br />
@@ -148,10 +148,13 @@ export default function Dashboard() {
           <div className="container-fluid">
             <div className="row">
             <div className="col-lg-12">
+            <h5>
+                <b>Trend Analysis</b>
+              </h5>
                 <div className="card">
                   <div className="card-body">
                     <h5 className="card-title">
-                      <b>Primary Energy Supply</b>
+                      <b>Summary- Primary Energy Supply</b>
                     </h5>
                     <br />
                     <br />
