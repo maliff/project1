@@ -10,6 +10,49 @@ import Card from "react-bootstrap/Card";
 import Modal from "react-bootstrap/Modal";
 import { useParams } from "react-router-dom";
 import axios from "axios";
+import Switch from "react-switch";
+
+const Switches = () => {
+  const [checked, setChecked] = useState(false);
+  const [selectedLabel, setSelectedLabel] = useState("MT");
+
+  const handleChange = (nextChecked) => {
+    setChecked(nextChecked);
+    setSelectedLabel(nextChecked ? "Pj" : "MT");
+  };
+
+  return (
+    <div className="example">
+      <div style={{ display: "flex", alignItems: "center" }}>
+        <label
+          className={
+            selectedLabel === "MT" ? "mr-2 text-success" : "mr-2 text-secondary"
+          }
+          onClick={() => setSelectedLabel("MT")}
+        >
+          MT
+        </label>
+        <Switch
+          onChange={handleChange}
+          checked={checked}
+          className="react-switch"
+          uncheckedIcon={false}
+          checkedIcon={false}
+          onColor="#007bff"
+          offColor="#007bff"
+        />
+        <label
+          className={
+            selectedLabel === "Pj" ? "ml-2 text-success" : "ml-2 text-secondary"
+          }
+          onClick={() => setSelectedLabel("Pj")}
+        >
+          Pj
+        </label>
+      </div>
+    </div>
+  );
+};
 
 function FuelBalanceReport() {
   const [data, setData] = useState([]);
@@ -76,6 +119,9 @@ function FuelBalanceReport() {
               <Col>Quarter 1</Col>
               <Col>2023</Col>
             </Row>
+            <div className="text-center mt-5 mb-3 d-flex justify-content-end"> 
+              <Switches />
+            </div>
             <div className="card" style={{ borderRadius: "20px" }}>
               {/* /.card-header */}
               <div className="card-body p-0" style={{ overflowX: "auto" }}>

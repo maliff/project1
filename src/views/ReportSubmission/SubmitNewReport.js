@@ -430,6 +430,24 @@ function SubmitNewReport() {
             </div>
           </div>
         </div>
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title mb-4">Remarks</h5>
+            <br />
+            <br />
+            <form className="form-horizontal mt-3">
+              <div className="input-group input-group-lg mb-2">
+                <input
+                  className="form-control form-control-lg"
+                  placeholder="Type here..."
+                />
+                <button type="submit" className="btn btn-primary ml-2">
+                  Send
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
       </LteContent>
     </>
   );

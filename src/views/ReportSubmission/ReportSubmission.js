@@ -30,7 +30,7 @@ function ReportSubmission() {
   }
   return (
     <>
-      <LteContentHeader title="NEB Verification Module" />
+      <LteContentHeader title="Report Submission" />
       <LteContent>
         <div className="main-search mb-3 mr-4">
           <div>
@@ -57,7 +57,7 @@ function ReportSubmission() {
         <div className="card" style={{ borderRadius: "20px" }}>
           <div className="card-header">
             <h2 className="card-title mb-3 mt-2">
-              <b>Quarter 1</b>
+              <b>List of Submission</b>
             </h2>
           </div>
           {/* /.card-header */}
