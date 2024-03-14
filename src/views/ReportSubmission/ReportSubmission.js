@@ -18,13 +18,8 @@ function ReportSubmission() {
     (entry) => entry.status === "Not Submitted"
   )?.id;
 
-  const [goToFuelBalanceReport, setGoToFuelBalanceReport] =
-    React.useState(false);
   const [goToSubmitNewReport, setGoToSubmitNewReport] = React.useState(false);
 
-  if (goToFuelBalanceReport) {
-    return <Navigate to="/fuelBalanceReportDP" />;
-  }
   if (goToSubmitNewReport) {
     return <Navigate to="/submitNewReport" />;
   }

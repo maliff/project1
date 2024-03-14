@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import {
   faChartBar,
   faComment,
@@ -22,16 +23,20 @@ import {
   faUsers,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React from "react";
 import LteContent from "../../components/LteContent";
 import LteContentHeader from "../../components/LteContentHeader";
-import { Col, Container, Row } from "reactstrap";
+import { Col, Container, Row, Nav, Tab } from "react-bootstrap";
 import SubmittedFormByQuarter from "./SubmittedFormByQuarter";
 import PostAnnouncement from "../Announcement/PostAnnouncement";
 import PastAnnouncement from "../Announcement/PastAnnouncement";
 import DataTrendAnalysis from "../NEBVerificationModule/DataTrendAnalysis";
 
 export default function Dashboard() {
+  const [graphType, setGraphType] = useState("bar");
+
+  const handleTabChange = (type) => {
+    setGraphType(type);
+  };
   return (
     <>
       <LteContentHeader title="Dashboard" />
@@ -122,7 +127,10 @@ export default function Dashboard() {
                 <SubmittedFormByQuarter />
               </div>
               <div className="col-lg-6">
-                <div className="card" style={{ overflow: "auto", height: "500px" }}>
+                <div
+                  className="card"
+                  style={{ overflow: "auto", height: "500px" }}
+                >
                   <div className="card-body">
                     <h5 className="card-title">
                       <b>Post Announcement</b>
@@ -144,7 +152,7 @@ export default function Dashboard() {
         <div className="content">
           <div className="container-fluid">
             <div className="row">
-            <div className="col-lg-12">
+              <div className="col-lg-12">
                 <div className="card">
                   <div className="card-body">
                     <h5 className="card-title">
@@ -152,7 +160,113 @@ export default function Dashboard() {
                     </h5>
                     <br />
                     <br />
-                    <DataTrendAnalysis />
+                    <div className="main-search mb-3">
+                      <div>
+                        <label htmlFor="yearFrom" className="mr-2">
+                          From{" "}
+                        </label>
+                        <select id="yearFrom">
+                          <option value="2010">2010</option>
+                          <option value="2011">2011</option>
+                          <option value="2012">2012</option>
+                        </select>
+                      </div>
+                      <div>
+                        <label htmlFor="yearTo" className="mr-2">
+                          To{" "}
+                        </label>
+                        <select id="yearTo">
+                          <option value="2010">2010</option>
+                          <option value="2011">2011</option>
+                          <option value="2012">2012</option>
+                        </select>
+                      </div>
+                      <div>
+                        <label htmlFor="quarter" className="mr-2">
+                          Quarter{" "}
+                        </label>
+                        <select id="quarter" defaultValue="4">
+                          <option value="1">1</option>
+                          <option value="2">2</option>
+                          <option value="3">3</option>
+                          <option value="4">4</option>
+                        </select>
+                      </div>
+                      <div>
+                        <select id="type">
+                          <option value="primaryEnergySupply">
+                            Primary Energy Supply
+                          </option>
+                          <option value="finalEnergyConsumption">
+                            Final Energy Consumption
+                          </option>
+                          <option value="outputOfRefinery">
+                            Output Of Refinery
+                          </option>
+                          <option value="outputOfGasPlant">
+                            Output Of Gas Plant
+                          </option>
+                          <option value="electricityGeneration">
+                            Electricity Generation
+                          </option>
+                          <option value="fuelConsumeInPowerPlant">
+                            Fuel Consume In Power Plant
+                          </option>
+                        </select>
+                      </div>
+                      <div>
+                        <select id="products">
+                          <option value="products">Products</option>
+                        </select>
+                      </div>
+                      <div>
+                        <select id="agency">
+                          <option value="agency">Agency</option>
+                        </select>
+                      </div>
+                    </div>
+                    <Tab.Container id="graph-tabs" defaultActiveKey="line">
+                      <Nav variant="tabs" className="mb-3">
+                        <Nav.Item>
+                          <Nav.Link
+                            eventKey="line"
+                            onClick={() => handleTabChange("line")}
+                          >
+                            Line Graph
+                          </Nav.Link>
+                        </Nav.Item>
+                        <Nav.Item>
+                          <Nav.Link
+                            eventKey="bar"
+                            onClick={() => handleTabChange("bar")}
+                          >
+                            Bar Graph
+                          </Nav.Link>
+                        </Nav.Item>
+                        <Nav.Item>
+                          <Nav.Link
+                            eventKey="area"
+                            onClick={() => handleTabChange("area")}
+                          >
+                            Area Graph
+                          </Nav.Link>
+                        </Nav.Item>
+                      </Nav>
+                      <Tab.Content>
+                        <Tab.Pane eventKey="line">
+                          {/* Content for Line Graph */}
+                          <DataTrendAnalysis type="line" />
+                        </Tab.Pane>
+                        <Tab.Pane eventKey="bar">
+                          {/* Content for Bar Graph */}
+                          <DataTrendAnalysis type="bar" />
+                        </Tab.Pane>
+                        <Tab.Pane eventKey="area">
+                          {/* Content for Area Graph */}
+                          <DataTrendAnalysis type="area" />
+                        </Tab.Pane>
+                      </Tab.Content>
+                    </Tab.Container>
                   </div>
                 </div>
               </div>

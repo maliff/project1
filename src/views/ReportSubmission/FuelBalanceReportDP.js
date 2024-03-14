@@ -1,15 +1,14 @@
 import React, { useEffect, useState } from "react";
-import { Row, Col } from "react-bootstrap";
 import LteContent from "../../components/LteContent";
 import LteContentHeader from "../../components/LteContentHeader";
 import Tab from "react-bootstrap/Tab";
 import Tabs from "react-bootstrap/Tabs";
-import DataTrendAnalysis from "../NEBVerificationModule/DataTrendAnalysis";
 import PlantEfficiency from "../NEBVerificationModule/PlantEfficiency";
 import Card from "react-bootstrap/Card";
 import Modal from "react-bootstrap/Modal";
 import { useParams } from "react-router-dom";
 import axios from "axios";
+import DataTrendAnalysisDP from "./DataTrendAnalysisDP";
 
 function FuelBalanceReportDP() {
   const [data, setData] = useState([]);
@@ -123,24 +122,13 @@ function FuelBalanceReportDP() {
             >
               <Tab eventKey="dataTrendAnalysis" title="Data Trend Analysis">
                 <div className="bg-white">
-                  <DataTrendAnalysis />
+                  <DataTrendAnalysisDP />
                 </div>
               </Tab>
               <Tab eventKey="plantEfficiency" title="Plant Efficiency">
                 <PlantEfficiency />
               </Tab>
             </Tabs>
-            <div class="text-center mt-5 mb-3 d-flex justify-content-end">
-              <button
-                onClick={requestForAmendmentClick}
-                class="btn btn-outline-primary mr-1"
-              >
-                Request for Amendment
-              </button>
-              <button onClick={ApproveClick} class="btn btn-primary">
-                Approve
-              </button>
-            </div>
           </div>
         </div>
         <div class="card">
@@ -223,48 +211,6 @@ function FuelBalanceReportDP() {
             </form>
           </div>
         </div>
-        <Modal show={showAmendmentDialog} onHide={handleCloseAmendmentDialog}>
-          <Modal.Header closeButton>
-            <Modal.Title>Request for Amendment</Modal.Title>
-          </Modal.Header>
-          <Modal.Body>
-            Remarks *
-            <form className="form-horizontal">
-              <div className="input-group input-group-lg mb-2">
-                <input
-                  className="form-control form-control-lg"
-                  placeholder="Type here..."
-                />
-              </div>
-            </form>
-          </Modal.Body>
-          <Modal.Footer>
-            <button
-              className="btn btn-secondary"
-              onClick={handleCloseAmendmentDialog}
-            >
-              Cancel
-            </button>
-            <button className="btn btn-primary">Request for Amendment</button>
-          </Modal.Footer>
-        </Modal>
-        <Modal show={showApproveDialog} onHide={handleCloseApproveDialog}>
-          <Modal.Header closeButton>
-            <Modal.Title>Confirm Approval</Modal.Title>
-          </Modal.Header>
-          <Modal.Body>
-            <p>You are approving Tenaga Nasional Fuel Balance Report Q1 2023</p>
-          </Modal.Body>
-          <Modal.Footer>
-            <button
-              className="btn btn-secondary"
-              onClick={handleCloseApproveDialog}
-            >
-              Cancel
-            </button>
-            <button className="btn btn-primary">Approve</button>
-          </Modal.Footer>
-        </Modal>
       </LteContent>
     </>
   );
