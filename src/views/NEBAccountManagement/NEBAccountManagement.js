@@ -3,6 +3,7 @@ import DataTable from 'react-data-table-component';
 import '../../App.css';
 import { Button } from 'reactstrap';
 import { Link } from 'react-router-dom';
+import { Col } from 'react-bootstrap';
 
 const NEBAccountManagement = () => {
     const data = [
@@ -42,7 +43,8 @@ const NEBAccountManagement = () => {
       name: 'No',
       selector: row => row.id,
       sortable: true,
-    },
+      },
+
     {
       name: 'Agency',
       selector: row => row.agency,
@@ -80,7 +82,8 @@ const NEBAccountManagement = () => {
     {/* Account Management DataTable */}
     <div style={{ marginTop: '20px' }}>
       <DataTable
-        title="Latest Data Provider"
+        className='table'
+        title="Latest Data Provider" 
         columns={columns}
         data={data}
         pagination={true}
@@ -98,7 +101,7 @@ const NEBAccountManagement = () => {
     </div>
 
     {/* Latest Product DataTable */}
-    <div style={{ marginTop: '20px' }}>
+    <div style={{ marginTop: '20px'}}>
       <DataTable
         title="Latest Product"
         columns={columns}
@@ -110,5 +113,6 @@ const NEBAccountManagement = () => {
   </div>
   );
 };
+
 
 export default NEBAccountManagement;
