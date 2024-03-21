@@ -63,8 +63,8 @@ function FuelBalanceReport() {
       .then((res) => setData(res.data))
       .catch((err) => console.log(err));
   }, []);
-  const [showAmendmentDialog, setShowAmendmentDialog] = useState(false);
-  const [showApproveDialog, setShowApproveDialog] = useState(false);
+    const [showAmendmentDialog, setShowAmendmentDialog] = useState(false);
+    const [showApproveDialog, setShowApproveDialog] = useState(false);
 
   const requestForAmendmentClick = () => {
     setShowAmendmentDialog(true);
