@@ -1,38 +1,25 @@
-import React, { useState } from "react";
-import {
-  faChartBar,
-  faComment,
-  faHeart,
-} from "@fortawesome/free-regular-svg-icons";
-import {
-  faArrowUp,
-  faBars,
-  faChartPie,
-  faCloudDownloadAlt,
-  faCog,
-  faComments,
-  faDownload,
-  faMinus,
-  faRedo,
-  faShoppingBasket,
-  faShoppingCart,
-  faTag,
-  faThumbsUp,
-  faTimes,
-  faUserPlus,
-  faUsers,
-} from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import React, { useEffect, useState } from "react";
 import LteContent from "../../components/LteContent";
 import LteContentHeader from "../../components/LteContentHeader";
-import { Col, Container, Row, Nav, Tab } from "react-bootstrap";
+import { Col, Container, Row, Nav, Tab, Tabs } from "react-bootstrap";
 import SubmittedFormByQuarter from "./SubmittedFormByQuarter";
 import PostAnnouncement from "../Announcement/PostAnnouncement";
 import PastAnnouncement from "../Announcement/PastAnnouncement";
-import DataTrendAnalysis from "../NEBVerificationModule/DataTrendAnalysis";
+import { LineChart, BarChart, AreaChart } from "../NEBVerificationModule/Charts";
+import chartData from "../NEBVerificationModule/AllChartData";
+import HighchartsReact from "highcharts-react-official";
+import Highcharts from "highcharts";
 
 export default function Dashboard() {
   const [graphType, setGraphType] = useState("bar");
+  const [activeTab, setActiveTab] = useState("tab1");
+  const [chartKey, setChartKey] = useState(0); // Initialize chart key state
+
+  const handleSelectTab = (tabKey) => {
+    setActiveTab(tabKey);
+    // Increment the chart key to force a refresh
+    setChartKey((prevKey) => prevKey + 1);
+  };
 
   const handleTabChange = (type) => {
     setGraphType(type);
@@ -225,48 +212,82 @@ export default function Dashboard() {
                         </select>
                       </div>
                     </div>
-                    <Tab.Container id="graph-tabs" defaultActiveKey="line">
-                      <Nav variant="tabs" className="mb-3">
-                        <Nav.Item>
-                          <Nav.Link
-                            eventKey="line"
-                            onClick={() => handleTabChange("line")}
+                    <Tabs
+                      activeKey={activeTab}
+                      onSelect={handleSelectTab}
+                      id="tabs"
+                    >
+                      <Tab
+                        eventKey="tab1"
+                        title={
+                          <span
+                            style={{
+                              textDecoration:
+                                activeTab === "tab1" ? "underline" : "none",
+                              color: activeTab === "tab1" ? "blue" : "inherit",
+                            }}
                           >
-                            Line Graph
-                          </Nav.Link>
-                        </Nav.Item>
-                        <Nav.Item>
-                          <Nav.Link
-                            eventKey="bar"
-                            onClick={() => handleTabChange("bar")}
+                            Line Chart
+                          </span>
+                        }
+                      >
+                        {/* Use key prop to force refresh */}
+                        <div className="mt-4 p-2">
+                          <HighchartsReact
+                            key={`line-chart-${chartKey}`}
+                            highcharts={Highcharts}
+                            options={LineChart}
+                          />
+                        </div>
+                      </Tab>
+                      
+                      <Tab
+                        eventKey="tab2"
+                        title={
+                          <span
+                            style={{
+                              textDecoration:
+                                activeTab === "tab2" ? "underline" : "none",
+                              color: activeTab === "tab2" ? "blue" : "inherit",
+                            }}
                           >
-                            Bar Graph
-                          </Nav.Link>
-                        </Nav.Item>
-                        <Nav.Item>
-                          <Nav.Link
-                            eventKey="area"
-                            onClick={() => handleTabChange("area")}
+                            Bar Chart
+                          </span>
+                        }
+                      >
+                        {/* Use key prop to force refresh */}
+                        <div className="mt-4 p-2">
+                          <HighchartsReact
+                            key={`line-chart-${chartKey}`}
+                            highcharts={Highcharts}
+                            options={BarChart}
+                          />
+                        </div>
+                      </Tab>
+                      <Tab
+                        eventKey="tab3"
+                        title={
+                          <span
+                            style={{
+                              textDecoration:
+                                activeTab === "tab3" ? "underline" : "none",
+                              color: activeTab === "tab3" ? "blue" : "inherit",
+                            }}
                           >
-                            Area Graph
-                          </Nav.Link>
-                        </Nav.Item>
-                      </Nav>
-                      <Tab.Content>
-                        <Tab.Pane eventKey="line">
-                          {/* Content for Line Graph */}
-                          <DataTrendAnalysis type="line" />
-                        </Tab.Pane>
-                        <Tab.Pane eventKey="bar">
-                          {/* Content for Bar Graph */}
-                          <DataTrendAnalysis type="bar" />
-                        </Tab.Pane>
-                        <Tab.Pane eventKey="area">
-                          {/* Content for Area Graph */}
-                          <DataTrendAnalysis type="area" />
-                        </Tab.Pane>
-                      </Tab.Content>
-                    </Tab.Container>
+                            Area Chart
+                          </span>
+                        }
+                      >
+                        {/* Use key prop to force refresh */}
+                        <div className="mt-4 p-2">
+                          <HighchartsReact
+                            key={`line-chart-${chartKey}`}
+                            highcharts={Highcharts}
+                            options={AreaChart}
+                          />
+                        </div>
+                      </Tab>
+                    </Tabs>
                   </div>
                 </div>
               </div>
