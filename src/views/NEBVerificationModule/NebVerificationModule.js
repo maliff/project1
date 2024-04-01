@@ -9,7 +9,7 @@ function NebVerificationModule() {
   const [data, setData] = useState([]);
   useEffect(() => {
     axios
-      .get("http://localhost:3030/users")
+      .get("https://mydata-d89e.onrender.com/users")
       .then((res) => setData(res.data))
       .catch((err) => console.log(err));
   }, []);

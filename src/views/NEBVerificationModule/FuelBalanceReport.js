@@ -60,7 +60,7 @@ function FuelBalanceReport() {
   const { id } = useParams();
   useEffect(() => {
     axios
-      .get("http://localhost:3030/users/" + id)
+      .get("https://mydata-d89e.onrender.com/users/" + id)
       .then((res) => setData(res.data))
       .catch((err) => console.log(err));
   }, []);

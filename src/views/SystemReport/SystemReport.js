@@ -8,7 +8,7 @@ function SystemReport() {
   const [data, setData] = useState([]);
   useEffect(() => {
     axios
-      .get("http://localhost:3030/tickets")
+      .get("https://mydata-d89e.onrender.com/tickets")
       .then((res) => setData(res.data))
       .catch((err) => console.log(err));
   }, []);

@@ -6,7 +6,7 @@ function UpcomingEvent() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3030/event")
+      .get("https://mydata-d89e.onrender.com/event")
       .then((res) => {
         const sortedEvents = res.data.sort((a, b) => {
             const dateA = new Date(a.eventStartDate + " " + a.eventStartTime);

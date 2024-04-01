@@ -9,7 +9,7 @@ function ProductListing() {
   const { id } = useParams();
   useEffect(() => {
     axios
-      .get("http://localhost:3030/tickets/" + id)
+      .get("https://mydata-d89e.onrender.com/tickets/" + id)
       .then((res) => setData(res.data))
       .catch((err) => console.log(err));
   }, []);

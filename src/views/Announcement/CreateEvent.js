@@ -35,7 +35,7 @@ function CreateEvent({ show, onHide }) {
       eventTime: currentTime,
     };
     axios
-      .post("http://localhost:3030/event", eventData)
+      .post("https://mydata-d89e.onrender.com/event", eventData)
       .then((res) => {
         console.log(res);
         navigate("/announcement");

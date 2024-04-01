@@ -14,7 +14,7 @@ function PastAnnouncement() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3030/event")
+      .get("https://mydata-d89e.onrender.com/event")
       .then((res) => {
         // Sort events in descending order based on event date and time
         const sortedEvents = res.data.sort((a, b) => {
@@ -41,7 +41,7 @@ function PastAnnouncement() {
     
     if (isConfirmed) {
       axios
-        .delete(`http://localhost:3030/event/${eventId}`)
+        .delete(`https://mydata-d89e.onrender.com/event/${eventId}`)
         .then((res) => {
           setEvents(events.filter((event) => event.id !== eventId));
           console.log("Post deleted successfully");
