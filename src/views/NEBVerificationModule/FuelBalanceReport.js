@@ -119,6 +119,7 @@ function FuelBalanceReport() {
             </h5>
             <br />
             <br />
+            <br />
             <Row className="mb-2">
               <Col className="fw-bold text-secondary">AGENCY</Col>
               <Col className="fw-bold text-secondary">DATA PROVIDER</Col>

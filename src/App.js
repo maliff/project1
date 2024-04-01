@@ -41,7 +41,7 @@ function App() {
         <Sidebar />
         <ContentWrapper>
           <Routes>
-            <Route exact path="/" element={<Dashboard />} />
+            <Route exact path="/neb-module" element={<Dashboard />} />
             <Route
               exact
               path="/nebAccountManagement"

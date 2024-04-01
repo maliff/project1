@@ -20,7 +20,7 @@ export default function Sidebar() {
         <MainSidebar brandName='NEB'>
             <NavSidebar>
                 <NavItem>
-                    <NavLink tag={Link} to='/'>
+                    <NavLink tag={Link} to='/neb-module'>
                         <FontAwesomeIcon icon={faTachometerAlt} className='nav-icon' />
                         <p>Dashboard</p>
                     </NavLink>
