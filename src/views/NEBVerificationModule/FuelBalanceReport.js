@@ -257,6 +257,7 @@ function FuelBalanceReport() {
             <h5 class="card-title mb-4">Remarks</h5>
             <br />
             <br />
+            <br />
             <Card className="mb-2">
               <Card.Body className="bg-light">
                 <div>

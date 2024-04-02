@@ -61,6 +61,7 @@ function FuelBalanceReportDP() {
             </h5>
             <br />
             <br />
+            <br />
             <div className="card" style={{ borderRadius: "20px" }}>
               {/* /.card-header */}
               <div className="card-body p-0" style={{ overflowX: "auto" }}>
@@ -134,6 +135,7 @@ function FuelBalanceReportDP() {
         <div class="card">
           <div class="card-body">
             <h5 class="card-title mb-4">Remarks</h5>
+            <br />
             <br />
             <br />
             <Card className="mb-2">

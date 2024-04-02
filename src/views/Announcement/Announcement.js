@@ -29,10 +29,12 @@ function Announcement() {
                 </h3>
                 <br />
                 <br />
+                <br />
                 <PostAnnouncement onBadgeClick={handleBadgeClick}/>
                 <h3 className="card-title mb-4 font-weight-bold">
                   Past Announcement
                 </h3>
+                <br />
                 <br />
                 <br />
                 <PastAnnouncement />
