@@ -12,6 +12,9 @@ import Switch from "react-switch";
 import HighchartsReact from "highcharts-react-official";
 import Highcharts from "highcharts";
 import { DataTrendAnalysis, PlantEfficiency } from "./Charts";
+import PlantPerformance from "./PlantPerformance";
+import InstalledCapacity from "./InstalledCapacity";
+import NetCalorific from "./NetCalorific";
 
 const Switches = () => {
   const [checked, setChecked] = useState(false);
@@ -68,6 +71,9 @@ function FuelBalanceReport() {
   const [showApproveDialog, setShowApproveDialog] = useState(false);
   const [graphType, setGraphType] = useState("bar");
   const [activeTab, setActiveTab] = useState("tab1");
+  const [activeTabGeneral, setActiveTabGeneral] = useState(
+    "tabFuelBalanceReport"
+  );
   const [chartKey, setChartKey] = useState(0);
 
   const handleTabChange = (type) => {
@@ -78,6 +84,10 @@ function FuelBalanceReport() {
     setActiveTab(tabKey);
     // Increment the chart key to force a refresh
     setChartKey((prevKey) => prevKey + 1);
+  };
+
+  const handleSelectTabGeneral = (tabKey) => {
+    setActiveTabGeneral(tabKey);
   };
 
   const requestForAmendmentClick = () => {
@@ -101,142 +111,234 @@ function FuelBalanceReport() {
       <LteContent>
         <div class="card">
           <div class="card-body">
-            <h5 class="card-title mb-4">
-              Fuel Balance Report - Q1 2023{" "}
-              <span
-                className={`badge ${
-                  data.Status === "Approved"
-                    ? "bg-success"
-                    : data.Status === "Pending for Approval"
-                    ? "bg-warning"
-                    : data.Status === "Pending for Amendment"
-                    ? "bg-danger"
-                    : "bg-secondary"
-                }`}
-              >
-                <small>{data.Status}</small>
-              </span>
-            </h5>
-            <br />
-            <br />
-            <br />
-            <Row className="mb-2">
-              <Col className="fw-bold text-secondary">AGENCY</Col>
-              <Col className="fw-bold text-secondary">DATA PROVIDER</Col>
-              <Col className="fw-bold text-secondary">SUBMITTED DATE</Col>
-              <Col className="fw-bold text-secondary">QUARTER</Col>
-              <Col className="fw-bold text-secondary">YEAR</Col>
-            </Row>
-            <Row className="mb-5">
-              <Col>{data.Agency}</Col>
-              <Col>Julian Cassablancas</Col>
-              <Col>30/4/2023</Col>
-              <Col>Quarter 1</Col>
-              <Col>2023</Col>
-            </Row>
-            <div className="text-center mt-5 mb-3 d-flex justify-content-end">
-              <Switches />
-            </div>
-            <div className="card" style={{ borderRadius: "20px" }}>
-              {/* /.card-header */}
-              <div className="card-body p-0" style={{ overflowX: "auto" }}>
-                <table className="table table-sm">
-                  <thead className="bg-secondary">
-                    <tr>
-                      <th>No.</th>
-                      <th>Product</th>
-                      <th>F1 (Opening Stock)</th>
-                      <th>F2 (Local Purchase)</th>
-                      <th>F2 (Foreign Import)</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>1</td>
-                      <td>Aviatiaon Gasoline (AV GAS)</td>
-                      <td>40,675.637</td>
-                      <td>1,675.637</td>
-                      <td>2,340.890</td>
-                    </tr>
-                    <tr>
-                      <td>2</td>
-                      <td>Bitumen/Asphalt/Mexphaite</td>
-                      <td>2,340.890</td>
-                      <td>2,340.890</td>
-                      <td>11,233.234</td>
-                    </tr>
-                    <tr>
-                      <td>3</td>
-                      <td>Butane</td>
-                      <td>1,675.637</td>
-                      <td>11,233.234</td>
-                      <td>1,675.637</td>
-                    </tr>
-                    <tr>
-                      <td>4</td>
-                      <td>Diesel</td>
-                      <td>11,233.234</td>
-                      <td>1,675.637</td>
-                      <td>2,340.890</td>
-                    </tr>
-                    <tr>
-                      <td>5</td>
-                      <td>Aviation Gasoline (AV GAS)</td>
-                      <td>23,890.798</td>
-                      <td>2,340.890</td>
-                      <td>11,233.234</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-            {/* /.card-body */}
-            <Tabs activeKey={activeTab} onSelect={handleSelectTab} id="tabs">
+            <Tabs
+              activeKey={activeTabGeneral}
+              onSelect={handleSelectTabGeneral}
+              id="tabs"
+            >
               <Tab
-                eventKey="tab1"
+                eventKey="tabFuelBalanceReport"
                 title={
                   <span
                     style={{
                       textDecoration:
-                        activeTab === "tab1" ? "underline" : "none",
-                      color: activeTab === "tab1" ? "blue" : "inherit",
+                        activeTabGeneral === "tabFuelBalanceReport"
+                          ? "underline"
+                          : "none",
+                      color:
+                        activeTabGeneral === "tabFuelBalanceReport"
+                          ? "blue"
+                          : "inherit",
                     }}
                   >
-                    Data Trend Analysis
+                    Fuel Balance 
                   </span>
                 }
               >
-                {/* Use key prop to force refresh */}
-                <div className="mt-4 p-2">
-                  <HighchartsReact
-                    key={`bar-chart-${chartKey}`}
-                    highcharts={Highcharts}
-                    options={DataTrendAnalysis}
-                  />
+                <h5 class="card-title mb-4 mt-4">
+                  Fuel Balance Report - Q1 2023{" "}
+                  <span
+                    className={`badge ${
+                      data.Status === "Approved"
+                        ? "bg-success"
+                        : data.Status === "Pending for Approval"
+                        ? "bg-warning"
+                        : data.Status === "Pending for Amendment"
+                        ? "bg-danger"
+                        : "bg-secondary"
+                    }`}
+                  >
+                    <small>{data.Status}</small>
+                  </span>
+                </h5>
+                <br />
+                <br />
+                <br />
+                <Row className="mb-2">
+                  <Col className="fw-bold text-secondary">AGENCY</Col>
+                  <Col className="fw-bold text-secondary">DATA PROVIDER</Col>
+                  <Col className="fw-bold text-secondary">SUBMITTED DATE</Col>
+                  <Col className="fw-bold text-secondary">QUARTER</Col>
+                  <Col className="fw-bold text-secondary">YEAR</Col>
+                </Row>
+                <Row className="mb-5">
+                  <Col>{data.Agency}</Col>
+                  <Col>Julian Cassablancas</Col>
+                  <Col>30/4/2023</Col>
+                  <Col>Quarter 1</Col>
+                  <Col>2023</Col>
+                </Row>
+                <div className="text-center mt-5 mb-3 d-flex justify-content-end">
+                  <Switches />
                 </div>
+                <div className="card" style={{ borderRadius: "20px" }}>
+                  {/* /.card-header */}
+                  <div className="card-body p-0" style={{ overflowX: "auto" }}>
+                    <table className="table table-sm">
+                      <thead className="bg-secondary">
+                        <tr>
+                          <th>No.</th>
+                          <th>Product</th>
+                          <th>F1 (Opening Stock)</th>
+                          <th>F2 (Local Purchase)</th>
+                          <th>F2 (Foreign Import)</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>1</td>
+                          <td>Aviatiaon Gasoline (AV GAS)</td>
+                          <td>40,675.637</td>
+                          <td>1,675.637</td>
+                          <td>2,340.890</td>
+                        </tr>
+                        <tr>
+                          <td>2</td>
+                          <td>Bitumen/Asphalt/Mexphaite</td>
+                          <td>2,340.890</td>
+                          <td>2,340.890</td>
+                          <td>11,233.234</td>
+                        </tr>
+                        <tr>
+                          <td>3</td>
+                          <td>Butane</td>
+                          <td>1,675.637</td>
+                          <td>11,233.234</td>
+                          <td>1,675.637</td>
+                        </tr>
+                        <tr>
+                          <td>4</td>
+                          <td>Diesel</td>
+                          <td>11,233.234</td>
+                          <td>1,675.637</td>
+                          <td>2,340.890</td>
+                        </tr>
+                        <tr>
+                          <td>5</td>
+                          <td>Aviation Gasoline (AV GAS)</td>
+                          <td>23,890.798</td>
+                          <td>2,340.890</td>
+                          <td>11,233.234</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+                <Tabs
+                  activeKey={activeTab}
+                  onSelect={handleSelectTab}
+                  id="tabs"
+                >
+                  <Tab
+                    eventKey="tab1"
+                    title={
+                      <span
+                        style={{
+                          textDecoration:
+                            activeTab === "tab1" ? "underline" : "none",
+                          color: activeTab === "tab1" ? "blue" : "inherit",
+                        }}
+                      >
+                        Data Trend Analysis
+                      </span>
+                    }
+                  >
+                    {/* Use key prop to force refresh */}
+                    <div className="mt-4 p-2">
+                      <HighchartsReact
+                        key={`bar-chart-${chartKey}`}
+                        highcharts={Highcharts}
+                        options={DataTrendAnalysis}
+                      />
+                    </div>
+                  </Tab>
+                  <Tab
+                    eventKey="tab2"
+                    title={
+                      <span
+                        style={{
+                          textDecoration:
+                            activeTab === "tab2" ? "underline" : "none",
+                          color: activeTab === "tab2" ? "blue" : "inherit",
+                        }}
+                      >
+                        Plant Efficiency
+                      </span>
+                    }
+                  >
+                    {/* Use key prop to force refresh */}
+                    <div className="mt-4 p-2">
+                      <HighchartsReact
+                        key={`line-chart-${chartKey}`}
+                        highcharts={Highcharts}
+                        options={PlantEfficiency}
+                      />
+                    </div>
+                  </Tab>
+                </Tabs>
               </Tab>
               <Tab
-                eventKey="tab2"
+                eventKey="tabPlantPerformance"
                 title={
                   <span
                     style={{
                       textDecoration:
-                        activeTab === "tab2" ? "underline" : "none",
-                      color: activeTab === "tab2" ? "blue" : "inherit",
+                        activeTabGeneral === "tabPlantPerformance"
+                          ? "underline"
+                          : "none",
+                      color:
+                        activeTabGeneral === "tabPlantPerformance"
+                          ? "blue"
+                          : "inherit",
                     }}
                   >
-                    Plant Efficiency
+                    Plant Performance
                   </span>
                 }
               >
-                {/* Use key prop to force refresh */}
-                <div className="mt-4 p-2">
-                  <HighchartsReact
-                    key={`line-chart-${chartKey}`}
-                    highcharts={Highcharts}
-                    options={PlantEfficiency}
-                  />
-                </div>
+                <PlantPerformance />
+              </Tab>
+              <Tab
+                eventKey="tabInstalledCapacity"
+                title={
+                  <span
+                    style={{
+                      textDecoration:
+                        activeTabGeneral === "tabInstalledCapacity"
+                          ? "underline"
+                          : "none",
+                      color:
+                        activeTabGeneral === "tabInstalledCapacity"
+                          ? "blue"
+                          : "inherit",
+                    }}
+                  >
+                    Installed Capacity
+                  </span>
+                }
+              >
+                <InstalledCapacity />
+              </Tab>
+              <Tab
+                eventKey="tabNetCalorific"
+                title={
+                  <span
+                    style={{
+                      textDecoration:
+                        activeTabGeneral === "tabNetCalorific"
+                          ? "underline"
+                          : "none",
+                      color:
+                        activeTabGeneral === "tabNetCalorific"
+                          ? "blue"
+                          : "inherit",
+                    }}
+                  >
+                    Net Calorific
+                  </span>
+                }
+              >
+                <NetCalorific />
               </Tab>
             </Tabs>
             <div class="text-center mt-5 mb-3 d-flex justify-content-end">

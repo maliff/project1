@@ -3,12 +3,13 @@ import LteContent from "../../components/LteContent";
 import LteContentHeader from "../../components/LteContentHeader";
 import Tab from "react-bootstrap/Tab";
 import Tabs from "react-bootstrap/Tabs";
-import PlantEfficiency from "../NEBVerificationModule/PlantEfficiency";
 import Card from "react-bootstrap/Card";
 import Modal from "react-bootstrap/Modal";
 import { useParams } from "react-router-dom";
 import axios from "axios";
-import DataTrendAnalysisDP from "./DataTrendAnalysisDP";
+import HighchartsReact from "highcharts-react-official";
+import Highcharts from "highcharts";
+import { DataTrendAnalysis, PlantEfficiency } from "../NEBVerificationModule/Charts";
 
 function FuelBalanceReportDP() {
   const [data, setData] = useState([]);
@@ -21,6 +22,9 @@ function FuelBalanceReportDP() {
   }, []);
   const [showAmendmentDialog, setShowAmendmentDialog] = useState(false);
   const [showApproveDialog, setShowApproveDialog] = useState(false);
+  const [graphType, setGraphType] = useState("bar");
+  const [activeTab, setActiveTab] = useState("tab1");
+  const [chartKey, setChartKey] = useState(0);
 
   const requestForAmendmentClick = () => {
     setShowAmendmentDialog(true);
@@ -36,6 +40,12 @@ function FuelBalanceReportDP() {
 
   const handleCloseApproveDialog = () => {
     setShowApproveDialog(false);
+  };
+
+  const handleSelectTab = (tabKey) => {
+    setActiveTab(tabKey);
+    // Increment the chart key to force a refresh
+    setChartKey((prevKey) => prevKey + 1);
   };
   return (
     <>
@@ -116,18 +126,52 @@ function FuelBalanceReportDP() {
               </div>
             </div>
             {/* /.card-body */}
-            <Tabs
-              defaultActiveKey="profile"
-              id="uncontrolled-tab-example"
-              className="mb-3 mt-4"
-            >
-              <Tab eventKey="dataTrendAnalysis" title="Data Trend Analysis">
-                <div className="bg-white">
-                  <DataTrendAnalysisDP />
+            <Tabs activeKey={activeTab} onSelect={handleSelectTab} id="tabs">
+              <Tab
+                eventKey="tab1"
+                title={
+                  <span
+                    style={{
+                      textDecoration:
+                        activeTab === "tab1" ? "underline" : "none",
+                      color: activeTab === "tab1" ? "blue" : "inherit",
+                    }}
+                  >
+                    Data Trend Analysis
+                  </span>
+                }
+              >
+                {/* Use key prop to force refresh */}
+                <div className="mt-4 p-2">
+                  <HighchartsReact
+                    key={`bar-chart-${chartKey}`}
+                    highcharts={Highcharts}
+                    options={DataTrendAnalysis}
+                  />
                 </div>
               </Tab>
-              <Tab eventKey="plantEfficiency" title="Plant Efficiency">
-                <PlantEfficiency />
+              <Tab
+                eventKey="tab2"
+                title={
+                  <span
+                    style={{
+                      textDecoration:
+                        activeTab === "tab2" ? "underline" : "none",
+                      color: activeTab === "tab2" ? "blue" : "inherit",
+                    }}
+                  >
+                    Plant Efficiency
+                  </span>
+                }
+              >
+                {/* Use key prop to force refresh */}
+                <div className="mt-4 p-2">
+                  <HighchartsReact
+                    key={`line-chart-${chartKey}`}
+                    highcharts={Highcharts}
+                    options={PlantEfficiency}
+                  />
+                </div>
               </Tab>
             </Tabs>
           </div>
