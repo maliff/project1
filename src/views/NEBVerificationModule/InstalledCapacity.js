@@ -14,7 +14,7 @@ function InstalledCapacity() {
   }, []);
   return (
     <>
-      <h5 class="card-title mb-4 mt-4">
+      <h5 class="card-title">
         Installed Capacity Report - Q1 2023{" "}
         <span
           className={`badge ${
@@ -30,7 +30,6 @@ function InstalledCapacity() {
           <small>{data.Status}</small>
         </span>
       </h5>
-      <br />
       <br />
       <br />
       <Row className="mb-2">

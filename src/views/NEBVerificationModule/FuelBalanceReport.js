@@ -135,7 +135,7 @@ function FuelBalanceReport() {
                   </span>
                 }
               >
-                <h5 class="card-title mb-4 mt-4">
+                <h5 class="card-title">
                   Fuel Balance Report - Q1 2023{" "}
                   <span
                     className={`badge ${
@@ -153,7 +153,6 @@ function FuelBalanceReport() {
                 </h5>
                 <br />
                 <br />
-                <br />
                 <Row className="mb-2">
                   <Col className="fw-bold text-secondary">AGENCY</Col>
                   <Col className="fw-bold text-secondary">DATA PROVIDER</Col>
@@ -168,7 +167,7 @@ function FuelBalanceReport() {
                   <Col>Quarter 1</Col>
                   <Col>2023</Col>
                 </Row>
-                <div className="text-center mt-5 mb-3 d-flex justify-content-end">
+                <div className="text-center mb-3 d-flex justify-content-end">
                   <Switches />
                 </div>
                 <div className="card" style={{ borderRadius: "20px" }}>
@@ -341,7 +340,7 @@ function FuelBalanceReport() {
                 <NetCalorific />
               </Tab>
             </Tabs>
-            <div class="text-center mt-5 mb-3 d-flex justify-content-end">
+            <div class="text-center mt-3 mb-3 d-flex justify-content-end">
               <button
                 onClick={requestForAmendmentClick}
                 class="btn btn-outline-primary mr-1"
