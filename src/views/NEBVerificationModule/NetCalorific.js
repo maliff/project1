@@ -15,7 +15,7 @@ function NetCalorific() {
   return (
     <>
       <h5 class="card-title">
-        Net Calorific Report - Q1 2023{" "}
+        Net Calorific Report - Q{data.id} 2023{" "}
         <span
           className={`badge ${
             data.Status === "Approved"

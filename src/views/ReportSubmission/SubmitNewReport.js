@@ -4,6 +4,14 @@ import LteContentHeader from "../../components/LteContentHeader";
 import { useParams } from "react-router";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import Tabs from "react-bootstrap/Tabs";
+import Tab from "react-bootstrap/Tab";
+import HighchartsReact from "highcharts-react-official";
+import Highcharts from "highcharts";
+import { DataTrendAnalysis, PlantEfficiency } from "../NEBVerificationModule/Charts";
+import PlantPerformanceDP from "./PlantPerformanceDP";
+import InstalledCapacityDP from "./InstalledCapacityDP";
+import NetCalorificDP from "./NetCalorificDP";
 
 function SubmitNewReport() {
   const [data, setData] = useState([]);
@@ -16,6 +24,13 @@ function SubmitNewReport() {
   }, []);
   const [showAmendmentDialog, setShowAmendmentDialog] = useState(false);
   const [showApproveDialog, setShowApproveDialog] = useState(false);
+  const [graphType, setGraphType] = useState("bar");
+  const [activeTabChart, setActiveTabChart] = useState("tab1");
+  const [activeTab, setActiveTab] = useState(
+    "tabFuelBalanceReport"
+  );
+  const [chartKey, setChartKey] = useState(0);
+
   const requestForAmendmentClick = () => {
     setShowAmendmentDialog(true);
   };
@@ -31,12 +46,46 @@ function SubmitNewReport() {
   const handleCloseApproveDialog = () => {
     setShowApproveDialog(false);
   };
+
+  const handleSelectTabChart = (tabKey) => {
+    setActiveTabChart(tabKey);
+    // Increment the chart key to force a refresh
+    setChartKey((prevKey) => prevKey + 1);
+  };
+
+  const handleSelectTab = (tabKey) => {
+    setActiveTab(tabKey);
+  };
   return (
     <>
       <LteContentHeader title="Submit New Report" />
       <LteContent>
         <div class="card">
           <div class="card-body">
+            <Tabs
+              activeKey={activeTab}
+              onSelect={handleSelectTab}
+              id="tabs"
+            >
+            <Tab
+              eventKey="tabFuelBalanceReport"
+              title={
+                <span
+                  style={{
+                    textDecoration:
+                      activeTab === "tabFuelBalanceReport"
+                        ? "underline"
+                        : "none",
+                    color:
+                      activeTab === "tabFuelBalanceReport"
+                        ? "blue"
+                        : "inherit",
+                  }}
+                >
+                  Fuel Balance 
+                </span>
+              }
+            >
             <h5 class="card-title mb-4">
               Fuel Balance Report - Q{data.id} 2023{" "}
               <span
@@ -408,9 +457,125 @@ function SubmitNewReport() {
                 </table>
               </div>
             </div>
-            {/* /.card-body */}
+                <Tabs
+                  activeKey={activeTabChart}
+                  onSelect={handleSelectTabChart}
+                  id="tabs"
+                >
+                  <Tab
+                    eventKey="tab1"
+                    title={
+                      <span
+                        style={{
+                          textDecoration:
+                            activeTabChart === "tab1" ? "underline" : "none",
+                          color: activeTabChart === "tab1" ? "blue" : "inherit",
+                        }}
+                      >
+                        Data Trend Analysis
+                      </span>
+                    }
+                  >
+                    {/* Use key prop to force refresh */}
+                    <div className="mt-4 p-2">
+                      <HighchartsReact
+                        key={`bar-chart-${chartKey}`}
+                        highcharts={Highcharts}
+                        options={DataTrendAnalysis}
+                      />
+                    </div>
+                  </Tab>
+                  <Tab
+                    eventKey="tab2"
+                    title={
+                      <span
+                        style={{
+                          textDecoration:
+                            activeTab === "tab2" ? "underline" : "none",
+                          color: activeTab === "tab2" ? "blue" : "inherit",
+                        }}
+                      >
+                        Plant Efficiency
+                      </span>
+                    }
+                  >
+                    {/* Use key prop to force refresh */}
+                    <div className="mt-4 p-2">
+                      <HighchartsReact
+                        key={`line-chart-${chartKey}`}
+                        highcharts={Highcharts}
+                        options={PlantEfficiency}
+                      />
+                    </div>
+                  </Tab>
+                </Tabs>
+            </Tab>
+              <Tab
+                eventKey="tabPlantPerformance"
+                title={
+                  <span
+                    style={{
+                      textDecoration:
+                        activeTab === "tabPlantPerformance"
+                          ? "underline"
+                          : "none",
+                      color:
+                        activeTab === "tabPlantPerformance"
+                          ? "blue"
+                          : "inherit",
+                    }}
+                  >
+                    Installed Capacity
+                  </span>
+                }
+              >
+                <PlantPerformanceDP />
+              </Tab>
+              <Tab
+                eventKey="tabInstalledCapacity"
+                title={
+                  <span
+                    style={{
+                      textDecoration:
+                        activeTab === "tabInstalledCapacity"
+                          ? "underline"
+                          : "none",
+                      color:
+                        activeTab === "tabInstalledCapacity"
+                          ? "blue"
+                          : "inherit",
+                    }}
+                  >
+                    Installed Capacity
+                  </span>
+                }
+              >
+                <InstalledCapacityDP />
+              </Tab>
+              <Tab
+                eventKey="tabNetCalorific"
+                title={
+                  <span
+                    style={{
+                      textDecoration:
+                        activeTab === "tabNetCalorific"
+                          ? "underline"
+                          : "none",
+                      color:
+                        activeTab === "tabNetCalorific"
+                          ? "blue"
+                          : "inherit",
+                    }}
+                  >
+                    Installed Capacity
+                  </span>
+                }
+              >
+                <NetCalorificDP />
+              </Tab>
+            </Tabs>
             <div class="text-center mt-5 mb-3 d-flex justify-content-end">
-              <div className="btn-group mr-2">
+              <div className="btn-group">
                 <Link
                   to={`/reportSubmission`}
                   className="btn btn-outline-secondary mr-1"

@@ -15,7 +15,7 @@ function InstalledCapacity() {
   return (
     <>
       <h5 class="card-title">
-        Installed Capacity Report - Q1 2023{" "}
+        Installed Capacity Report - Q{data.id} 2023{" "}
         <span
           className={`badge ${
             data.Status === "Approved"

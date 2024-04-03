@@ -15,7 +15,7 @@ function PlantPerformance() {
   return (
     <>
       <h5 class="card-title">
-        Plant Performance Report - Q1 2023{" "}
+        Plant Performance Report - Q{data.id} 2023{" "}
         <span
           className={`badge ${
             data.Status === "Approved"

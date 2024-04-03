@@ -9,7 +9,14 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import HighchartsReact from "highcharts-react-official";
 import Highcharts from "highcharts";
-import { DataTrendAnalysis, PlantEfficiency } from "../NEBVerificationModule/Charts";
+import {
+  DataTrendAnalysis,
+  PlantEfficiency,
+} from "../NEBVerificationModule/Charts";
+import PlantPerformanceDP from "./PlantPerformanceDP";
+import InstalledCapacityDP from "./InstalledCapacityDP";
+import NetCalorificDP from "./NetCalorificDP";
+import { Link } from "react-router-dom";
 
 function FuelBalanceReportDP() {
   const [data, setData] = useState([]);
@@ -20,32 +27,26 @@ function FuelBalanceReportDP() {
       .then((res) => setData(res.data))
       .catch((err) => console.log(err));
   }, []);
-  const [showAmendmentDialog, setShowAmendmentDialog] = useState(false);
   const [showApproveDialog, setShowApproveDialog] = useState(false);
   const [graphType, setGraphType] = useState("bar");
   const [activeTab, setActiveTab] = useState("tab1");
+  const [activeTabGeneral, setActiveTabGeneral] = useState(
+    "tabFuelBalanceReport"
+  );
   const [chartKey, setChartKey] = useState(0);
-
-  const requestForAmendmentClick = () => {
-    setShowAmendmentDialog(true);
-  };
-
-  const handleCloseAmendmentDialog = () => {
-    setShowAmendmentDialog(false);
-  };
-
-  const ApproveClick = () => {
-    setShowApproveDialog(true);
-  };
-
-  const handleCloseApproveDialog = () => {
-    setShowApproveDialog(false);
-  };
 
   const handleSelectTab = (tabKey) => {
     setActiveTab(tabKey);
     // Increment the chart key to force a refresh
     setChartKey((prevKey) => prevKey + 1);
+  };
+
+  const handleSelectTabGeneral = (tabKey) => {
+    setActiveTabGeneral(tabKey);
+  };
+
+  const ApproveClick = () => {
+    setShowApproveDialog(true);
   };
   return (
     <>
@@ -53,127 +54,657 @@ function FuelBalanceReportDP() {
       <LteContent>
         <div class="card">
           <div class="card-body">
-            <h5 class="card-title mb-4">
-              Fuel Balance Report - Q{data.id} 2023{" "}
-              <span
-                className={`badge ${
-                  data.status === "Approved"
-                    ? "bg-success"
-                    : data.status === "Pending for Approval"
-                    ? "bg-warning"
-                    : data.status === "Pending for Amendment"
-                    ? "bg-danger"
-                    : "bg-secondary"
-                }`}
-              >
-                <small>{data.status}</small>
-              </span>
-            </h5>
-            <br />
-            <br />
-            <br />
-            <div className="card" style={{ borderRadius: "20px" }}>
-              {/* /.card-header */}
-              <div className="card-body p-0" style={{ overflowX: "auto" }}>
-                <table className="table table-sm">
-                  <thead className="bg-secondary">
-                    <tr>
-                      <th>No.</th>
-                      <th>Product</th>
-                      <th>F1 (Opening Stock)</th>
-                      <th>F2 (Local Purchase)</th>
-                      <th>F2 (Foreign Import)</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>1</td>
-                      <td>Aviatiaon Gasoline (AV GAS)</td>
-                      <td>40,675.637</td>
-                      <td>1,675.637</td>
-                      <td>2,340.890</td>
-                    </tr>
-                    <tr>
-                      <td>2</td>
-                      <td>Bitumen/Asphalt/Mexphaite</td>
-                      <td>2,340.890</td>
-                      <td>2,340.890</td>
-                      <td>11,233.234</td>
-                    </tr>
-                    <tr>
-                      <td>3</td>
-                      <td>Butane</td>
-                      <td>1,675.637</td>
-                      <td>11,233.234</td>
-                      <td>1,675.637</td>
-                    </tr>
-                    <tr>
-                      <td>4</td>
-                      <td>Diesel</td>
-                      <td>11,233.234</td>
-                      <td>1,675.637</td>
-                      <td>2,340.890</td>
-                    </tr>
-                    <tr>
-                      <td>5</td>
-                      <td>Aviation Gasoline (AV GAS)</td>
-                      <td>23,890.798</td>
-                      <td>2,340.890</td>
-                      <td>11,233.234</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-            {/* /.card-body */}
-            <Tabs activeKey={activeTab} onSelect={handleSelectTab} id="tabs">
+            <Tabs
+              activeKey={activeTabGeneral}
+              onSelect={handleSelectTabGeneral}
+              id="tabs"
+            >
               <Tab
-                eventKey="tab1"
+                eventKey="tabFuelBalanceReport"
                 title={
                   <span
                     style={{
                       textDecoration:
-                        activeTab === "tab1" ? "underline" : "none",
-                      color: activeTab === "tab1" ? "blue" : "inherit",
+                        activeTabGeneral === "tabFuelBalanceReport"
+                          ? "underline"
+                          : "none",
+                      color:
+                        activeTabGeneral === "tabFuelBalanceReport"
+                          ? "blue"
+                          : "inherit",
                     }}
                   >
-                    Data Trend Analysis
+                    Fuel Balance
                   </span>
                 }
               >
-                {/* Use key prop to force refresh */}
-                <div className="mt-4 p-2">
-                  <HighchartsReact
-                    key={`bar-chart-${chartKey}`}
-                    highcharts={Highcharts}
-                    options={DataTrendAnalysis}
-                  />
+                <h5 class="card-title mb-4">
+                  Fuel Balance Report - Q{data.id} 2023{" "}
+                  <span
+                    className={`badge ${
+                      data.status === "Approved"
+                        ? "bg-success"
+                        : data.status === "Pending for Approval"
+                        ? "bg-warning"
+                        : data.status === "Pending for Amendment"
+                        ? "bg-danger"
+                        : "bg-secondary"
+                    }`}
+                  >
+                    <small>{data.status}</small>
+                  </span>
+                </h5>
+                <br />
+                <br />
+                <br />
+                <div className="card" style={{ borderRadius: "20px" }}>
+                  {/* /.card-header */}
+                  <div className="card-body p-0" style={{ overflowX: "auto" }}>
+                    <table className="table table-sm">
+                      <thead className="bg-secondary">
+                        <tr>
+                          <th>No.</th>
+                          <th>Product</th>
+                          <th>F1 (Opening Stock)</th>
+                          <th>F2 (Local Purchase)</th>
+                          <th>F2 (Foreign Import)</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>1</td>
+                          <td>Aviatiaon Gasoline (AV GAS)</td>
+                          <td>
+                            {data.status === "Pending for Amendment" ? (
+                              <div>
+                                <input
+                                  type="number"
+                                  value={40675.637}
+                                  style={{
+                                    width: "70%",
+                                    height: "30px",
+                                    marginRight: "5px",
+                                    borderRadius: "5px",
+                                  }}
+                                />
+                                <select
+                                  style={{
+                                    width: "25%",
+                                    height: "30px",
+                                    borderRadius: "5px",
+                                  }}
+                                >
+                                  <option value="MT">MT</option>
+                                  <option value="Kj">Kj</option>
+                                </select>
+                              </div>
+                            ) : (
+                              "40,675.637"
+                            )}
+                          </td>
+                          <td>
+                            {data.status === "Pending for Amendment" ? (
+                              <div>
+                                <input
+                                  type="number"
+                                  value={1675.637}
+                                  style={{
+                                    width: "70%",
+                                    height: "30px",
+                                    marginRight: "5px",
+                                    borderRadius: "5px",
+                                  }}
+                                />
+                                <select
+                                  style={{
+                                    width: "25%",
+                                    height: "30px",
+                                    borderRadius: "5px",
+                                  }}
+                                >
+                                  <option value="MT">MT</option>
+                                  <option value="Kj">Kj</option>
+                                </select>
+                              </div>
+                            ) : (
+                              "1,675.637"
+                            )}
+                          </td>
+
+                          <td>
+                            {data.status === "Pending for Amendment" ? (
+                              <div>
+                                <input
+                                  type="number"
+                                  value={2340.890}
+                                  style={{
+                                    width: "70%",
+                                    height: "30px",
+                                    marginRight: "5px",
+                                    borderRadius: "5px",
+                                  }}
+                                />
+                                <select
+                                  style={{
+                                    width: "25%",
+                                    height: "30px",
+                                    borderRadius: "5px",
+                                  }}
+                                >
+                                  <option value="MT">MT</option>
+                                  <option value="Kj">Kj</option>
+                                </select>
+                              </div>
+                            ) : (
+                              "2,340.890"
+                            )}
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>2</td>
+                          <td>Bitumen/Asphalt/Mexphaite</td>
+                          <td>
+                            {data.status === "Pending for Amendment" ? (
+                              <div>
+                                <input
+                                  type="number"
+                                  value={2340.890}
+                                  style={{
+                                    width: "70%",
+                                    height: "30px",
+                                    marginRight: "5px",
+                                    borderRadius: "5px",
+                                  }}
+                                />
+                                <select
+                                  style={{
+                                    width: "25%",
+                                    height: "30px",
+                                    borderRadius: "5px",
+                                  }}
+                                >
+                                  <option value="MT">MT</option>
+                                  <option value="Kj">Kj</option>
+                                </select>
+                              </div>
+                            ) : (
+                              "2,340.890"
+                            )}
+                          </td>
+
+                          <td>
+                            {data.status === "Pending for Amendment" ? (
+                              <div>
+                                <input
+                                  type="number"
+                                  value={2340.890}
+                                  style={{
+                                    width: "70%",
+                                    height: "30px",
+                                    marginRight: "5px",
+                                    borderRadius: "5px",
+                                  }}
+                                />
+                                <select
+                                  style={{
+                                    width: "25%",
+                                    height: "30px",
+                                    borderRadius: "5px",
+                                  }}
+                                >
+                                  <option value="MT">MT</option>
+                                  <option value="Kj">Kj</option>
+                                </select>
+                              </div>
+                            ) : (
+                              "2,340.890"
+                            )}
+                          </td>
+
+                          <td>
+                            {data.status === "Pending for Amendment" ? (
+                              <div>
+                                <input
+                                  type="number"
+                                  value={11233.234}
+                                  style={{
+                                    width: "70%",
+                                    height: "30px",
+                                    marginRight: "5px",
+                                    borderRadius: "5px",
+                                  }}
+                                />
+                                <select
+                                  style={{
+                                    width: "25%",
+                                    height: "30px",
+                                    borderRadius: "5px",
+                                  }}
+                                >
+                                  <option value="MT">MT</option>
+                                  <option value="Kj">Kj</option>
+                                </select>
+                              </div>
+                            ) : (
+                              "11,233.234"
+                            )}
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>3</td>
+                          <td>Butane</td>
+                          <td>
+                            {data.status === "Pending for Amendment" ? (
+                              <div>
+                                <input
+                                  type="number"
+                                  value={16675.637}
+                                  style={{
+                                    width: "70%",
+                                    height: "30px",
+                                    marginRight: "5px",
+                                    borderRadius: "5px",
+                                  }}
+                                />
+                                <select
+                                  style={{
+                                    width: "25%",
+                                    height: "30px",
+                                    borderRadius: "5px",
+                                  }}
+                                >
+                                  <option value="MT">MT</option>
+                                  <option value="Kj">Kj</option>
+                                </select>
+                              </div>
+                            ) : (
+                              "1,675.637"
+                            )}
+                          </td>
+
+                          <td>
+                            {data.status === "Pending for Amendment" ? (
+                              <div>
+                                <input
+                                  type="number"
+                                  value={11233.234}
+                                  style={{
+                                    width: "70%",
+                                    height: "30px",
+                                    marginRight: "5px",
+                                    borderRadius: "5px",
+                                  }}
+                                />
+                                <select
+                                  style={{
+                                    width: "25%",
+                                    height: "30px",
+                                    borderRadius: "5px",
+                                  }}
+                                >
+                                  <option value="MT">MT</option>
+                                  <option value="Kj">Kj</option>
+                                </select>
+                              </div>
+                            ) : (
+                              "11,233.234"
+                            )}
+                          </td>
+
+                          <td>
+                            {data.status === "Pending for Amendment" ? (
+                              <div>
+                                <input
+                                  type="number"
+                                  value={1675.637}
+                                  style={{
+                                    width: "70%",
+                                    height: "30px",
+                                    marginRight: "5px",
+                                    borderRadius: "5px",
+                                  }}
+                                />
+                                <select
+                                  style={{
+                                    width: "25%",
+                                    height: "30px",
+                                    borderRadius: "5px",
+                                  }}
+                                >
+                                  <option value="MT">MT</option>
+                                  <option value="Kj">Kj</option>
+                                </select>
+                              </div>
+                            ) : (
+                              "1,675.637"
+                            )}
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>4</td>
+                          <td>Diesel</td>
+                          <td>
+                            {data.status === "Pending for Amendment" ? (
+                              <div>
+                                <input
+                                  type="number"
+                                  value={11233.234}
+                                  style={{
+                                    width: "70%",
+                                    height: "30px",
+                                    marginRight: "5px",
+                                    borderRadius: "5px",
+                                  }}
+                                />
+                                <select
+                                  style={{
+                                    width: "25%",
+                                    height: "30px",
+                                    borderRadius: "5px",
+                                  }}
+                                >
+                                  <option value="MT">MT</option>
+                                  <option value="Kj">Kj</option>
+                                </select>
+                              </div>
+                            ) : (
+                              "11,233.234"
+                            )}
+                          </td>
+
+                          <td>
+                            {data.status === "Pending for Amendment" ? (
+                              <div>
+                                <input
+                                  type="number"
+                                  value={1675.637}
+                                  style={{
+                                    width: "70%",
+                                    height: "30px",
+                                    marginRight: "5px",
+                                    borderRadius: "5px",
+                                  }}
+                                />
+                                <select
+                                  style={{
+                                    width: "25%",
+                                    height: "30px",
+                                    borderRadius: "5px",
+                                  }}
+                                >
+                                  <option value="MT">MT</option>
+                                  <option value="Kj">Kj</option>
+                                </select>
+                              </div>
+                            ) : (
+                              "1,675.637"
+                            )}
+                          </td>
+
+                          <td>
+                            {data.status === "Pending for Amendment" ? (
+                              <div>
+                                <input
+                                  type="number"
+                                  value={2340.890}
+                                  style={{
+                                    width: "70%",
+                                    height: "30px",
+                                    marginRight: "5px",
+                                    borderRadius: "5px",
+                                  }}
+                                />
+                                <select
+                                  style={{
+                                    width: "25%",
+                                    height: "30px",
+                                    borderRadius: "5px",
+                                  }}
+                                >
+                                  <option value="MT">MT</option>
+                                  <option value="Kj">Kj</option>
+                                </select>
+                              </div>
+                            ) : (
+                              "2,340.890"
+                            )}
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>5</td>
+                          <td>Aviation Gasoline (AV GAS)</td>
+                          <td>
+                            {data.status === "Pending for Amendment" ? (
+                              <div>
+                                <input
+                                  type="number"
+                                  value={23890.798}
+                                  style={{
+                                    width: "70%",
+                                    height: "30px",
+                                    marginRight: "5px",
+                                    borderRadius: "5px",
+                                  }}
+                                />
+                                <select
+                                  style={{
+                                    width: "25%",
+                                    height: "30px",
+                                    borderRadius: "5px",
+                                  }}
+                                >
+                                  <option value="MT">MT</option>
+                                  <option value="Kj">Kj</option>
+                                </select>
+                              </div>
+                            ) : (
+                              "23,890.798"
+                            )}
+                          </td>
+
+                          <td>
+                            {data.status === "Pending for Amendment" ? (
+                              <div>
+                                <input
+                                  type="number"
+                                  value={2340.890}
+                                  style={{
+                                    width: "70%",
+                                    height: "30px",
+                                    marginRight: "5px",
+                                    borderRadius: "5px",
+                                  }}
+                                />
+                                <select
+                                  style={{
+                                    width: "25%",
+                                    height: "30px",
+                                    borderRadius: "5px",
+                                  }}
+                                >
+                                  <option value="MT">MT</option>
+                                  <option value="Kj">Kj</option>
+                                </select>
+                              </div>
+                            ) : (
+                              "2,340.890"
+                            )}
+                          </td>
+
+                          <td>
+                            {data.status === "Pending for Amendment" ? (
+                              <div>
+                                <input
+                                  type="number"
+                                  value={11233.234}
+                                  style={{
+                                    width: "70%",
+                                    height: "30px",
+                                    marginRight: "5px",
+                                    borderRadius: "5px",
+                                  }}
+                                />
+                                <select
+                                  style={{
+                                    width: "25%",
+                                    height: "30px",
+                                    borderRadius: "5px",
+                                  }}
+                                >
+                                  <option value="MT">MT</option>
+                                  <option value="Kj">Kj</option>
+                                </select>
+                              </div>
+                            ) : (
+                              "11,233.234"
+                            )}
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
                 </div>
+                {/* /.card-body */}
+                <Tabs
+                  activeKey={activeTab}
+                  onSelect={handleSelectTab}
+                  id="tabs"
+                >
+                  <Tab
+                    eventKey="tab1"
+                    title={
+                      <span
+                        style={{
+                          textDecoration:
+                            activeTab === "tab1" ? "underline" : "none",
+                          color: activeTab === "tab1" ? "blue" : "inherit",
+                        }}
+                      >
+                        Data Trend Analysis
+                      </span>
+                    }
+                  >
+                    {/* Use key prop to force refresh */}
+                    <div className="mt-4 p-2">
+                      <HighchartsReact
+                        key={`bar-chart-${chartKey}`}
+                        highcharts={Highcharts}
+                        options={DataTrendAnalysis}
+                      />
+                    </div>
+                  </Tab>
+                  <Tab
+                    eventKey="tab2"
+                    title={
+                      <span
+                        style={{
+                          textDecoration:
+                            activeTab === "tab2" ? "underline" : "none",
+                          color: activeTab === "tab2" ? "blue" : "inherit",
+                        }}
+                      >
+                        Plant Efficiency
+                      </span>
+                    }
+                  >
+                    {/* Use key prop to force refresh */}
+                    <div className="mt-4 p-2">
+                      <HighchartsReact
+                        key={`line-chart-${chartKey}`}
+                        highcharts={Highcharts}
+                        options={PlantEfficiency}
+                      />
+                    </div>
+                  </Tab>
+                </Tabs>
               </Tab>
               <Tab
-                eventKey="tab2"
+                eventKey="tabPlantPerformance"
                 title={
                   <span
                     style={{
                       textDecoration:
-                        activeTab === "tab2" ? "underline" : "none",
-                      color: activeTab === "tab2" ? "blue" : "inherit",
+                        activeTabGeneral === "tabPlantPerformance"
+                          ? "underline"
+                          : "none",
+                      color:
+                        activeTabGeneral === "tabPlantPerformance"
+                          ? "blue"
+                          : "inherit",
                     }}
                   >
-                    Plant Efficiency
+                    Plant Performance
                   </span>
                 }
               >
-                {/* Use key prop to force refresh */}
-                <div className="mt-4 p-2">
-                  <HighchartsReact
-                    key={`line-chart-${chartKey}`}
-                    highcharts={Highcharts}
-                    options={PlantEfficiency}
-                  />
-                </div>
+                <PlantPerformanceDP />
+              </Tab>
+              <Tab
+                eventKey="tabInstalledCapacity"
+                title={
+                  <span
+                    style={{
+                      textDecoration:
+                        activeTabGeneral === "tabInstalledCapacity"
+                          ? "underline"
+                          : "none",
+                      color:
+                        activeTabGeneral === "tabInstalledCapacity"
+                          ? "blue"
+                          : "inherit",
+                    }}
+                  >
+                    Installed Capacity
+                  </span>
+                }
+              >
+                <InstalledCapacityDP />
+              </Tab>
+              <Tab
+                eventKey="tabNetCalorific"
+                title={
+                  <span
+                    style={{
+                      textDecoration:
+                        activeTabGeneral === "tabNetCalorific"
+                          ? "underline"
+                          : "none",
+                      color:
+                        activeTabGeneral === "tabNetCalorific"
+                          ? "blue"
+                          : "inherit",
+                    }}
+                  >
+                    Net Calorific
+                  </span>
+                }
+              >
+                <NetCalorificDP />
               </Tab>
             </Tabs>
+            {data.status === "Pending for Amendment" ? (
+              <div class="text-center mt-5 mb-3 d-flex justify-content-end">
+                <div className="btn-group">
+                  <Link
+                    to={`/reportSubmission`}
+                    className="btn btn-outline-secondary mr-1"
+                  >
+                    Cancel
+                  </Link>
+                </div>
+                <button
+                  onClick={ApproveClick}
+                  class="btn btn-outline-primary mr-1"
+                >
+                  Save As Draft
+                </button>
+                <button onClick={ApproveClick} class="btn btn-primary mr-1">
+                  Submit
+                </button>
+              </div>
+            ) : (
+              <></>
+            )}
           </div>
         </div>
         <div class="card">

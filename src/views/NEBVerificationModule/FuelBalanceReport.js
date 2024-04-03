@@ -136,7 +136,7 @@ function FuelBalanceReport() {
                 }
               >
                 <h5 class="card-title">
-                  Fuel Balance Report - Q1 2023{" "}
+                  Fuel Balance Report - Q{data.id} 2023{" "}
                   <span
                     className={`badge ${
                       data.Status === "Approved"
