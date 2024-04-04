@@ -10,7 +10,7 @@ import axios from "axios";
 import HighchartsReact from "highcharts-react-official";
 import Highcharts from "highcharts";
 import {
-  DataTrendAnalysis,
+  DataTrendAnalysisDP,
   PlantEfficiency,
 } from "../NEBVerificationModule/Charts";
 import PlantPerformanceDP from "./PlantPerformanceDP";
@@ -587,9 +587,9 @@ function FuelBalanceReportDP() {
                     {/* Use key prop to force refresh */}
                     <div className="mt-4 p-2">
                       <HighchartsReact
-                        key={`bar-chart-${chartKey}`}
+                        key={`column-chart-${chartKey}`}
                         highcharts={Highcharts}
-                        options={DataTrendAnalysis}
+                        options={DataTrendAnalysisDP}
                       />
                     </div>
                   </Tab>

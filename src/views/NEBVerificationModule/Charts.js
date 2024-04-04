@@ -170,6 +170,39 @@ const DataTrendAnalysis = {
   series: chartData.lineChart.series
 };
 
+const DataTrendAnalysisDP = {
+  chart: {
+    type: 'column'
+  },
+  title: {
+    text: ''
+  },
+  xAxis: {
+    categories: chartData.lineChart.categories,
+    title: {
+      text: 'Year'
+    }
+  },
+  yAxis: {
+    min: 0,
+    title: {
+      text: 'Value'
+    }
+  },
+  legend: {
+    align: 'right',
+    verticalAlign: 'middle',
+    layout: 'vertical',
+    reversed: true
+  },
+  plotOptions: {
+    series: {
+      stacking: 'normal'
+    }
+  },
+  series: chartData.columnChartData.series
+};
+
 const PlantEfficiency = {
      chart: {
         type: 'gauge',
@@ -274,4 +307,4 @@ setInterval(() => {
 }, 3000);
 
 
-export { LineChart, BarChart, AreaChart, DataTrendAnalysis, PlantEfficiency };
+export { LineChart, BarChart, AreaChart, DataTrendAnalysis, DataTrendAnalysisDP, PlantEfficiency };

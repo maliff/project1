@@ -4,7 +4,10 @@ import "./meih.scss";
 import "./App.css";
 import Dashboard from "./views/Dashboard/Dashboard";
 import NEBAccountManagement from "./views/NEBAccountManagement/NEBAccountManagement";
-import { NEBDataProvider , NEBDataContext} from "./views/NEBAccountManagement/NEBDataProvider";
+import {
+  NEBDataProvider,
+  NEBDataContext,
+} from "./views/NEBAccountManagement/NEBDataProvider";
 import DataProviderList from "./views/NEBAccountManagement/DataProviderList";
 import ProductList from "./views/NEBAccountManagement/ProductList";
 import CreateNewDataProvider from "./views/NEBAccountManagement/CreateNewDataProvider";
@@ -30,6 +33,7 @@ import FAQ from "./views/FAQ/FAQ";
 import ReportSubmission from "./views/ReportSubmission/ReportSubmission";
 import FuelBalanceReportDP from "./views/ReportSubmission/FuelBalanceReportDP";
 import SubmitNewReport from "./views/ReportSubmission/SubmitNewReport";
+import SubmitNewTicket from "./views/SystemReport/SubmitNewTicket";
 
 const getBasename = () => `/${process.env.PUBLIC_URL.split("/").pop()}`;
 
@@ -125,6 +129,11 @@ function App() {
               exact
               path="/productListing/:id"
               element={<ProductListing />}
+            />
+            <Route
+              exact
+              path="/submitNewTicket"
+              element={<SubmitNewTicket />}
             />
             <Route exact path="/trainingModule" element={<TrainingModule />} />
             <Route exact path="/faq" element={<FAQ />} />

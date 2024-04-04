@@ -8,7 +8,10 @@ import Tabs from "react-bootstrap/Tabs";
 import Tab from "react-bootstrap/Tab";
 import HighchartsReact from "highcharts-react-official";
 import Highcharts from "highcharts";
-import { DataTrendAnalysis, PlantEfficiency } from "../NEBVerificationModule/Charts";
+import {
+  DataTrendAnalysisDP,
+  PlantEfficiency,
+} from "../NEBVerificationModule/Charts";
 import PlantPerformanceDP from "./PlantPerformanceDP";
 import InstalledCapacityDP from "./InstalledCapacityDP";
 import NetCalorificDP from "./NetCalorificDP";
@@ -26,9 +29,7 @@ function SubmitNewReport() {
   const [showApproveDialog, setShowApproveDialog] = useState(false);
   const [graphType, setGraphType] = useState("bar");
   const [activeTabChart, setActiveTabChart] = useState("tab1");
-  const [activeTab, setActiveTab] = useState(
-    "tabFuelBalanceReport"
-  );
+  const [activeTab, setActiveTab] = useState("tabFuelBalanceReport");
   const [chartKey, setChartKey] = useState(0);
 
   const requestForAmendmentClick = () => {
@@ -62,401 +63,398 @@ function SubmitNewReport() {
       <LteContent>
         <div class="card">
           <div class="card-body">
-            <Tabs
-              activeKey={activeTab}
-              onSelect={handleSelectTab}
-              id="tabs"
-            >
-            <Tab
-              eventKey="tabFuelBalanceReport"
-              title={
-                <span
-                  style={{
-                    textDecoration:
-                      activeTab === "tabFuelBalanceReport"
-                        ? "underline"
-                        : "none",
-                    color:
-                      activeTab === "tabFuelBalanceReport"
-                        ? "blue"
-                        : "inherit",
-                  }}
-                >
-                  Fuel Balance 
-                </span>
-              }
-            >
-            <h5 class="card-title mb-4">
-              Fuel Balance Report - Q{data.id} 2023{" "}
-              <span
-                className={`badge ${
-                  data.status === "Approved"
-                    ? "bg-success"
-                    : data.status === "Pending for Approval"
-                    ? "bg-warning"
-                    : data.status === "Pending for Amendment"
-                    ? "bg-danger"
-                    : "bg-secondary"
-                }`}
+            <Tabs activeKey={activeTab} onSelect={handleSelectTab} id="tabs">
+              <Tab
+                eventKey="tabFuelBalanceReport"
+                title={
+                  <span
+                    style={{
+                      textDecoration:
+                        activeTab === "tabFuelBalanceReport"
+                          ? "underline"
+                          : "none",
+                      color:
+                        activeTab === "tabFuelBalanceReport"
+                          ? "blue"
+                          : "inherit",
+                    }}
+                  >
+                    Fuel Balance
+                  </span>
+                }
               >
-                <small>{data.status}</small>
-              </span>
-            </h5>
-            <br />
-            <br />
-            <div className="card" style={{ borderRadius: "20px" }}>
-              {/* /.card-header */}
-              <div className="card-body p-0" style={{ overflowX: "auto" }}>
-                <table className="table table-sm">
-                  <thead className="bg-secondary">
-                    <tr>
-                      <th>No.</th>
-                      <th>Product</th>
-                      <th>F1 (Opening Stock)</th>
-                      <th>F2 (Local Purchase)</th>
-                      <th>F2 (Foreign Import)</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>1</td>
-                      <td>Aviatiaon Gasoline (AV GAS)</td>
-                      <td>
-                        <input
-                          type="number"
-                          style={{
-                            width: "70%",
-                            height: "30px",
-                            marginRight: "5px",
-                            borderRadius: "5px",
-                          }}
-                        />
-                        <select
-                          style={{
-                            width: "25%",
-                            height: "30px",
-                            borderRadius: "5px",
-                          }}
-                        >
-                          <option value="MT">MT</option>
-                          <option value="Kj">Kj</option>
-                        </select>
-                      </td>
-                      <td>
-                        <input
-                          type="number"
-                          style={{
-                            width: "70%",
-                            height: "30px",
-                            marginRight: "5px",
-                            borderRadius: "5px",
-                          }}
-                        />
-                        <select
-                          style={{
-                            width: "25%",
-                            height: "30px",
-                            borderRadius: "5px",
-                          }}
-                        >
-                          <option value="MT">MT</option>
-                          <option value="Kj">Kj</option>
-                        </select>
-                      </td>
-                      <td>
-                        <input
-                          type="number"
-                          style={{
-                            width: "70%",
-                            height: "30px",
-                            marginRight: "5px",
-                            borderRadius: "5px",
-                          }}
-                        />
-                        <select
-                          style={{
-                            width: "25%",
-                            height: "30px",
-                            borderRadius: "5px",
-                          }}
-                        >
-                          <option value="MT">MT</option>
-                          <option value="Kj">Kj</option>
-                        </select>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>2</td>
-                      <td>Bitumen/Asphalt/Mexphaite</td>
-                      <td>
-                        <input
-                          type="number"
-                          style={{
-                            width: "70%",
-                            height: "30px",
-                            marginRight: "5px",
-                            borderRadius: "5px",
-                          }}
-                        />
-                        <select
-                          style={{
-                            width: "25%",
-                            height: "30px",
-                            borderRadius: "5px",
-                          }}
-                        >
-                          <option value="MT">MT</option>
-                          <option value="Kj">Kj</option>
-                        </select>
-                      </td>
-                      <td>
-                        <input
-                          type="number"
-                          style={{
-                            width: "70%",
-                            height: "30px",
-                            marginRight: "5px",
-                            borderRadius: "5px",
-                          }}
-                        />
-                        <select
-                          style={{
-                            width: "25%",
-                            height: "30px",
-                            borderRadius: "5px",
-                          }}
-                        >
-                          <option value="MT">MT</option>
-                          <option value="Kj">Kj</option>
-                        </select>
-                      </td>
-                      <td>
-                        <input
-                          type="number"
-                          style={{
-                            width: "70%",
-                            height: "30px",
-                            marginRight: "5px",
-                            borderRadius: "5px",
-                          }}
-                        />
-                        <select
-                          style={{
-                            width: "25%",
-                            height: "30px",
-                            borderRadius: "5px",
-                          }}
-                        >
-                          <option value="MT">MT</option>
-                          <option value="Kj">Kj</option>
-                        </select>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>3</td>
-                      <td>Butane</td>
-                      <td>
-                        <input
-                          type="number"
-                          style={{
-                            width: "70%",
-                            height: "30px",
-                            marginRight: "5px",
-                            borderRadius: "5px",
-                          }}
-                        />
-                        <select
-                          style={{
-                            width: "25%",
-                            height: "30px",
-                            borderRadius: "5px",
-                          }}
-                        >
-                          <option value="MT">MT</option>
-                          <option value="Kj">Kj</option>
-                        </select>
-                      </td>
-                      <td>
-                        <input
-                          type="number"
-                          style={{
-                            width: "70%",
-                            height: "30px",
-                            marginRight: "5px",
-                            borderRadius: "5px",
-                          }}
-                        />
-                        <select
-                          style={{
-                            width: "25%",
-                            height: "30px",
-                            borderRadius: "5px",
-                          }}
-                        >
-                          <option value="MT">MT</option>
-                          <option value="Kj">Kj</option>
-                        </select>
-                      </td>
-                      <td>
-                        <input
-                          type="number"
-                          style={{
-                            width: "70%",
-                            height: "30px",
-                            marginRight: "5px",
-                            borderRadius: "5px",
-                          }}
-                        />
-                        <select
-                          style={{
-                            width: "25%",
-                            height: "30px",
-                            borderRadius: "5px",
-                          }}
-                        >
-                          <option value="MT">MT</option>
-                          <option value="Kj">Kj</option>
-                        </select>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>4</td>
-                      <td>Diesel</td>
-                      <td>
-                        <input
-                          type="number"
-                          style={{
-                            width: "70%",
-                            height: "30px",
-                            marginRight: "5px",
-                            borderRadius: "5px",
-                          }}
-                        />
-                        <select
-                          style={{
-                            width: "25%",
-                            height: "30px",
-                            borderRadius: "5px",
-                          }}
-                        >
-                          <option value="MT">MT</option>
-                          <option value="Kj">Kj</option>
-                        </select>
-                      </td>
-                      <td>
-                        <input
-                          type="number"
-                          style={{
-                            width: "70%",
-                            height: "30px",
-                            marginRight: "5px",
-                            borderRadius: "5px",
-                          }}
-                        />
-                        <select
-                          style={{
-                            width: "25%",
-                            height: "30px",
-                            borderRadius: "5px",
-                          }}
-                        >
-                          <option value="MT">MT</option>
-                          <option value="Kj">Kj</option>
-                        </select>
-                      </td>
-                      <td>
-                        <input
-                          type="number"
-                          style={{
-                            width: "70%",
-                            height: "30px",
-                            marginRight: "5px",
-                            borderRadius: "5px",
-                          }}
-                        />
-                        <select
-                          style={{
-                            width: "25%",
-                            height: "30px",
-                            borderRadius: "5px",
-                          }}
-                        >
-                          <option value="MT">MT</option>
-                          <option value="Kj">Kj</option>
-                        </select>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>5</td>
-                      <td>Aviation Gasoline (AV GAS)</td>
-                      <td>
-                        <input
-                          type="number"
-                          style={{
-                            width: "70%",
-                            height: "30px",
-                            marginRight: "5px",
-                            borderRadius: "5px",
-                          }}
-                        />
-                        <select
-                          style={{
-                            width: "25%",
-                            height: "30px",
-                            borderRadius: "5px",
-                          }}
-                        >
-                          <option value="MT">MT</option>
-                          <option value="Kj">Kj</option>
-                        </select>
-                      </td>
-                      <td>
-                        <input
-                          type="number"
-                          style={{
-                            width: "70%",
-                            height: "30px",
-                            marginRight: "5px",
-                            borderRadius: "5px",
-                          }}
-                        />
-                        <select
-                          style={{
-                            width: "25%",
-                            height: "30px",
-                            borderRadius: "5px",
-                          }}
-                        >
-                          <option value="MT">MT</option>
-                          <option value="Kj">Kj</option>
-                        </select>
-                      </td>
-                      <td>
-                        <input
-                          type="number"
-                          style={{
-                            width: "70%",
-                            height: "30px",
-                            marginRight: "5px",
-                            borderRadius: "5px",
-                          }}
-                        />
-                        <select
-                          style={{
-                            width: "25%",
-                            height: "30px",
-                            borderRadius: "5px",
-                          }}
-                        >
-                          <option value="MT">MT</option>
-                          <option value="Kj">Kj</option>
-                        </select>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
+                <h5 class="card-title mb-4">
+                  Fuel Balance Report - Q{data.id} 2023{" "}
+                  <span
+                    className={`badge ${
+                      data.status === "Approved"
+                        ? "bg-success"
+                        : data.status === "Pending for Approval"
+                        ? "bg-warning"
+                        : data.status === "Pending for Amendment"
+                        ? "bg-danger"
+                        : "bg-secondary"
+                    }`}
+                  >
+                    <small>{data.status}</small>
+                  </span>
+                </h5>
+                <br />
+                <br />
+                <br />
+                <div className="card" style={{ borderRadius: "20px" }}>
+                  {/* /.card-header */}
+                  <div className="card-body p-0" style={{ overflowX: "auto" }}>
+                    <table className="table table-sm">
+                      <thead className="bg-secondary">
+                        <tr>
+                          <th>No.</th>
+                          <th>Product</th>
+                          <th>F1 (Opening Stock)</th>
+                          <th>F2 (Local Purchase)</th>
+                          <th>F2 (Foreign Import)</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>1</td>
+                          <td>Aviatiaon Gasoline (AV GAS)</td>
+                          <td>
+                            <input
+                              type="number"
+                              style={{
+                                width: "70%",
+                                height: "30px",
+                                marginRight: "5px",
+                                borderRadius: "5px",
+                              }}
+                            />
+                            <select
+                              style={{
+                                width: "25%",
+                                height: "30px",
+                                borderRadius: "5px",
+                              }}
+                            >
+                              <option value="MT">MT</option>
+                              <option value="Kj">Kj</option>
+                            </select>
+                          </td>
+                          <td>
+                            <input
+                              type="number"
+                              style={{
+                                width: "70%",
+                                height: "30px",
+                                marginRight: "5px",
+                                borderRadius: "5px",
+                              }}
+                            />
+                            <select
+                              style={{
+                                width: "25%",
+                                height: "30px",
+                                borderRadius: "5px",
+                              }}
+                            >
+                              <option value="MT">MT</option>
+                              <option value="Kj">Kj</option>
+                            </select>
+                          </td>
+                          <td>
+                            <input
+                              type="number"
+                              style={{
+                                width: "70%",
+                                height: "30px",
+                                marginRight: "5px",
+                                borderRadius: "5px",
+                              }}
+                            />
+                            <select
+                              style={{
+                                width: "25%",
+                                height: "30px",
+                                borderRadius: "5px",
+                              }}
+                            >
+                              <option value="MT">MT</option>
+                              <option value="Kj">Kj</option>
+                            </select>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>2</td>
+                          <td>Bitumen/Asphalt/Mexphaite</td>
+                          <td>
+                            <input
+                              type="number"
+                              style={{
+                                width: "70%",
+                                height: "30px",
+                                marginRight: "5px",
+                                borderRadius: "5px",
+                              }}
+                            />
+                            <select
+                              style={{
+                                width: "25%",
+                                height: "30px",
+                                borderRadius: "5px",
+                              }}
+                            >
+                              <option value="MT">MT</option>
+                              <option value="Kj">Kj</option>
+                            </select>
+                          </td>
+                          <td>
+                            <input
+                              type="number"
+                              style={{
+                                width: "70%",
+                                height: "30px",
+                                marginRight: "5px",
+                                borderRadius: "5px",
+                              }}
+                            />
+                            <select
+                              style={{
+                                width: "25%",
+                                height: "30px",
+                                borderRadius: "5px",
+                              }}
+                            >
+                              <option value="MT">MT</option>
+                              <option value="Kj">Kj</option>
+                            </select>
+                          </td>
+                          <td>
+                            <input
+                              type="number"
+                              style={{
+                                width: "70%",
+                                height: "30px",
+                                marginRight: "5px",
+                                borderRadius: "5px",
+                              }}
+                            />
+                            <select
+                              style={{
+                                width: "25%",
+                                height: "30px",
+                                borderRadius: "5px",
+                              }}
+                            >
+                              <option value="MT">MT</option>
+                              <option value="Kj">Kj</option>
+                            </select>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>3</td>
+                          <td>Butane</td>
+                          <td>
+                            <input
+                              type="number"
+                              style={{
+                                width: "70%",
+                                height: "30px",
+                                marginRight: "5px",
+                                borderRadius: "5px",
+                              }}
+                            />
+                            <select
+                              style={{
+                                width: "25%",
+                                height: "30px",
+                                borderRadius: "5px",
+                              }}
+                            >
+                              <option value="MT">MT</option>
+                              <option value="Kj">Kj</option>
+                            </select>
+                          </td>
+                          <td>
+                            <input
+                              type="number"
+                              style={{
+                                width: "70%",
+                                height: "30px",
+                                marginRight: "5px",
+                                borderRadius: "5px",
+                              }}
+                            />
+                            <select
+                              style={{
+                                width: "25%",
+                                height: "30px",
+                                borderRadius: "5px",
+                              }}
+                            >
+                              <option value="MT">MT</option>
+                              <option value="Kj">Kj</option>
+                            </select>
+                          </td>
+                          <td>
+                            <input
+                              type="number"
+                              style={{
+                                width: "70%",
+                                height: "30px",
+                                marginRight: "5px",
+                                borderRadius: "5px",
+                              }}
+                            />
+                            <select
+                              style={{
+                                width: "25%",
+                                height: "30px",
+                                borderRadius: "5px",
+                              }}
+                            >
+                              <option value="MT">MT</option>
+                              <option value="Kj">Kj</option>
+                            </select>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>4</td>
+                          <td>Diesel</td>
+                          <td>
+                            <input
+                              type="number"
+                              style={{
+                                width: "70%",
+                                height: "30px",
+                                marginRight: "5px",
+                                borderRadius: "5px",
+                              }}
+                            />
+                            <select
+                              style={{
+                                width: "25%",
+                                height: "30px",
+                                borderRadius: "5px",
+                              }}
+                            >
+                              <option value="MT">MT</option>
+                              <option value="Kj">Kj</option>
+                            </select>
+                          </td>
+                          <td>
+                            <input
+                              type="number"
+                              style={{
+                                width: "70%",
+                                height: "30px",
+                                marginRight: "5px",
+                                borderRadius: "5px",
+                              }}
+                            />
+                            <select
+                              style={{
+                                width: "25%",
+                                height: "30px",
+                                borderRadius: "5px",
+                              }}
+                            >
+                              <option value="MT">MT</option>
+                              <option value="Kj">Kj</option>
+                            </select>
+                          </td>
+                          <td>
+                            <input
+                              type="number"
+                              style={{
+                                width: "70%",
+                                height: "30px",
+                                marginRight: "5px",
+                                borderRadius: "5px",
+                              }}
+                            />
+                            <select
+                              style={{
+                                width: "25%",
+                                height: "30px",
+                                borderRadius: "5px",
+                              }}
+                            >
+                              <option value="MT">MT</option>
+                              <option value="Kj">Kj</option>
+                            </select>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>5</td>
+                          <td>Aviation Gasoline (AV GAS)</td>
+                          <td>
+                            <input
+                              type="number"
+                              style={{
+                                width: "70%",
+                                height: "30px",
+                                marginRight: "5px",
+                                borderRadius: "5px",
+                              }}
+                            />
+                            <select
+                              style={{
+                                width: "25%",
+                                height: "30px",
+                                borderRadius: "5px",
+                              }}
+                            >
+                              <option value="MT">MT</option>
+                              <option value="Kj">Kj</option>
+                            </select>
+                          </td>
+                          <td>
+                            <input
+                              type="number"
+                              style={{
+                                width: "70%",
+                                height: "30px",
+                                marginRight: "5px",
+                                borderRadius: "5px",
+                              }}
+                            />
+                            <select
+                              style={{
+                                width: "25%",
+                                height: "30px",
+                                borderRadius: "5px",
+                              }}
+                            >
+                              <option value="MT">MT</option>
+                              <option value="Kj">Kj</option>
+                            </select>
+                          </td>
+                          <td>
+                            <input
+                              type="number"
+                              style={{
+                                width: "70%",
+                                height: "30px",
+                                marginRight: "5px",
+                                borderRadius: "5px",
+                              }}
+                            />
+                            <select
+                              style={{
+                                width: "25%",
+                                height: "30px",
+                                borderRadius: "5px",
+                              }}
+                            >
+                              <option value="MT">MT</option>
+                              <option value="Kj">Kj</option>
+                            </select>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
                 <Tabs
                   activeKey={activeTabChart}
                   onSelect={handleSelectTabChart}
@@ -481,7 +479,7 @@ function SubmitNewReport() {
                       <HighchartsReact
                         key={`bar-chart-${chartKey}`}
                         highcharts={Highcharts}
-                        options={DataTrendAnalysis}
+                        options={DataTrendAnalysisDP}
                       />
                     </div>
                   </Tab>
@@ -509,7 +507,7 @@ function SubmitNewReport() {
                     </div>
                   </Tab>
                 </Tabs>
-            </Tab>
+              </Tab>
               <Tab
                 eventKey="tabPlantPerformance"
                 title={
@@ -558,13 +556,9 @@ function SubmitNewReport() {
                   <span
                     style={{
                       textDecoration:
-                        activeTab === "tabNetCalorific"
-                          ? "underline"
-                          : "none",
+                        activeTab === "tabNetCalorific" ? "underline" : "none",
                       color:
-                        activeTab === "tabNetCalorific"
-                          ? "blue"
-                          : "inherit",
+                        activeTab === "tabNetCalorific" ? "blue" : "inherit",
                     }}
                   >
                     Installed Capacity

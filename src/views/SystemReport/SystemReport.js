@@ -14,10 +14,16 @@ function SystemReport() {
   }, []);
   const [goToProductListing, setGoToProductListing] = React.useState(false);
 
-   // Filter the data array to count tickets
-   const openTicketsCount = data.filter((ticket) => ticket.status === "Open").length;
-   const closeTicketsCount = data.filter((ticket) => ticket.status === "Close").length;
-   const resolvedTicketsCount = data.filter((ticket) => ticket.status === "Resolved").length;
+  // Filter the data array to count tickets
+  const openTicketsCount = data.filter(
+    (ticket) => ticket.status === "Open"
+  ).length;
+  const closeTicketsCount = data.filter(
+    (ticket) => ticket.status === "Close"
+  ).length;
+  const resolvedTicketsCount = data.filter(
+    (ticket) => ticket.status === "Resolved"
+  ).length;
 
   if (goToProductListing) {
     return <Navigate to="/productListing" />;
@@ -26,6 +32,14 @@ function SystemReport() {
     <>
       <LteContentHeader title="System Report" />
       <LteContent>
+        <div class="text-center p-1 mb-3 d-flex justify-content-end">
+        <Link
+                to={`/submitNewTicket`}
+                className="btn btn-primary"
+              >
+                + Submit New Ticket
+              </Link>
+        </div>
         <div className="row">
           <div className="col-lg-4 col-6">
             {/* small box */}
@@ -112,7 +126,8 @@ function SystemReport() {
                     <td>
                       <div>
                         <div className="btn-group mr-2">
-                          <Link to={`/productListing/${d.id}`}
+                          <Link
+                            to={`/productListing/${d.id}`}
                             className="btn bg-gradient-primary"
                             style={{ width: "80px" }}
                           >

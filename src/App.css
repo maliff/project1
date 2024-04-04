@@ -79,7 +79,6 @@
 /* For Dropzone */
 .card-zone{
   padding: 10px;
-  box-shadow: 0 0 5px #ffdfdf;
   border-radius: 5px;
   overflow: hidden;
 }
