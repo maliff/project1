@@ -26,7 +26,7 @@ export default function Sidebar() {
                     </NavLink>
                     <NavLink tag={Link} to='/nebAccountManagement'>
                         <FontAwesomeIcon icon={faUserPlus} className='nav-icon' />
-                        <p>Account Management</p>
+                        <p>Data Provider & Product Management</p>
                     </NavLink>
                     <NavLink tag={Link} to='/nebVerificationModule'>
                         <FontAwesomeIcon icon={faListAlt} className='nav-icon' />

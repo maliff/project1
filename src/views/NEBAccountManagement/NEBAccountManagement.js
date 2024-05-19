@@ -6,8 +6,8 @@ import { Link } from "react-router-dom";
 import { NEBDataContext } from "../NEBAccountManagement/NEBDataProvider";
 
 const NEBAccountManagement = () => {
-
-  const { dataProviders, latestProducts, toggleStatus } = useContext(NEBDataContext);
+  const { dataProviders, latestProducts, toggleStatus } =
+    useContext(NEBDataContext);
   //const [dataProviders, setDataProviders] = useState([]);
   // const [latestProducts, setLatestProducts] = useState([]);
 
@@ -89,13 +89,58 @@ const NEBAccountManagement = () => {
 
   return (
     <div>
-      {/* Account Management Section */}
+      {/*Data Provider & Product Management dashboard */}
       <div style={{ marginBottom: "20px" }}>
-        <h2>Account Management</h2>
+        <h2>Data Provider & Product Management</h2>
       </div>
 
-      {/* Add New Data Provider Button */}
+      {/* Agency  */}
+      {/* Add New Agency Button */}
       <div style={{ textAlign: "right", marginBottom: "20px" }}>
+        <Link to="/createNewDataProvider">
+          <Button color="primary" onClick={() => console.log("Button clicked")}>
+            + Add New Agency
+          </Button>
+        </Link>
+      </div>
+
+      {/* Agency DataTable */}
+      <div style={{ marginTop: "20px" }}>
+        <DataTable
+          title={
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center",
+              }}
+            >
+              <h2 style={{ margin: "0" }}>Latest Agency</h2>
+              <Link
+                to={{
+                  pathname: "/dataProviderList",
+                  state: { dataProviders, toggleStatus },
+                }}
+              >
+                <Button
+                  color="link"
+                  onClick={() => console.log("View All clicked")}
+                >
+                  View All
+                </Button>
+              </Link>
+            </div>
+          }
+          columns={dataColumns}
+          data={dataProviders.slice(0, 5)}
+          pagination={false}
+          highlightOnHover={true}
+        />
+      </div>
+
+      {/* Data Provider */}
+      {/* Add New Data Provider Button */}
+      <div style={{ textAlign: "right", marginBottom: "20px" , marginTop:"20px"}}>
         <Link to="/createNewDataProvider">
           <Button color="primary" onClick={() => console.log("Button clicked")}>
             + Add New Data Provider
@@ -115,7 +160,12 @@ const NEBAccountManagement = () => {
               }}
             >
               <h2 style={{ margin: "0" }}>Latest Data Provider</h2>
-              <Link to={{ pathname:"/dataProviderList", state:{ dataProviders, toggleStatus} }}>
+              <Link
+                to={{
+                  pathname: "/dataProviderList",
+                  state: { dataProviders, toggleStatus },
+                }}
+              >
                 <Button
                   color="link"
                   onClick={() => console.log("View All clicked")}
@@ -126,24 +176,17 @@ const NEBAccountManagement = () => {
             </div>
           }
           columns={dataColumns}
-          data={dataProviders.slice(0,5)}
+          data={dataProviders.slice(0, 5)}
           pagination={false}
           highlightOnHover={true}
         />
       </div>
 
-      {/* Latest Product Section */}
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "flex-end",
-          alignItems: "center",
-          marginTop: "40px",
-        }}
-      >
+      {/* Latest Product */}
+      <div style={{ textAlign: "right", marginBottom: "20px", marginTop:"20px" }}>
         <Link to="/createNewProduct">
           <Button color="primary" onClick={() => console.log("Button clicked")}>
-            + Add New Product
+            + Add New Agency
           </Button>
         </Link>
       </div>
@@ -171,7 +214,7 @@ const NEBAccountManagement = () => {
             </div>
           }
           columns={productColumns}
-          data={latestProducts.slice(0,5)}
+          data={latestProducts.slice(0, 5)}
           pagination={false}
           highlightOnHover={true}
         />
