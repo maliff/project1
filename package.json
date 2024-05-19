@@ -25,6 +25,7 @@
     "react-chartjs-2": "^5.2.0",
     "react-data-table-component": "^7.6.2",
     "react-dom": "^18.2.0",
+    "react-oauth2-code-pkce": "^1.18.1",
     "react-router-dom": "^6.22.0",
     "react-scripts": "5.0.1",
     "react-switch": "^7.0.0",
@@ -35,10 +36,10 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "build:liferay": "lnbs-build",
-    "deploy:liferay": "npm run build:liferay && lnbs-deploy"
+    "start:dev": "env-cmd -f .env.development react-scripts start",
+    "start:prod": "env-cmd -f .env.production react-scripts start",
+    "build:dev": "env-cmd -f .env.development react-scripts build",
+    "build:prod": "env-cmd -f .env.production react-scripts build"
   },
   "eslintConfig": {
     "extends": [
@@ -59,6 +60,7 @@
     ]
   },
   "devDependencies": {
+    "env-cmd": "^10.1.0",
     "liferay-npm-build-support": "^2.31.2",
     "liferay-npm-bundler": "^2.31.2",
     "liferay-npm-bundler-preset-create-react-app": "^2.31.2"
