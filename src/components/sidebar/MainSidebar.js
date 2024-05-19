@@ -10,7 +10,7 @@ const defaultProps = {
 
 const MainSidebar = ({ logo, brandName, children }) => {
   return (
-    <aside className='main-sidebar sidebar-dark-primary elevation-4'>
+    <aside className='main-sidebar sidebar-dark-primary elevation-4 side-bar '>
       <BrandLink logo={logo} name={brandName} />
       <section className='sidebar'>{children}</section>
     </aside>
