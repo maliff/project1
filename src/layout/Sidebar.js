@@ -32,6 +32,18 @@ export default function Sidebar() {
                         <FontAwesomeIcon icon={faListAlt} className='nav-icon' />
                         <p>NEB Verification Module</p>
                     </NavLink>
+                    <NavLink tag={Link} to='/ebtGenerationModule'>
+                        <FontAwesomeIcon icon={faFolderPlus} className='nav-icon' />
+                        <p>EBT Generation Module</p>
+                    </NavLink>
+                    <NavLink tag={Link} to='/reportSubmission'>
+                        <FontAwesomeIcon icon={faPlus} className='nav-icon' />
+                        <p>Report Submission</p>
+                    </NavLink>
+                    <NavLink tag={Link} to='/manualSubmission'>
+                        <FontAwesomeIcon icon={faFolderPlus} className='nav-icon' />
+                        <p>Manual Submission</p>
+                    </NavLink>
                     <NavLink tag={Link} to='/announcement'>
                         <FontAwesomeIcon icon={faBullhorn} className='nav-icon' />
                         <p>Announcement</p>

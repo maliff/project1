@@ -42,6 +42,7 @@ import { AuthProvider } from "react-oauth2-code-pkce";
 const getBasename = () => `/${process.env.PUBLIC_URL.split("/").pop()}`;
 
 function App() {
+  console.log(oauthConfig);
   return (
     <AuthProvider authConfig={oauthConfig}>
         <BrowserRouter>
