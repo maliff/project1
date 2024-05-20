@@ -1,102 +1,221 @@
-import React from 'react';
-import DataTable from 'react-data-table-component';
-import '../../App.css';
-import { Button } from 'reactstrap';
-// import { Row } from 'reactstrap';
-// import { Navigate } from "react-router-dom";
+import React, { useContext, useState } from "react";
+import DataTable from "react-data-table-component";
+import Switch from "react-switch";
+import { Button } from "reactstrap";
+import { Link } from "react-router-dom";
+import { NEBDataContext } from "../NEBAccountManagement/NEBDataProvider";
 
 const NEBAccountManagement = () => {
-    const data = [
-         { 
-            id: 1,
-            agency: 'Sabah Energy',
-            name: 'John Doe', 
-            dateCreated: '12/12/1212',
-            status:'active',
-        },
-        { 
-            id: 2,
-            agency: 'Sarawak Energy',
-            name: 'Ace fillip', 
-            dateCreated: '11/11/1111',
-            status:'active',
-        },
-        { 
-            id: 3,
-            agency: 'Johor Energy',
-            name: 'John Allive', 
-            dateCreated: '10/10/1010',
-            status:'active',
-        },
-        { 
-            id: 4,
-            agency: 'Melaka Energy',
-            name: 'John deadd', 
-            dateCreated: '9/9/9999',
-            status:'active',
-        },
-        
-    ];
+  const { dataProviders, latestProducts, toggleStatus } =
+    useContext(NEBDataContext);
+  //const [dataProviders, setDataProviders] = useState([]);
+  // const [latestProducts, setLatestProducts] = useState([]);
 
-  const columns = [
+  const dataColumns = [
     {
-      name: 'No',
-      selector: row => row.id,
+      name: "No",
+      selector: (row) => row.id,
       sortable: true,
     },
     {
-      name: 'Agency',
-      selector: row => row.agency,
+      name: "Agency",
+      selector: (row) => row.agency,
       sortable: true,
     },
     {
-      name: 'Name',
-      selector: row => row.name,
+      name: "Name",
+      selector: (row) => row.name,
       sortable: true,
     },
     {
-        name: 'Date Created',
-        selector: row => row.dateCreated,
-        sortable: true,
-      },
-      {
-        name: 'Status',
-        selector: row => row.status,
-        sortable: true,
-      },
+      name: "Date Created",
+      selector: (row) => row.dateCreated,
+      sortable: true,
+    },
+    {
+      name: "Status",
+      cell: (row) => (
+        <div style={{ display: "flex", alignItems: "center" }}>
+          <Switch
+            checked={row.status}
+            onChange={() => toggleStatus(row.id)}
+            onColor="#86d3ff"
+            onHandleColor="#2693e6"
+            handleDiameter={24}
+            uncheckedIcon={false}
+            checkedIcon={false}
+            height={12}
+            width={40}
+          />
+
+          <span style={{ marginLeft: "10px" }}>
+            {row.status ? "Active" : "Deactivate"}
+          </span>
+        </div>
+      ),
+    },
   ];
+
+  const productColumns = [
+    {
+      name: "No",
+      selector: (row) => row.productId,
+      sortable: true,
+    },
+    {
+      name: "Product Catagory",
+      selector: (row) => row.productCatagory,
+      sortable: true,
+    },
+    {
+      name: "Product Name",
+      selector: (row) => row.productName,
+      sortable: true,
+    },
+    {
+      name: "Date Created",
+      selector: (row) => row.productDateCreated,
+      sortable: true,
+    },
+  ];
+
+  // const toggleStatus = (id) => {
+  //   setDataProviders((prevDataProviders) =>
+  //     prevDataProviders.map((item) =>
+  //       item.id === id ? { ...item, status: !item.status } : item
+  //     )
+  //   );
+  // };
 
   return (
     <div>
-      {/* Latest data provider */}
-      <h2>Account Management</h2>
+      {/*Data Provider & Product Management dashboard */}
+      <div style={{ marginBottom: "20px" }}>
+        <h2>Data Provider & Product Management</h2>
+      </div>
 
-      <Button color="primary" onClick={() => console.log('Button clicked')}>
-        Your Button
-      </Button>
+      {/* Agency  */}
+      {/* Add New Agency Button */}
+      <div style={{ textAlign: "right", marginBottom: "20px" }}>
+        <Link to="/createNewDataProvider">
+          <Button color="primary" onClick={() => console.log("Button clicked")}>
+            + Add New Agency
+          </Button>
+        </Link>
+      </div>
 
-      <div style={{ marginTop: '20px' }}>
+      {/* Agency DataTable */}
+      <div style={{ marginTop: "20px" }}>
         <DataTable
-          title="Latest Data Provider"
-          columns={columns}
-          data={data}
-          pagination={true}
+          title={
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center",
+              }}
+            >
+              <h2 style={{ margin: "0" }}>Latest Agency</h2>
+              <Link
+                to={{
+                  pathname: "/dataProviderList",
+                  state: { dataProviders, toggleStatus },
+                }}
+              >
+                <Button
+                  color="link"
+                  onClick={() => console.log("View All clicked")}
+                >
+                  View All
+                </Button>
+              </Link>
+            </div>
+          }
+          columns={dataColumns}
+          data={dataProviders.slice(0, 5)}
+          pagination={false}
           highlightOnHover={true}
         />
       </div>
 
-      {/* Latest product */}
+      {/* Data Provider */}
+      {/* Add New Data Provider Button */}
+      <div style={{ textAlign: "right", marginBottom: "20px" , marginTop:"20px"}}>
+        <Link to="/createNewDataProvider">
+          <Button color="primary" onClick={() => console.log("Button clicked")}>
+            + Add New Data Provider
+          </Button>
+        </Link>
+      </div>
 
-      <Button color="primary" onClick={() => console.log('Button clicked')}>
-        Your Button
-      </Button>
-
-      <div style={{ marginTop: '20px' }}>
+      {/* Account Management DataTable */}
+      <div style={{ marginTop: "20px" }}>
         <DataTable
-          title="Latest Product"
-          columns={columns}
-          data={data}
-          pagination={true}
+          title={
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center",
+              }}
+            >
+              <h2 style={{ margin: "0" }}>Latest Data Provider</h2>
+              <Link
+                to={{
+                  pathname: "/dataProviderList",
+                  state: { dataProviders, toggleStatus },
+                }}
+              >
+                <Button
+                  color="link"
+                  onClick={() => console.log("View All clicked")}
+                >
+                  View All
+                </Button>
+              </Link>
+            </div>
+          }
+          columns={dataColumns}
+          data={dataProviders.slice(0, 5)}
+          pagination={false}
+          highlightOnHover={true}
+        />
+      </div>
+
+      {/* Latest Product */}
+      <div style={{ textAlign: "right", marginBottom: "20px", marginTop:"20px" }}>
+        <Link to="/createNewProduct">
+          <Button color="primary" onClick={() => console.log("Button clicked")}>
+            + Add New Agency
+          </Button>
+        </Link>
+      </div>
+
+      {/* Latest Product DataTable */}
+      <div style={{ marginTop: "20px", marginBottom: "100px" }}>
+        <DataTable
+          title={
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center",
+              }}
+            >
+              <h2 style={{ margin: "0" }}>Latest Product</h2>
+              <Link to="/productList">
+                <Button
+                  color="link"
+                  onClick={() => console.log("View All clicked")}
+                >
+                  View All
+                </Button>
+              </Link>
+            </div>
+          }
+          columns={productColumns}
+          data={latestProducts.slice(0, 5)}
+          pagination={false}
           highlightOnHover={true}
         />
       </div>

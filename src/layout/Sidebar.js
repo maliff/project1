@@ -1,14 +1,12 @@
 import React from "react";
 import {
-    faAngleLeft,
     faBullhorn,
-    faChartPie,
-    faCopy,
-    faEdit,
-    faTable,
     faTachometerAlt,
-    faTh,
-    faTree,
+    faUserPlus,
+    faFolderPlus,
+    faPlus,
+    faQuestionCircle,
+    faComment
 } from '@fortawesome/free-solid-svg-icons';
 import { faListAlt, faCircle as farCircle } from '@fortawesome/free-regular-svg-icons';
 import { Badge, NavItem, NavLink } from 'reactstrap';
@@ -22,23 +20,33 @@ export default function Sidebar() {
         <MainSidebar brandName='NEB'>
             <NavSidebar>
                 <NavItem>
-                    <NavLink tag={Link} to='/'>
+                    <NavLink tag={Link} to='/neb-module'>
                         <FontAwesomeIcon icon={faTachometerAlt} className='nav-icon' />
                         <p>Dashboard</p>
                     </NavLink>
                     <NavLink tag={Link} to='/nebAccountManagement'>
-                        <FontAwesomeIcon icon={faListAlt} className='nav-icon' />
-                        <p>Account Management</p>
+                        <FontAwesomeIcon icon={faUserPlus} className='nav-icon' />
+                        <p>Data Provider & Product Management</p>
                     </NavLink>
                     <NavLink tag={Link} to='/nebVerificationModule'>
                         <FontAwesomeIcon icon={faListAlt} className='nav-icon' />
                         <p>NEB Verification Module</p>
                     </NavLink>
-                </NavItem>
-                <NavItem>
                     <NavLink tag={Link} to='/announcement'>
                         <FontAwesomeIcon icon={faBullhorn} className='nav-icon' />
                         <p>Announcement</p>
+                    </NavLink>
+                    <NavLink tag={Link} to='/systemReport'>
+                        <FontAwesomeIcon icon={faComment} className='nav-icon' />
+                        <p>System Report</p>
+                    </NavLink>
+                    <NavLink tag={Link} to='/trainingModule'>
+                        <FontAwesomeIcon icon={faFolderPlus} className='nav-icon' />
+                        <p>Training Module</p>
+                    </NavLink>
+                    <NavLink tag={Link} to='/faq'>
+                        <FontAwesomeIcon icon={faQuestionCircle} className='nav-icon' />
+                        <p>FAQ</p>
                     </NavLink>
                 </NavItem>
             </NavSidebar>

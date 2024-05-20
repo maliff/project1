@@ -76,3 +76,144 @@
   }
 }
 
+/* For Dropzone */
+.card-zone{
+  padding: 10px;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.card-zone .top{
+  text-align: center;
+}
+
+.card-zone p{
+  font-weight: bold;
+  color: #0086fe;
+}
+
+.card-zone button{
+  outline: 0;
+  border: 0;
+  color: #fff;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 400;
+  padding: 8px 13px;
+  width: 100%;
+  background: #0086fe;
+}
+
+.card-zone .drag-area{
+  height: 150px;
+  border-radius: 5px;
+  border: 2px dashed #0086fe;
+  color: #0086fe;
+  background: #f4f3f9;
+  display: flex;
+  justify-content: center;
+  -webkit-user-select: none;
+  margin-top: 10px;
+}
+
+.card-zone .drag-area .visible{
+  font-size: 18px;
+}
+
+.card-zone .select{
+  color: #5256ad;
+  margin-left: 5px;
+  cursor: pointer;
+  transition: 0.4s;
+}
+
+.card-zone .select:hover{
+  opacity: 0.6;
+}
+
+.card-zone .container{
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  max-height: 200px;
+  overflow-y: auto;
+  margin-top: 10px;
+}
+
+.card-zone .container .image{
+  width: 75px;
+  margin-right: 5px;
+  height: 75px;
+  position: relative;
+  margin-bottom: 8px;
+}
+
+.card-zone .container .image .img{
+  width: 100%;
+  height: 100%;
+  border-radius: 5px;
+}
+
+.card-zone .container .image span{
+  position: absolute;
+  top: -2px;
+  right: 9px;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.card-zone input,
+.card-zone .drag-area .on-drop,
+.card-zone .drag-area.dragover .visible{
+  display: none;
+}
+
+.delete{
+  z-index: 999;
+  color: #0086fe;
+}
+
+.tab {
+  overflow: hidden;
+  border: 1px solid #ccc;
+  background-color: #f1f1f1;
+}
+
+/* Style the buttons inside the tab */
+.tab button {
+  background-color: inherit;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+  font-size: 17px;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+  background-color: #ddd;
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
+  background-color: #ccc;
+}
+
+/* Style the tab content */
+.tabcontent {
+  display: none;
+  padding: 6px 12px;
+  border: 1px solid #ccc;
+  border-top: none;
+}
+
+
+
+
+
+
