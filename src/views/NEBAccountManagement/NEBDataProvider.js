@@ -1,11 +1,10 @@
-// NEBDataProvider.js
 import React, { createContext, useState } from "react";
 
 export const NEBDataContext = createContext();
 
 export const NEBDataProvider = ({ children }) => {
   const [dataProviders, setDataProviders] = useState([
-    // ...data provider data
+    // Example data provider data
     {
       id: 1,
       agency: "Sabah Data Provider",
@@ -34,148 +33,26 @@ export const NEBDataProvider = ({ children }) => {
       dateCreated: "9/9/9999",
       status: false,
     },
-    {
-      id: 5,
-      agency: "Melaka Energy",
-      name: "John deadd",
-      dateCreated: "9/9/9999",
-      status: false,
-    },
-    {
-      id: 6,
-      agency: "Melaka Energy",
-      name: "John deadd",
-      dateCreated: "9/9/9999",
-      status: false,
-    },
+    // Add more data if necessary
   ]);
 
   const [latestProducts, setLatestProducts] = useState([
     // Product data
     {
       productId: 1,
-      productCatagory: "johor Product",
+      productCategory: "Johor Product",
       productName: "John deadd",
       productDateCreated: "9/9/9999",
     },
     {
       productId: 2,
-      productCatagory: "Melaka Energy",
-      productName: "John deadd",
-      productDateCreated: "9/9/9999",
-    },
-    {
-      productId: 3,
-      productCatagory: "Melaka Energy",
-      productName: "John deadd",
-      productDateCreated: "9/9/9999",
-    },
-    {
-      productId: 4,
-      productCatagory: "Melaka Energy",
-      productName: "John deadd",
-      productDateCreated: "9/9/9999",
-    },
-    {
-      productId: 5,
-      productCatagory: "Melaka Energy",
-      productName: "John deadd",
-      productDateCreated: "9/9/9999",
-    },
-    {
-      productId: 6,
-      productCatagory: "Johor Energy",
-      productName: "John deadd",
-      productDateCreated: "9/9/9999",
-    },
-    {
-      productId: 7,
-      productCatagory: "Melaka Energy",
-      productName: "John deadd",
-      productDateCreated: "9/9/9999",
-    },
-    {
-      productId: 8,
-      productCatagory: "Melaka Energy",
-      productName: "John deadd",
-      productDateCreated: "9/9/9999",
-    },
-    {
-      productId: 9,
-      productCatagory: "Melaka Energy",
-      productName: "John deadd",
-      productDateCreated: "9/9/9999",
-    },
-    {
-      productId: 10,
-      productCatagory: "Melaka Energy",
-      productName: "John deadd",
-      productDateCreated: "9/9/9999",
-    },
-    {
-      productId: 11,
-      productCatagory: "Melaka Energy",
-      productName: "John deadd",
-      productDateCreated: "9/9/9999",
-    },
-    {
-      productId: 12,
-      productCatagory: "Melaka Energy",
-      productName: "John deadd",
-      productDateCreated: "9/9/9999",
-    },
-    {
-      productId: 13,
-      productCatagory: "Melaka Energy",
-      productName: "John deadd",
-      productDateCreated: "9/9/9999",
-    },
-    {
-      productId: 14,
-      productCatagory: "Melaka Energy",
-      productName: "John deadd",
-      productDateCreated: "9/9/9999",
-    },
-    {
-      productId: 15,
-      productCatagory: "Melaka Energy",
-      productName: "John deadd",
-      productDateCreated: "9/9/9999",
-    },
-    {
-      productId: 16,
-      productCatagory: "Johor Energy",
-      productName: "John deadd",
-      productDateCreated: "9/9/9999",
-    },
-    {
-      productId: 17,
-      productCatagory: "Melaka Energy",
-      productName: "John deadd",
-      productDateCreated: "9/9/9999",
-    },
-    {
-      productId: 18,
-      productCatagory: "Melaka Energy",
-      productName: "John deadd",
-      productDateCreated: "9/9/9999",
-    },
-    {
-      productId: 19,
-      productCatagory: "Melaka Energy",
-      productName: "John deadd",
-      productDateCreated: "9/9/9999",
-    },
-    {
-      productId: 20,
-      productCatagory: "Melaka Energy",
+      productCategory: "Melaka Energy",
       productName: "John deadd",
       productDateCreated: "9/9/9999",
     },
   ]);
 
   const toggleStatus = (id) => {
-    // Implement the logic to toggle the status
     setDataProviders((prevDataProviders) =>
       prevDataProviders.map((item) =>
         item.id === id ? { ...item, status: !item.status } : item
@@ -197,5 +74,3 @@ export const NEBDataProvider = ({ children }) => {
     </NEBDataContext.Provider>
   );
 };
-
-//export { NEBDataContext, NEBDataProvider };

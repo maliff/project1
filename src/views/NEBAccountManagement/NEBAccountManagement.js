@@ -1,15 +1,13 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import DataTable from "react-data-table-component";
 import Switch from "react-switch";
 import { Button } from "reactstrap";
 import { Link } from "react-router-dom";
-import { NEBDataContext } from "../NEBAccountManagement/NEBDataProvider";
+import { NEBDataContext, NEBDataProvider } from "../NEBAccountManagement/NEBDataProvider";
+import DataProviderList from "./DataProviderList";
 
 const NEBAccountManagement = () => {
-  const { dataProviders, latestProducts, toggleStatus } =
-    useContext(NEBDataContext);
-  //const [dataProviders, setDataProviders] = useState([]);
-  // const [latestProducts, setLatestProducts] = useState([]);
+  const { dataProviders, latestProducts, toggleStatus } = useContext(NEBDataContext);
 
   const dataColumns = [
     {
@@ -63,8 +61,8 @@ const NEBAccountManagement = () => {
       sortable: true,
     },
     {
-      name: "Product Catagory",
-      selector: (row) => row.productCatagory,
+      name: "Product Category",
+      selector: (row) => row.productCategory,
       sortable: true,
     },
     {
@@ -79,148 +77,148 @@ const NEBAccountManagement = () => {
     },
   ];
 
-  // const toggleStatus = (id) => {
-  //   setDataProviders((prevDataProviders) =>
-  //     prevDataProviders.map((item) =>
-  //       item.id === id ? { ...item, status: !item.status } : item
-  //     )
-  //   );
-  // };
-
   return (
     <div>
-      {/*Data Provider & Product Management dashboard */}
-      <div style={{ marginBottom: "20px" }}>
-        <h2>Data Provider & Product Management</h2>
-      </div>
+      <DataProviderList>
+        {/* Data Provider & Product Management dashboard */}
+        <div style={{ marginBottom: "20px" }}>
+          <h2>Data Provider & Product Management</h2>
+        </div>
 
-      {/* Agency  */}
-      {/* Add New Agency Button */}
-      <div style={{ textAlign: "right", marginBottom: "20px" }}>
-        <Link to="/createNewDataProvider">
-          <Button color="primary" onClick={() => console.log("Button clicked")}>
-            + Add New Agency
-          </Button>
-        </Link>
-      </div>
+        {/* Agency */}
+        {/* Add New Agency Button */}
+        <div style={{ textAlign: "right", marginBottom: "20px" }}>
+          <Link to="/createNewDataProvider">
+            <Button color="primary" onClick={() => console.log("Button clicked")}>
+              + Add New Agency
+            </Button>
+          </Link>
+        </div>
 
-      {/* Agency DataTable */}
-      <div style={{ marginTop: "20px" }}>
-        <DataTable
-          title={
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "space-between",
-                alignItems: "center",
-              }}
-            >
-              <h2 style={{ margin: "0" }}>Latest Agency</h2>
-              <Link
-                to={{
-                  pathname: "/dataProviderList",
-                  state: { dataProviders, toggleStatus },
+        {/* Agency DataTable */}
+        <div style={{ marginTop: "20px" }}>
+          <DataTable
+            title={
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  alignItems: "center",
                 }}
               >
-                <Button
-                  color="link"
-                  onClick={() => console.log("View All clicked")}
+                <h2 style={{ margin: "0" }}>Latest Agency</h2>
+                <Link
+                  to={{
+                    pathname: "/dataProviderList",
+                    state: { dataProviders, toggleStatus },
+                  }}
                 >
-                  View All
-                </Button>
-              </Link>
-            </div>
-          }
-          columns={dataColumns}
-          data={dataProviders.slice(0, 5)}
-          pagination={false}
-          highlightOnHover={true}
-        />
-      </div>
+                  <Button
+                    color="link"
+                    onClick={() => console.log("View All clicked")}
+                  >
+                    View All
+                  </Button>
+                </Link>
+              </div>
+            }
+            columns={dataColumns}
+            data={dataProviders.slice(0, 5)}
+            pagination={false}
+            highlightOnHover={true}
+          />
+        </div>
 
-      {/* Data Provider */}
-      {/* Add New Data Provider Button */}
-      <div style={{ textAlign: "right", marginBottom: "20px" , marginTop:"20px"}}>
-        <Link to="/createNewDataProvider">
-          <Button color="primary" onClick={() => console.log("Button clicked")}>
-            + Add New Data Provider
-          </Button>
-        </Link>
-      </div>
+        {/* Data Provider */}
+        {/* Add New Data Provider Button */}
+        <div style={{ textAlign: "right", marginBottom: "20px", marginTop: "20px" }}>
+          <Link to="/createNewDataProvider">
+            <Button color="primary" onClick={() => console.log("Button clicked")}>
+              + Add New Data Provider
+            </Button>
+          </Link>
+        </div>
 
-      {/* Account Management DataTable */}
-      <div style={{ marginTop: "20px" }}>
-        <DataTable
-          title={
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "space-between",
-                alignItems: "center",
-              }}
-            >
-              <h2 style={{ margin: "0" }}>Latest Data Provider</h2>
-              <Link
-                to={{
-                  pathname: "/dataProviderList",
-                  state: { dataProviders, toggleStatus },
+        {/* Account Management DataTable */}
+        <div style={{ marginTop: "20px" }}>
+          <DataTable
+            title={
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  alignItems: "center",
                 }}
               >
-                <Button
-                  color="link"
-                  onClick={() => console.log("View All clicked")}
+                <h2 style={{ margin: "0" }}>Latest Data Provider</h2>
+                <Link
+                  to={{
+                    pathname: "/dataProviderList",
+                    state: { dataProviders, toggleStatus },
+                  }}
                 >
-                  View All
-                </Button>
-              </Link>
-            </div>
-          }
-          columns={dataColumns}
-          data={dataProviders.slice(0, 5)}
-          pagination={false}
-          highlightOnHover={true}
-        />
-      </div>
+                  <Button
+                    color="link"
+                    onClick={() => console.log("View All clicked")}
+                  >
+                    View All
+                  </Button>
+                </Link>
+              </div>
+            }
+            columns={dataColumns}
+            data={dataProviders.slice(0, 5)}
+            pagination={false}
+            highlightOnHover={true}
+          />
+        </div>
 
-      {/* Latest Product */}
-      <div style={{ textAlign: "right", marginBottom: "20px", marginTop:"20px" }}>
-        <Link to="/createNewProduct">
-          <Button color="primary" onClick={() => console.log("Button clicked")}>
-            + Add New Agency
-          </Button>
-        </Link>
-      </div>
+        {/* Latest Product */}
+        <div style={{ textAlign: "right", marginBottom: "20px", marginTop: "20px" }}>
+          <Link to="/createNewProduct">
+            <Button color="primary" onClick={() => console.log("Button clicked")}>
+              + Add New Agency
+            </Button>
+          </Link>
+        </div>
 
-      {/* Latest Product DataTable */}
-      <div style={{ marginTop: "20px", marginBottom: "100px" }}>
-        <DataTable
-          title={
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "space-between",
-                alignItems: "center",
-              }}
-            >
-              <h2 style={{ margin: "0" }}>Latest Product</h2>
-              <Link to="/productList">
-                <Button
-                  color="link"
-                  onClick={() => console.log("View All clicked")}
-                >
-                  View All
-                </Button>
-              </Link>
-            </div>
-          }
-          columns={productColumns}
-          data={latestProducts.slice(0, 5)}
-          pagination={false}
-          highlightOnHover={true}
-        />
-      </div>
+        {/* Latest Product DataTable */}
+        <div style={{ marginTop: "20px", marginBottom: "100px" }}>
+          <DataTable
+            title={
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                }}
+              >
+                <h2 style={{ margin: "0" }}>Latest Product</h2>
+                <Link to="/productList">
+                  <Button
+                    color="link"
+                    onClick={() => console.log("View All clicked")}
+                  >
+                    View All
+                  </Button>
+                </Link>
+              </div>
+            }
+            columns={productColumns}
+            data={latestProducts.slice(0, 5)}
+            pagination={false}
+            highlightOnHover={true}
+          />
+        </div>
+      </DataProviderList>
     </div>
   );
 };
 
-export default NEBAccountManagement;
+const WrappedNEBAccountManagement = () => (
+  <NEBDataProvider>
+    <NEBAccountManagement />
+  </NEBDataProvider>
+);
+
+export default WrappedNEBAccountManagement;
