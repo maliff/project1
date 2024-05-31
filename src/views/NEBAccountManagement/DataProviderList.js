@@ -53,8 +53,6 @@ const DataProviderList = (props) => {
       status: false,
     },
   ]);
-  // const { dataProviders } = location.state || { dataProviders: [] };
-  // console.log(dataProviders);
 
   const dataColumns = [
     {

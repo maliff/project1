@@ -4,7 +4,7 @@ import LteContentHeader from "../../components/LteContentHeader";
 import { Link, Navigate } from "react-router-dom";
 import axios from "axios";
 
-function SystemReport() {
+function TicketResolutionCentre() {
   const [data, setData] = useState([]);
   useEffect(() => {
     axios
@@ -30,16 +30,8 @@ function SystemReport() {
   }
   return (
     <>
-      <LteContentHeader title="Report & Resolve Centre" />
+      <LteContentHeader title="Ticket Resolution Centre" />
       <LteContent>
-        <div class="text-center p-1 mb-3 d-flex justify-content-end">
-        <Link
-                to={`/submitNewTicket`}
-                className="btn btn-primary"
-              >
-                + Submit New Ticket
-              </Link>
-        </div>
         <div className="row">
           <div className="col-lg-4 col-6">
             {/* small box */}
@@ -148,4 +140,4 @@ function SystemReport() {
   );
 }
 
-export default SystemReport;
+export default TicketResolutionCentre;

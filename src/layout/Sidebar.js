@@ -26,6 +26,10 @@ export default function Sidebar() {
                     </NavLink>
                     <NavLink tag={Link} to='/nebAccountManagement'>
                         <FontAwesomeIcon icon={faUserPlus} className='nav-icon' />
+                        <p>old Data Provider & Product Management</p>
+                    </NavLink>
+                    <NavLink tag={Link} to='/managementDashboard'>
+                        <FontAwesomeIcon icon={faUserPlus} className='nav-icon' />
                         <p>Data Provider & Product Management</p>
                     </NavLink>
                     <NavLink tag={Link} to='/nebVerificationModule'>
@@ -50,7 +54,11 @@ export default function Sidebar() {
                     </NavLink>
                     <NavLink tag={Link} to='/systemReport'>
                         <FontAwesomeIcon icon={faComment} className='nav-icon' />
-                        <p>System Report</p>
+                        <p>Report & Resolve Centre</p>
+                    </NavLink>
+                    <NavLink tag={Link} to='/ticketResolutionCentre'>
+                        <FontAwesomeIcon icon={faComment} className='nav-icon' />
+                        <p>Ticket Resolution Centre</p>
                     </NavLink>
                     <NavLink tag={Link} to='/trainingModule'>
                         <FontAwesomeIcon icon={faFolderPlus} className='nav-icon' />
