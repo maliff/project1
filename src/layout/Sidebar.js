@@ -24,10 +24,6 @@ export default function Sidebar() {
                         <FontAwesomeIcon icon={faTachometerAlt} className='nav-icon' />
                         <p>Dashboard</p>
                     </NavLink>
-                    <NavLink tag={Link} to='/nebAccountManagement'>
-                        <FontAwesomeIcon icon={faUserPlus} className='nav-icon' />
-                        <p>old Data Provider & Product Management</p>
-                    </NavLink>
                     <NavLink tag={Link} to='/managementDashboard'>
                         <FontAwesomeIcon icon={faUserPlus} className='nav-icon' />
                         <p>Data Provider & Product Management</p>

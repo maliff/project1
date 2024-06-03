@@ -4,7 +4,7 @@ import { Card, Form, Row, Col, Button } from "react-bootstrap";
 import LteContentHeader from "../../components/LteContentHeader";
 import LteContent from "../../components/LteContent";
 
-function CreateNewDataProvider() {
+function CreateProduct() {
   return (
     <>
     <LteContentHeader title="Create New Data Provider" />;
@@ -13,7 +13,7 @@ function CreateNewDataProvider() {
         <Card.Header className="d-flex flex-column align-items-start">
           <div className="d-flex justify-content-between w-100 mb-3">
             <Card.Title as="h2" className="mb-0">
-              <b>Create Profile</b>
+              <b>Create Product</b>
               <p>Fill up all the details*</p>
             </Card.Title>
           </div>
@@ -21,14 +21,14 @@ function CreateNewDataProvider() {
         <Card.Body>
           {/* Details */}
           <Form className="mt-3">
-            <b>Details</b>
+            <b>Product Details</b>
             <Form.Group as={Row} className="mt-3">
-              <Col sm={3}>
+              <Col sm={4}>
                 <Form.Label
                   htmlFor="formSelect1"
                   className="font-weight-normal"
                 >
-                  Agency *
+                  Product Category *
                 </Form.Label>
                 <Form.Control
                   as="select"
@@ -41,45 +41,31 @@ function CreateNewDataProvider() {
                   <option value="3">Option 3</option>
                 </Form.Control>
               </Col>
-              <Col sm={3}>
+              <Col sm={4}>
                 <Form.Label
                   htmlFor="formSelect2"
                   className="font-weight-normal"
                 >
-                 Name *
+                 Product Name *
                 </Form.Label>
                 <Form.Control
                   type="text"
-                  id="name"
-                  aria-label="Name"
+                  id="productname"
+                  aria-label="ProductName"
                   placeholder="Type...."
                 />
               </Col>
-              <Col sm={3}>
+              <Col sm={4}>
                 <Form.Label
                   htmlFor="formSelect3"
                   className="font-weight-normal"
                 >
-                  Email *
+                  Unit *
                 </Form.Label>
                 <Form.Control
                   type="text"
-                  id="email"
-                  aria-label="Email"
-                  placeholder="Type"
-                />
-              </Col>
-              <Col sm={3}>
-                <Form.Label
-                  htmlFor="formSelect4"
-                  className="font-weight-normal"
-                >
-                  Phone Number *
-                </Form.Label>
-                <Form.Control
-                  type="text"
-                  id="phoneNumber"
-                  aria-label="Phone Number"
+                  id="unit"
+                  aria-label="Unit"
                   placeholder="Type"
                 />
               </Col>
@@ -100,4 +86,4 @@ function CreateNewDataProvider() {
 );
 }
 
-export default CreateNewDataProvider
+export default CreateProduct;

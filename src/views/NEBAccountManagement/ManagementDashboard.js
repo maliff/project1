@@ -6,6 +6,7 @@ import Tabs from 'react-bootstrap/Tabs';
 
 import AgencyList from "./AgencyList";
 import DataProviderList from "./DataProviderList";
+import ProductList from "./ProductList";
 // import { NEBDataProvider } from "./NEBDataProvider";
 
 function ManagementDashboard() {
@@ -22,11 +23,10 @@ function ManagementDashboard() {
         <AgencyList/>
       </Tab>
       <Tab eventKey="dataProvider" title="Data Provider">
-        <DataProviderList/>
-        {/* <NEBDataProvider/> */}
+      <DataProviderList/>
       </Tab>
       <Tab eventKey="product" title="Product">
-        Tab content for Product
+      <ProductList/>
       </Tab>
     </Tabs>
     </LteContent>

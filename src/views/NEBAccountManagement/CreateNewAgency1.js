@@ -1,7 +1,7 @@
 import React from "react";
 import { Card, Form, Row, Col, Button } from "react-bootstrap";
 
-function CreateNewAgency1() {
+function CreateNewAgency1({ handleSave}) {
   return (
     <>
       <Card>
@@ -183,7 +183,7 @@ function CreateNewAgency1() {
         <Button variant="link" className="mr-2">
           Cancel
         </Button>
-        <Button variant="primary" className="mr-2">
+        <Button variant="primary" className="mr-2" onClick={handleSave}>
           Save
         </Button>
       </div>

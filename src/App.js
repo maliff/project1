@@ -3,19 +3,6 @@ import { Route, BrowserRouter, Routes } from "react-router-dom";
 import "./meih.scss";
 import "./App.css";
 import Dashboard from "./views/Dashboard/Dashboard";
-import NEBAccountManagement from "./views/NEBAccountManagement/NEBAccountManagement";
-import {
-  NEBDataProvider,
-  NEBDataContext,
-} from "./views/NEBAccountManagement/NEBDataProvider";
-import DataProviderList from "./views/NEBAccountManagement/DataProviderList";
-import ProductList from "./views/NEBAccountManagement/ProductList";
-import CreateNewDataProvider from "./views/NEBAccountManagement/CreateNewDataProvider";
-import CreateNewDataProvider2 from "./views/NEBAccountManagement/CreateNewDataProvider2";
-import CreateNewDataProvider3 from "./views/NEBAccountManagement/CreateNewDataProvider3";
-import CreateNewDataProviderSummary from "./views/NEBAccountManagement/CreateNewDataProviderSummary";
-import CreateNewProduct from "./views/NEBAccountManagement/CreateNewProduct";
-import CreateNewProductSummary from "./views/NEBAccountManagement/CreateNewProductSummary";
 import NEBVerificationModule from "./views/NEBVerificationModule/NebVerificationModule";
 import FuelBalanceReport from "./views/NEBVerificationModule/FuelBalanceReport";
 import EbtUploadFile from "./views/EbtGenerationModule/EbtUploadFile";
@@ -34,13 +21,14 @@ import ReportSubmission from "./views/ReportSubmission/ReportSubmission";
 import FuelBalanceReportDP from "./views/ReportSubmission/FuelBalanceReportDP";
 import SubmitNewReport from "./views/ReportSubmission/SubmitNewReport";
 import SubmitNewTicket from "./views/SystemReport/SubmitNewTicket";
-import ManagementDashboard from "./views/NEBAccountManagement/ManagementDashboard"
-import TicketResolutionCentre from "./views/SystemReport/TicketResolutionCentre";
+import ManagementDashboard from "./views/NEBAccountManagement/ManagementDashboard";
 import { oauthConfig } from "./config/oauthconfig";
 import Login from "./views/Login";
 import Callback from "./views/Callback";
 import { AuthProvider } from "react-oauth2-code-pkce";
 import CreateNewAgency from "./views/NEBAccountManagement/CreateNewAgency";
+import CreateNewDataProvider from "./views/NEBAccountManagement/CreateNewDataProvider";
+import CreateProduct from "./views/NEBAccountManagement/CreateProduct";
 
 const getBasename = () => `/${process.env.PUBLIC_URL.split("/").pop()}`;
 
@@ -57,55 +45,20 @@ function App() {
             <Route exact path="/neb-module" element={<Dashboard />} />
             <Route
               exact
-              path="/nebAccountManagement"
-              element={<NEBAccountManagement />}
-            />
-            <Route
-              exact
               path="/managementDashboard"
               element={<ManagementDashboard />}
             />
-                        <Route
+            <Route
               exact
               path="/createNewAgency"
               element={<CreateNewAgency />}
             />
             <Route
               exact
-              path="/dataProviderList"
-              element={<DataProviderList />}
-            />
-            <Route exact path="/productList" element={<ProductList />} />
-            <Route
-              exact
               path="/createNewDataProvider"
               element={<CreateNewDataProvider />}
             />
-            <Route
-              exact
-              path="/createNewDataProvider2"
-              element={<CreateNewDataProvider2 />}
-            />
-            <Route
-              exact
-              path="/createNewDataProvider3"
-              element={<CreateNewDataProvider3 />}
-            />
-            <Route
-              exact
-              path="/createNewDataProviderSummary"
-              element={<CreateNewDataProviderSummary />}
-            />
-            <Route
-              exact
-              path="/createNewProduct"
-              element={<CreateNewProduct />}
-            />
-            <Route
-              exact
-              path="/CreateNewProductSummary"
-              element={<CreateNewProductSummary />}
-            />
+            <Route exact path="/createProduct" element={<CreateProduct />} />
             <Route
               exact
               path="/nebVerificationModule"

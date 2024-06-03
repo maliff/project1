@@ -1,111 +1,152 @@
-import React, { useState, useContext } from "react";
-import DataTable from "react-data-table-component";
-import { Button } from "reactstrap";
+import React, { useState } from "react";
+import {
+  Card,
+  Table,
+  Badge,
+  Button,
+  InputGroup,
+  FormControl,
+  Row,
+  Col,
+  DropdownButton,
+  Dropdown,
+} from "react-bootstrap";
 import { Link } from "react-router-dom";
+import CustomPagination from "../../components/CustomPagination";
 
-import LteContent from "../../components/LteContent";
-import LteContentHeader from "../../components/LteContentHeader";
-import { NEBDataContext } from "../NEBAccountManagement/NEBDataProvider";
+// Data
+const data = [
+  {
+    id: "1",
+    productcategory: "TNB Jimah East",
+    productname: "Utility & IPP",
+    date_created: "25.02.2024",
+  },
+  {
+    id: "2",
+    productcategory: "TNB Jimah East",
+    productname: "Utility & IPP",
+    date_created: "25.02.2024",
+  },
+  {
+    id: "3",
+    productcategory: "TNB Jimah East",
+    productname: "Utility & IPP",
+    date_created: "25.02.2024",
+  },
+  {
+    id: "4",
+    productcategory: "TNB Jimah East",
+    productname: "Utility & IPP",
+    date_created: "25.02.2024",
+  },
+  // Add more data as needed
+];
 
-const ProductList = () => {
-  const { latestProducts } = useContext(NEBDataContext);
+const ITEMS_PER_PAGE = 4; // Adjust this number as needed
+
+function ProductList() {
   const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage, setItemsPerPage] = useState(5);
 
-  const productColumns = [
-    {
-      name: "No",
-      selector: (row) => row.productId,
-      sortable: true,
-    },
-    {
-      name: "Product Category",
-      selector: (row) => row.productCatagory,
-      sortable: true,
-    },
-    {
-      name: "Product Name",
-      selector: (row) => row.productName,
-      sortable: true,
-    },
-    {
-      name: "Date Created",
-      selector: (row) => row.productDateCreated,
-      sortable: true,
-    },
-  ];
-
-  // Calculate the range of items to display on the current page
-  const startIndex = (currentPage - 1) * itemsPerPage;
-  const endIndex = startIndex + itemsPerPage;
-  const currentItems = latestProducts.slice(startIndex, endIndex);
-
-
-  const handlePageChange = (page) => {
-    setCurrentPage(page);
+  const handlePageChange = (pageNumber) => {
+    setCurrentPage(pageNumber);
   };
 
-  // Function to handle the change in the number of items per page
-  const handleChangeRowsPerPage = (newPerPage, currentPage) => {
-    setItemsPerPage(newPerPage);
-    setCurrentPage(currentPage);
-  };
+  // Calculate the data to be displayed on the current page
+  const indexOfLastItem = currentPage * ITEMS_PER_PAGE;
+  const indexOfFirstItem = indexOfLastItem - ITEMS_PER_PAGE;
+  const currentData = data.slice(indexOfFirstItem, indexOfLastItem);
+
+  // Calculate total pages
+  const totalPages = Math.ceil(data.length / ITEMS_PER_PAGE);
+
+  // Calculate the number of items currently displayed
+  const numberOfItemsDisplayed = currentData.length;
+  const totalItems = data.length;
 
   return (
     <>
-      <LteContentHeader title="Product Management" />
-      <LteContent>
-        <div>
-          {/* Latest Product Section */}
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "flex-end",
-              alignItems: "center",
-              marginTop: "40px",
-            }}
-          >
-            <Link to="/createNewProduct">
-              <Button
-                color="primary"
-                onClick={() => console.log("Button clicked")}
-              >
+      <style>
+        {`
+          .custom-pagination-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 20px; /* Adjust the gap as needed */
+          }
+        `}
+      </style>
+      <Card className="mb-3" style={{ borderRadius: "20px" }}>
+        <Card.Header className="d-flex flex-column align-items-start">
+          <div className="d-flex justify-content-between w-100 mb-3">
+            <Card.Title as="h2" className="mb-0">
+              <b>Product List</b>
+            </Card.Title>
+            <Link to="/createProduct">
+              <Button variant="primary" className="mb-2 mb-md-0">
                 + Add New Product
               </Button>
             </Link>
           </div>
-
-          {/* Latest Product DataTable */}
-          <div style={{ marginTop: "20px", marginBottom: "100px" }}>
-            <DataTable
-              title={
-                <div
-                  style={{
-                    display: "flex",
-                    justifyContent: "space-between",
-                    alignItems: "center",
-                  }}
-                >
-                  <h2 style={{ margin: "0" }}>Product List</h2>
-                </div>
-              }
-              columns={productColumns}
-              data={currentItems}
-              pagination
-              paginationServer
-              paginationPerPage={itemsPerPage}
-              paginationRowsPerPageOptions={[5, 10, 15, 20]}
-              paginationTotalRows={latestProducts.length}
-              onChangePage={handlePageChange}
-              onChangeRowsPerPage={handleChangeRowsPerPage}
-              paginationDefaultPage={currentPage}
-              highlightOnHover={true}
+          <div className="d-flex justify-content-between w-100">
+            <Row className="w-100">
+              <Col md={6}>
+                <InputGroup>
+                  <FormControl
+                    placeholder="Search..."
+                    aria-label="Search"
+                    aria-describedby="button-addon2"
+                  />
+                </InputGroup>
+              </Col>
+            </Row>
+          </div>
+        </Card.Header>
+        <Card.Body className="p-3" style={{ overflowX: "auto" }}>
+          <Table striped bordered hover size="sm">
+            <thead className="bg-secondary text-white">
+              <tr>
+                <th>No</th>
+                <th>Product Category</th>
+                <th>Product Name</th>
+                <th>Date Created</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              {currentData.map((d, i) => (
+                <tr key={i}>
+                  <td>{d.id}</td>
+                  <td>{d.productcategory}</td>
+                  <td>{d.productname}</td>
+                  <td>{d.date_created}</td>
+                  <td>
+                    <Link
+                      to={`/fuelBalanceReportDP/${d.id}`}
+                      className="btn btn-link"
+                      style={{ width: "80px" }}
+                    >
+                      View
+                    </Link>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </Table>
+          <div className="custom-pagination-container">
+            <span>
+              Showing {numberOfItemsDisplayed} out of {totalItems}
+            </span>
+            <CustomPagination
+              currentPage={currentPage}
+              totalPages={totalPages}
+              onPageChange={handlePageChange}
             />
           </div>
-        </div>
-      </LteContent>
+        </Card.Body>
+      </Card>
     </>
   );
-};
+}
 
 export default ProductList;

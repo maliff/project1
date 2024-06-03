@@ -1,7 +1,7 @@
 import React from "react";
 import { Card, Form, Row, Col, Button, CardFooter } from "react-bootstrap";
 
-function CreateNewAgencyForm() {
+function CreateNewAgencyForm({handleSave, handleBack}) {
   return (
     <>
       <Card>
@@ -180,13 +180,13 @@ function CreateNewAgencyForm() {
         </CardFooter>
       </Card>
       <div className="d-flex justify-content-end mt-3">
-        <Button variant="light" className="mr-2">
+        <Button variant="light" className="mr-2" onClick={handleBack}>
           Back
         </Button>
         <Button variant="link" className="mr-2">
           Cancel
         </Button>
-        <Button variant="primary" className="mr-2">
+        <Button variant="primary" className="mr-2" onClick={handleSave}>
           Save
         </Button>
       </div>

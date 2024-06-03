@@ -11,8 +11,6 @@ import {
 } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import CustomPagination from "../../components/CustomPagination";
-import CreateNewAgency from "./CreateNewAgency"; 
-
 // Data
 const data = [
   {
